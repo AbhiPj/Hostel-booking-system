@@ -5,14 +5,13 @@
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
     <title>Document</title>
 </head>
 <body>
     <div class="mainContent">
         <div class="contentHolder">
-
-
             <div class="sidenav">
                 <a href="#about">About</a>
                 <a href="#services">Services</a>
@@ -29,7 +28,7 @@
                     <label for="room_image">Room Image:</label><br>
                     <input type="file" id="primaryImg" name="primaryImg" onchange="preview2()"><br><br>
                     <div id="images2"></div>
-                    <input type="file" id="roomImg" multiple onchange="preview()"><br><br>
+                    <input type="file" id="roomImg" name="roomImg[]" multiple onchange="preview()"><br><br>
                     <input type="submit" value="Submit"><br><br>
                     <div id="images"></div>
 
@@ -38,32 +37,123 @@
 
 
         </div>
-        <table>
-            <tr>
-                <th>ID</th>
-                <th>Room Name</th>
-                <th>Room Type</th>
-                <th>Primary Image</th>
-            </tr>
-
-           @foreach($rooms as $rooms)
-               <tr>
-                   <td>{{$rooms['id']}}</td>
-                   <td>{{$rooms['roomName']}}</td>
-                   <td>{{$rooms['roomType']}}</td>
-                   <td>   <img class="imgStyle" src="{{ asset('images/' . $rooms['primaryImg']) }}" />
-                   </td>
-
-
-               </tr>
-            @endforeach
-        </table>
+        <!-- The Modal -->
+            <div id="myModal" class="modal">
+                <!-- The Close Button -->
+                <span class="close">&times;</span>
+                <!-- Modal Content (The Image) -->
+                <img class="modal-content" id="img01">
+                <!-- Modal Caption (Image Text) -->
+                <div id="caption"></div>
+            </div>
         </div>
     </div>
+    <table>
+        <tr>
+            <th>ID</th>
+            <th>Room Name</th>
+            <th>Room Type</th>
+            <th>Primary Image</th>
+            <th>Additional Images</th>
+            <th>Action</th>
+
+        </tr>
+
+
+
+        @foreach($rooms as $rooms)
+
+            <tr>
+                <td>{{$rooms['id']}}</td>
+                <td>{{$rooms['roomName']}}</td>
+                <td>{{$rooms['roomType']}}</td>
+                <td>
+                    <img class="myImg" onclick="image(event)"  id="myImg" src="{{ asset('images/' . $rooms['primaryImg']) }}" />
+                </td>
+                <td>
+                    @foreach (explode(',', $rooms['additionalImages']) as $image)
+                        <img class="myImg" onclick="image(event)" src="{{ asset('images/'.$image)}}">
+                    @endforeach
+                </td>
+
+                {{--                   <td>--}}
+                {{--                       <a href="{{route('rooms.edit', $rooms->id)}}" class="button">Edit</a>--}}
+                {{--                       <form action="{{route('rooms.destroy', $rooms->id)}}" method="POST">--}}
+                {{--                           @csrf--}}
+                {{--                           @method('delete')--}}
+                {{--                           <button type="submit" class="button">Delete</button>--}}
+                {{--                       </form>--}}
+                {{--                   </td>--}}
+                <td>
+                    <a href="{{route('rooms.edit', $rooms->id)}}" class="button">Edit</a>
+                    <form action="{{route('rooms.destroy', $rooms->id)}}" method="POST">
+                        @csrf
+                        @method('delete')
+                        <button type="submit" class="button">Delete</button>
+                    </form>
+                </td>
+            </tr>
+        @endforeach
+    </table>
 </body>
 
 
 <style>
+    .button{
+        text-decoration: none;
+        color: #111;
+        border: 2px solid;
+        padding: 8px;
+        border-radius: 5px;
+    }
+    .myImg {
+        border-radius: 5px;
+        cursor: pointer;
+        transition: 0.3s;
+        height: 100px;
+        width: 100px;
+    }
+    .myImg:hover {
+         opacity: 0.7;
+     }
+    /* The Modal (background) */
+    .modal {
+        display: none; /* Hidden by default */
+        position: fixed; /* Stay in place */
+        z-index: 1; /* Sit on top */
+        padding-top: 100px; /* Location of the box */
+        left: 0;
+        top: 0;
+        width: 100%; /* Full width */
+        height: 100%; /* Full height */
+        overflow: auto; /* Enable scroll if needed */
+        background-color: rgb(0,0,0); /* Fallback color */
+        background-color: rgba(0,0,0,0.9); /* Black w/ opacity */
+    }
+
+    /* Modal Content (image) */
+    .modal-content {
+        margin: auto;
+        display: block;
+        width: 80%;
+        max-width: 700px;
+    }
+    .close {
+        position: absolute;
+        top: 15px;
+        right: 35px;
+        color: #f1f1f1;
+        font-size: 40px;
+        font-weight: bold;
+        transition: 0.3s;
+    }
+
+    .close:hover,
+    .close:focus {
+        color: #bbb;
+        text-decoration: none;
+        cursor: pointer;
+    }
     .imgStyle{
         width: 30%;
     }
@@ -71,6 +161,7 @@
         background-color: #6a1a21;
         min-height: 100vh;
         height: auto;
+        display: flex;
     }
 
     .sidenav {
@@ -121,11 +212,7 @@
 margin-bottom: 10px;
     /*flex-direction: column;*/
 }
-form{
-    margin-left: 500px;
-    margin-top: 250px;
 
-}
 .contentHolder{
     display: flex;
 
@@ -194,6 +281,27 @@ form{
             imageContainer2.appendChild(figure);
             reader.readAsDataURL(i);
         }
+    }
+
+    // Get the modal
+    var modal = document.getElementById("myModal");
+
+    // Get the image and insert it inside the modal - use its "alt" text as a caption
+    // var img = $(".myImg");
+    var modalImg = document.getElementById("img01");
+    var captionText = document.getElementById("caption");
+    function image(event)  {
+        modal.style.display = "block";
+        modalImg.src = event.target.src;
+        captionText.innerHTML = event.target.alt;
+    }
+
+    // Get the <span> element that closes the modal
+    var span = document.getElementsByClassName("close")[0];
+
+    // When the user clicks on <span> (x), close the modal
+    span.onclick = function () {
+        modal.style.display = "none";
     }
 </script>
 </html>

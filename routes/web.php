@@ -19,7 +19,9 @@ Route::get('/', function () {
 
 Route::get('image-upload', [ RoomsController::class, 'index' ])->name('image.upload');
 Route::post('image-upload', [ RoomsController::class, 'store' ])->name('image.upload.post');
-//Route::resource('image-upload', RoomsController::class);
+
+
+Route::resource('rooms', RoomsController::class);
 
 Auth::routes();
 

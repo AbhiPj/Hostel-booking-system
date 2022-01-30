@@ -18,7 +18,7 @@ class CreateRoomsTable extends Migration
             $table->string('roomName');
             $table->string('roomType');
             $table->string('primaryImg');
-            $table->string('primaryImgPath');
+            $table->string('additionalImages');
 
 
             $table->timestamps();

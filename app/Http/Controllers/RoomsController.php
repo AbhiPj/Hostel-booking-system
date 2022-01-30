@@ -40,6 +40,7 @@ class RoomsController extends Controller
         //
         $validatedData = $request->validate([
             'primaryImg' => 'required|image|mimes:jpg,png,jpeg,gif,svg|max:2048',
+            'roomImg.*' => 'image|mimes:jpg,png,jpeg,gif,svg|max:2048',
         ]);
 
         // $primaryImageName = time().'.'.$request->bookPrimaryImg->extension();
@@ -48,12 +49,27 @@ class RoomsController extends Controller
 
         $request->primaryImg->move(public_path('images'), $primaryImageName);
 
+
+
+        $secondaryImgs = [];
+        if($request->hasfile('roomImg'))
+        {
+            foreach($request->file('roomImg') as $img)
+            {
+                // $secondaryImgName = $request->file('img')->getClientOriginalName();
+                $secondaryImgName = $img->getClientOriginalName();
+                $img->move(public_path('images'), $secondaryImgName);
+                $secondaryImgs[] = $secondaryImgName;
+            }
+        }
+
+
         $rooms = new Rooms();
         $rooms->roomName = $request->get('name');
         $rooms->roomType = $request->get('roomType');
-        $rooms->primaryImgPath = $primaryImagePath;
         $rooms->primaryImg = $primaryImageName;
-
+        $secondaryImgNames = implode(",",$secondaryImgs);
+        $rooms->additionalImages = $secondaryImgNames;
 
         $rooms->save();
 
@@ -77,9 +93,12 @@ class RoomsController extends Controller
      * @param  \App\Models\Rooms  $rooms
      * @return \Illuminate\Http\Response
      */
-    public function edit(Rooms $rooms)
+    public function edit(Rooms $rooms,$id)
     {
         //
+
+        $room=Rooms::find($id);
+        return view('admin.editRoom',compact('room'));
     }
 
     /**
@@ -89,9 +108,33 @@ class RoomsController extends Controller
      * @param  \App\Models\Rooms  $rooms
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Rooms $rooms)
+    public function update(Request $request, Rooms $rooms,$id)
     {
         //
+        $rooms=Rooms::find($id);
+        $rooms->roomName=$request->get('name');
+        $rooms->roomType=$request->get('roomType');
+        if($request->hasfile('primaryImg')){
+            $primaryImageName = $request->file('primaryImg')->getClientOriginalName();
+            $request->primaryImg->move(public_path('images'), $primaryImageName);
+            $rooms->primaryImg = $primaryImageName;
+        }
+
+        $secondaryImgs = [];
+        if($request->hasfile('roomImg'))
+        {
+            foreach($request->file('roomImg') as $img)
+            {
+                $secondaryImgName = $img->getClientOriginalName();
+                $img->move(public_path('images'), $secondaryImgName);
+                $secondaryImgs[] = $secondaryImgName;
+                $secondaryImgNames = implode(",",$secondaryImgs);
+                $rooms->additionalImages = $secondaryImgNames;
+            }
+        }
+        $rooms->save();
+
+        return redirect('image-upload');
     }
 
     /**
@@ -100,8 +143,13 @@ class RoomsController extends Controller
      * @param  \App\Models\Rooms  $rooms
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Rooms $rooms)
+    public function destroy(Rooms $rooms, $id)
     {
         //
+
+        $room = Rooms::find($id);
+        $room->delete();
+        return redirect('image-upload');
+
     }
 }

@@ -11,5 +11,5 @@ class Rooms extends Model
 
     protected $table = 'rooms';
 
-    protected $fillable = ['roomName','roomType','primaryImgPath'];
+    protected $fillable = ['roomName','roomType'];
 }
