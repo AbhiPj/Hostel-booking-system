@@ -17,10 +17,13 @@ class CreateRoomsTable extends Migration
             $table->id();
             $table->string('roomName');
             $table->string('roomType');
+            $table->string('about');
+            $table->integer('price');
+//            $table->string('facilities');
+            //hostel foreign key
+            //rating
             $table->string('primaryImg');
             $table->string('additionalImages');
-
-
             $table->timestamps();
         });
     }

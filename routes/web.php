@@ -14,7 +14,7 @@ use App\Http\Controllers\RoomsController;
 */
 
 Route::get('/', function () {
-    return view('admin.dashboard');
+    return view('home');
 });
 
 Route::get('image-upload', [ RoomsController::class, 'index' ])->name('image.upload');

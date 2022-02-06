@@ -67,6 +67,8 @@ class RoomsController extends Controller
         $rooms = new Rooms();
         $rooms->roomName = $request->get('name');
         $rooms->roomType = $request->get('roomType');
+        $rooms->about=$request->get('about');
+        $rooms->price=$request->get('price');
         $rooms->primaryImg = $primaryImageName;
         $secondaryImgNames = implode(",",$secondaryImgs);
         $rooms->additionalImages = $secondaryImgNames;
@@ -114,6 +116,9 @@ class RoomsController extends Controller
         $rooms=Rooms::find($id);
         $rooms->roomName=$request->get('name');
         $rooms->roomType=$request->get('roomType');
+        $rooms->about=$request->get('about');
+        $rooms->price=$request->get('price');
+
         if($request->hasfile('primaryImg')){
             $primaryImageName = $request->file('primaryImg')->getClientOriginalName();
             $request->primaryImg->move(public_path('images'), $primaryImageName);

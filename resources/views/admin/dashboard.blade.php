@@ -22,9 +22,13 @@
                 <form action="{{ route('image.upload.post') }}" method="POST" enctype="multipart/form-data">
                     @csrf
                     <label for="name">Name:</label><br>
-                    <input type="text" name="name" name="name"><br>
+                    <input type="text" name="name"><br>
+                    <label for="about">About:</label><br>
+                    <input type="text" name="about"><br>
+                    <label for="about">Price:</label><br>
+                    <input type="text" name="price"><br>
                     <label for="roomType">Room Type:</label><br>
-                    <input type="text" name="roomType" name="roomType" ><br><br>
+                    <input type="text" name="roomType" ><br><br>
                     <label for="room_image">Room Image:</label><br>
                     <input type="file" id="primaryImg" name="primaryImg" onchange="preview2()"><br><br>
                     <div id="images2"></div>
@@ -53,6 +57,7 @@
             <th>ID</th>
             <th>Room Name</th>
             <th>Room Type</th>
+            <th>Price</th>
             <th>Primary Image</th>
             <th>Additional Images</th>
             <th>Action</th>
@@ -67,6 +72,8 @@
                 <td>{{$rooms['id']}}</td>
                 <td>{{$rooms['roomName']}}</td>
                 <td>{{$rooms['roomType']}}</td>
+                <td>{{$rooms['price']}}</td>
+
                 <td>
                     <img class="myImg" onclick="image(event)"  id="myImg" src="{{ asset('images/' . $rooms['primaryImg']) }}" />
                 </td>
@@ -158,7 +165,7 @@
         width: 30%;
     }
     .mainContent{
-        background-color: #6a1a21;
+        /*background-color: #6a1a21;*/
         min-height: 100vh;
         height: auto;
         display: flex;
@@ -209,12 +216,14 @@
 .formContainer{
     width: 100%;
     display: flex;
-margin-bottom: 10px;
+    justify-content: center;
+    margin-bottom: 10px;
     /*flex-direction: column;*/
 }
 
 .contentHolder{
     display: flex;
+    min-width: 100%;
 
 }
 #images{
