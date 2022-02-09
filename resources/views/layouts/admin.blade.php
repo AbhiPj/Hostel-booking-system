@@ -1,5 +1,7 @@
 <!doctype html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+<link rel="stylesheet" href="{{asset('css/style.css')}}">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -78,10 +80,18 @@
         <div class="mainContent">
             <div class="contentHolder">
                 <div class="sidenav">
-                    <a href="#about">About</a>
+                    <a href="#addrooms">Add Rooms</a>
                     <a href="#services">Services</a>
                     <a href="#clients">Clients</a>
                     <a href="#contact">Contact</a>
+                    <button class="dropdown-btn">Dropdown
+                        <i class="fa fa-caret-down"></i>
+                    </button>
+                    <div class="dropdown-container">
+                        <a href="#">Link 1</a>
+                        <a href="#">Link 2</a>
+                        <a href="#">Link 3</a>
+                    </div>
                 </div>
 <div style="overflow-y: scroll;height: 90vh;width: 100%">
     @yield('content')
@@ -93,214 +103,22 @@
 </div>
 </body>
 
-
-
-<style>
-    .button{
-        text-decoration: none;
-        color: #111;
-        border: 2px solid;
-        padding: 8px;
-        border-radius: 5px;
-    }
-    .myImg {
-        border-radius: 5px;
-        cursor: pointer;
-        transition: 0.3s;
-        height: 100px;
-        width: 100px;
-    }
-    .myImg:hover {
-        opacity: 0.7;
-    }
-    /* The Modal (background) */
-    .modal {
-        display: none; /* Hidden by default */
-        position: fixed; /* Stay in place */
-        z-index: 1; /* Sit on top */
-        padding-top: 100px; /* Location of the box */
-        left: 0;
-        top: 0;
-        width: 100%; /* Full width */
-        height: 100%; /* Full height */
-        overflow: auto; /* Enable scroll if needed */
-        background-color: rgb(0,0,0); /* Fallback color */
-        background-color: rgba(0,0,0,0.9); /* Black w/ opacity */
-    }
-
-    /* Modal Content (image) */
-    .modal-content {
-        margin: auto;
-        display: block;
-        width: 80%;
-        max-width: 700px;
-    }
-    .close {
-        position: absolute;
-        top: 15px;
-        right: 35px;
-        color: #f1f1f1;
-        font-size: 40px;
-        font-weight: bold;
-        transition: 0.3s;
-    }
-
-    .close:hover,
-    .close:focus {
-        color: #bbb;
-        text-decoration: none;
-        cursor: pointer;
-    }
-    .imgStyle{
-        width: 30%;
-    }
-    .mainContent{
-        /*background-color: #6a1a21;*/
-        min-height: 100vh;
-        height: auto;
-        display: flex;
-    }
-
-    .sidenav {
-        height: 100vh;
-        width: 280px;
-        background-color: #111;
-        overflow-x: hidden;
-        padding-top: 20px;
-        /*position: fixed;*/
-    }
-
-    .sidenav a {
-        padding: 6px 8px 6px 16px;
-        text-decoration: none;
-        font-size: 25px;
-        color: #818181;
-        display: block;
-    }
-    table {
-        font-family: arial, sans-serif;
-        border-collapse: collapse;
-        width: 80%;
-        background-color: white;
-        padding-bottom: 30px;
-        margin: auto;
-    }
-
-    td, th {
-        border: 1px solid #dddddd;
-        text-align: left;
-        padding: 8px;
-    }
-
-    tr:nth-child(even) {
-        background-color: #dddddd;
-    }
-    .sidenav a:hover {
-        color: #f1f1f1;
-    }
-
-    body{
-        margin: 0;
-        padding: 0;
-    }
-    .formContainer{
-        width: 100%;
-        /*display: flex;*/
-        justify-content: center;
-        margin-bottom: 10px;
-        /*flex-direction: column;*/
-    }
-
-    .contentHolder{
-        display: flex;
-        min-width: 100%;
-
-    }
-    #images{
-        width: 50%;
-        position: relative;
-        /*margin: auto;*/
-        display: flex;
-        justify-content: space-evenly;
-        /*gap: 20px;*/
-        flex-wrap: wrap;
-        overflow: scroll;
-        height: 200px;
-        /*background-color: white;*/
-    }
-    figure{
-        width: 35%;
-    }
-    img{
-        width: 100%;
-    }
-</style>
-
+<script src="{{asset('js/script.js')}}" > </script>
 <script>
-    let fileInput = document.getElementById("roomImg");
-    let fileInput2 = document.getElementById("primaryImg");
+    /* Loop through all dropdown buttons to toggle between hiding and showing its dropdown content - This allows the user to have multiple dropdowns without any conflict */
+    var dropdown = document.getElementsByClassName("dropdown-btn");
+    var i;
 
-    let imageContainer = document.getElementById("images");
-    let imageContainer2 = document.getElementById("images2");
-
-
-    function preview(){
-        imageContainer.innerHTML = "";
-
-        for(i of fileInput.files){
-            let reader = new FileReader();
-            let figure = document.createElement("figure");
-            let figCap = document.createElement("figcaption");
-            figCap.innerText = i.name;
-            figure.appendChild(figCap);
-            reader.onload=()=>{
-                let img = document.createElement("img");
-                img.setAttribute("src",reader.result);
-                figure.insertBefore(img,figCap);
+    for (i = 0; i < dropdown.length; i++) {
+        dropdown[i].addEventListener("click", function() {
+            this.classList.toggle("active");
+            var dropdownContent = this.nextElementSibling;
+            if (dropdownContent.style.display === "block") {
+                dropdownContent.style.display = "none";
+            } else {
+                dropdownContent.style.display = "block";
             }
-            imageContainer.appendChild(figure);
-            reader.readAsDataURL(i);
-        }
-    }
-
-    function preview2(){
-        imageContainer2.innerHTML = "";
-
-        for(i of fileInput2.files){
-            let reader = new FileReader();
-            let figure = document.createElement("figure");
-            let figCap = document.createElement("figcaption");
-            figCap.innerText = i.name;
-            figure.appendChild(figCap);
-            reader.onload=()=>{
-                let img = document.createElement("img");
-                img.setAttribute("src",reader.result);
-                figure.insertBefore(img,figCap);
-            }
-            imageContainer2.appendChild(figure);
-            reader.readAsDataURL(i);
-        }
-    }
-
-    // Get the modal
-    var modal = document.getElementById("myModal");
-
-    // Get the image and insert it inside the modal - use its "alt" text as a caption
-    // var img = $(".myImg");
-    var modalImg = document.getElementById("img01");
-    var captionText = document.getElementById("caption");
-    function image(event)  {
-        modal.style.display = "block";
-        modalImg.src = event.target.src;
-        captionText.innerHTML = event.target.alt;
-    }
-
-    // Get the <span> element that closes the modal
-    var span = document.getElementsByClassName("close")[0];
-
-    // When the user clicks on <span> (x), close the modal
-    span.onclick = function () {
-        modal.style.display = "none";
+        });
     }
 </script>
 </html>
