@@ -148,7 +148,7 @@ class RoomsController extends Controller
      * @param  \App\Models\Rooms  $rooms
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Rooms $rooms, $id)
+    public function destroy( $id)
     {
         //
 

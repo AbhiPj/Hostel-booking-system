@@ -22,6 +22,8 @@ Route::post('image-upload', [ RoomsController::class, 'store' ])->name('image.up
 
 
 Route::resource('rooms', RoomsController::class);
+Route::resource('roomType', \App\Http\Controllers\RoomTypeController::class);
+
 
 Auth::routes();
 

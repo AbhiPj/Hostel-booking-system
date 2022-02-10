@@ -25,7 +25,7 @@ class CreateRoomsTable extends Migration
             $table->string('primaryImg');
             $table->string('additionalImages');
 
-            $table->foreign('roomType')->references('id')->on('room_types');
+            $table->foreign('roomType')->references('id')->on('roomType');
 
             $table->timestamps();
         });

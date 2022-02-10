@@ -15,6 +15,8 @@ class RoomTypeController extends Controller
     public function index()
     {
         //
+//        return(view('admin.roomType'));
+
     }
 
     /**
@@ -25,6 +27,12 @@ class RoomTypeController extends Controller
     public function create()
     {
         //
+
+
+        $data = RoomType::all();
+        return view('admin.roomType',compact('data'));
+//        return(view('admin.roomType'));
+
     }
 
     /**
@@ -36,6 +44,11 @@ class RoomTypeController extends Controller
     public function store(Request $request)
     {
         //
+        $roomType = new RoomType();
+        $roomType->roomType = $request->get('roomType');
+        $roomType->save();
+        return redirect()->route('roomType.create');
+
     }
 
     /**
@@ -47,6 +60,7 @@ class RoomTypeController extends Controller
     public function show(RoomType $roomType)
     {
         //
+
     }
 
     /**
@@ -55,9 +69,11 @@ class RoomTypeController extends Controller
      * @param  \App\Models\RoomType  $roomType
      * @return \Illuminate\Http\Response
      */
-    public function edit(RoomType $roomType)
+    public function edit(RoomType $roomType, $id)
     {
         //
+        $room=RoomType::find($id);
+        return redirect()->route('roomType.create');
     }
 
     /**
@@ -78,8 +94,12 @@ class RoomTypeController extends Controller
      * @param  \App\Models\RoomType  $roomType
      * @return \Illuminate\Http\Response
      */
-    public function destroy(RoomType $roomType)
+    public function destroy($id)
     {
         //
+        $delete_roomType=RoomType::find($id);
+//        $delete_roomType->delete();
+
+        return redirect()->route('roomType.create');
     }
 }

@@ -13,7 +13,7 @@ class CreateRoomTypesTable extends Migration
      */
     public function up()
     {
-        Schema::create('room_types', function (Blueprint $table) {
+        Schema::create('roomType', function (Blueprint $table) {
             $table->id();
             $table->string('roomType');
             $table->timestamps();

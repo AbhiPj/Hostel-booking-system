@@ -80,8 +80,8 @@
         <div class="mainContent">
             <div class="contentHolder">
                 <div class="sidenav">
-                    <a href="#addrooms">Add Rooms</a>
-                    <a href="#services">Services</a>
+                    <a href="/image-upload">Add Rooms</a>
+                    <a href="{{ route('roomType.create') }}">Add RoomType</a>
                     <a href="#clients">Clients</a>
                     <a href="#contact">Contact</a>
                     <button class="dropdown-btn">Dropdown
