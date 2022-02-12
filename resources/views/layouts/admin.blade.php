@@ -80,7 +80,10 @@
         <div class="mainContent">
             <div class="contentHolder">
                 <div class="sidenav">
-                    <a href="/image-upload">Add Rooms</a>
+                    <a href="/home">Home</a>
+{{--                    <a href="{{ route('hostels.create') }}">Add Hostel</a>--}}
+
+                    <a href="{{ route('rooms.create') }}">Add Rooms</a>
                     <a href="{{ route('roomType.create') }}">Add RoomType</a>
                     <a href="#clients">Clients</a>
                     <a href="#contact">Contact</a>

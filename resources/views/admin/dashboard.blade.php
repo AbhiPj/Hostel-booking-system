@@ -3,8 +3,10 @@
 @extends('layouts.admin')
 
 @section('content')
-        <div class="formContainer">
-                <form action="{{ route('image.upload.post') }}" method="POST" enctype="multipart/form-data">
+
+    <div class="formContainer">
+
+        <form action="{{ route('rooms.store') }}" method="POST" enctype="multipart/form-data">
                     @csrf
                     <label for="name">Name:</label><br>
                     <input type="text" name="name"><br>
@@ -12,8 +14,12 @@
                     <input type="text" name="about"><br>
                     <label for="about">Price:</label><br>
                     <input type="text" name="price"><br>
-                    <label for="roomType">Room Type:</label><br>
-                    <input type="text" name="roomType" ><br><br>
+
+                    <select name="roomType" id="">
+                        @foreach($roomType as $roomType1)
+                            <option value="{{$roomType1->id}}">{{$roomType1->roomType}}</option>
+                        @endforeach
+                    </select><br>
                     <label for="room_image">Room Image:</label><br>
                     <input type="file" id="primaryImg" name="primaryImg" onchange="preview2()"><br><br>
                     <div id="images2"></div>
@@ -21,8 +27,13 @@
                     <div id="images"></div>
                     <input type="submit" value="Submit"><br><br>
                 </form>
-            </div>
-        <table>
+
+    </div>
+
+    <table>
+            <tr>
+
+            </tr>
             <tr>
                 <th>ID</th>
                 <th>Room Name</th>
@@ -36,9 +47,12 @@
                 <tr>
                     <td>{{$rooms['id']}}</td>
                     <td>{{$rooms['roomName']}}</td>
-                    <td>{{$rooms['roomType']}}</td>
+                    @foreach($roomType as $roomType2)
+                        @if($roomType2->id == $rooms->roomType)
+                            <td>{{$roomType2->roomType}}</td>
+                        @endif
+                    @endforeach
                     <td>{{$rooms['price']}}</td>
-
                     <td>
                         <img class="myImg" onclick="image(event)"  id="myImg" src="{{ asset('images/' . $rooms['primaryImg']) }}" />
                     </td>
@@ -56,7 +70,9 @@
                         </form>
                     </td>
                 </tr>
+
             @endforeach
+
         </table>
 
         </div>
@@ -92,4 +108,5 @@
         modal.style.display = "none";
     }
 </script>
+
 @endsection

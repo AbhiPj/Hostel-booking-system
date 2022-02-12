@@ -13,8 +13,7 @@
                         </div>
                     @endif
 {{--                    {{ __('You are logged in!') }}--}}
-                        <a href="image-upload">rooms</a>
-
+                        <a href="{{ route('rooms.create') }}">rooms</a>
                 </div>
             </div>
         </div>

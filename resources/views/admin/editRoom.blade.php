@@ -20,7 +20,7 @@
         <input type="file" id="roomImg" name="roomImg[]" multiple onchange="preview()"><br><br>
         <div id="images"></div>
         <input type="submit" value="Submit"><br><br>
-        <a href="/image-upload">Cancel</a>
+        <a href="{{route('rooms.create')}}">Cancel</a>
 
     </form>
 </div>

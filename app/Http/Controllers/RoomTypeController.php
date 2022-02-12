@@ -69,11 +69,12 @@ class RoomTypeController extends Controller
      * @param  \App\Models\RoomType  $roomType
      * @return \Illuminate\Http\Response
      */
-    public function edit(RoomType $roomType, $id)
+    public function edit($id)
     {
         //
         $room=RoomType::find($id);
-        return redirect()->route('roomType.create');
+        return view('admin.editRoomType',compact('room'));
+
     }
 
     /**
@@ -83,9 +84,13 @@ class RoomTypeController extends Controller
      * @param  \App\Models\RoomType  $roomType
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, RoomType $roomType)
+    public function update(Request $request, $id)
     {
         //
+        $roomType=RoomType::find($id);
+        $roomType->roomType = $request->get('editRoomType');
+        $roomType->save();
+        return redirect()->route('roomType.create');
     }
 
     /**
@@ -98,7 +103,7 @@ class RoomTypeController extends Controller
     {
         //
         $delete_roomType=RoomType::find($id);
-//        $delete_roomType->delete();
+        $delete_roomType->delete();
 
         return redirect()->route('roomType.create');
     }
