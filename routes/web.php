@@ -17,12 +17,6 @@ Route::get('/', function () {
     return view('auth.login');
 });
 
-//Route::get('admin/rooms', [ RoomsController::class, 'index' ])->name('image.upload');
-//Route::post('admin/rooms', [ RoomsController::class, 'store' ])->name('image.upload.post');
-
-//Route::get('admin/hostel', [ \App\Http\Controllers\HostelsController::class, 'index' ])->name('hostels');
-//Route::post('admin/hostel', [ \App\Http\Controllers\HostelsController::class, 'store' ])->name('hostels.post');
-
 Route::resource('rooms', RoomsController::class);
 Route::resource('roomType', \App\Http\Controllers\RoomTypeController::class);
 
@@ -30,7 +24,7 @@ Route::resource('hostels', \App\Http\Controllers\HostelsController::class);
 
 Auth::routes();
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index']);
+Route::get('/user', [App\Http\Controllers\userRoomController::class, 'index']);
 
 

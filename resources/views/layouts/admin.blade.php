@@ -85,7 +85,9 @@
 
                     <a href="{{ route('rooms.create') }}">Add Rooms</a>
                     <a href="{{ route('roomType.create') }}">Add RoomType</a>
-                    <a href="#clients">Clients</a>
+                    <a href="/user">User</a>
+{{--                        <a href="{{route('user.index')}}">User</a>--}}
+
                     <a href="#contact">Contact</a>
                     <button class="dropdown-btn">Dropdown
                         <i class="fa fa-caret-down"></i>
