@@ -20,7 +20,8 @@
                             <img class="blog-img" src="{{asset('images/' . $rooms['primaryImg'])}}" alt="post-1">
                             <div class="blog-title">
                                 <h3>{{$rooms->roomName}}</h3>
-                                <button class="btn btn-blog">View</button>
+{{--                                <p>{{$rooms->about}}</p>--}}
+                                <a href="/user/rooms/{{$rooms->id}}" class="btn btn-blog">View</a>
                                 <span>{{$rooms->price}}</span>
                             </div>
                         </div>

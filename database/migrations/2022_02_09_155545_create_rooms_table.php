@@ -19,6 +19,7 @@ class CreateRoomsTable extends Migration
             $table->unsignedBigInteger('roomType');
             $table->string('about');
             $table->integer('price');
+//            $table->integer('roomStatus');
 //            $table->string('facilities');
             //hostel foreign key
             //rating
