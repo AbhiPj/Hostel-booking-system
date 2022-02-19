@@ -3,15 +3,20 @@
 @section('content')
 <div class="container">
     <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="card">
-                <div class="card-header">{{ __('Login') }}</div>
+        <div>
+        </div>
 
-                <div class="card-body">
-                    <form method="POST" action="{{ route('login') }}">
+        <div class="col-md-8">
+            <div class="mt-5 card">
+{{--                <div class="card-header">{{ __('Login') }}</div>--}}
+                <h1 style="text-align: center">Login</h1>
+
+
+                <div style="min-height: 50vh" class="card-body">
+                    <form class="mt-5" method="POST" action="{{ route('login') }}">
                         @csrf
 
-                        <div class="row mb-3">
+                        <div class="row mb-5">
                             <label for="email" class="col-md-4 col-form-label text-md-end">{{ __('E-Mail Address') }}</label>
 
                             <div class="col-md-6">

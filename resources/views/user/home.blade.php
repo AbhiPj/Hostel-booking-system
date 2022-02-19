@@ -3,9 +3,8 @@
 
 @section('content')
     <section class="site-title">
-        <div class="site-background" data-aos="fade-up" data-aos-delay="100">
-{{--            <h3 style="color: black">Tours & Travels</h3>--}}
-{{--            <h1 style="color:black;">Amazing Place on Earth</h1>--}}
+        <div class="site-background" >
+            <h1 style="margin-bottom: 80px; color: #313d59; font-size: 3.2rem">Welcome to Hostel Sansar</h1>
             <input name="search" placeholder="search" style="border-radius: 25px; width: 500px; height: 35px; margin-top: 20px"><br>
             <button class="btn">Explore</button>
         </div>
@@ -13,13 +12,16 @@
 
     <section>
         <div >
+            <div style="text-align: center; color: grey">
+                <h1 style="margin-top: 20px; color:#313d59">Rooms</h1>
+            </div>
             <div class="roomContainer">
                 @foreach($rooms as $rooms)
                     <div class="blog-post">
-                        <div class="blog-content" data-aos="fade-right" data-aos-delay="200">
+                        <div class="blog-content">
                             <img class="blog-img" src="{{asset('images/' . $rooms['primaryImg'])}}" alt="post-1">
                             <div class="blog-title">
-                                <h3>{{$rooms->roomName}}</h3>
+                                <h3 style="color: #313d59">{{$rooms->roomName}}</h3>
 {{--                                <p>{{$rooms->about}}</p>--}}
                                 <a href="/user/rooms/{{$rooms->id}}" class="btn btn-blog">View</a>
                                 <span>{{$rooms->price}}</span>

@@ -85,18 +85,20 @@
 
                     <a href="{{ route('rooms.create') }}">Add Rooms</a>
                     <a href="{{ route('roomType.create') }}">Add RoomType</a>
-                    <a href="/user">User</a>
+                    <a href="{{ route('booking.index') }}">Bookings</a>
+
+                    {{--                    <a href="/user">User</a>--}}
 {{--                        <a href="{{route('user.index')}}">User</a>--}}
 
-                    <a href="#contact">Contact</a>
-                    <button class="dropdown-btn">Dropdown
-                        <i class="fa fa-caret-down"></i>
-                    </button>
-                    <div class="dropdown-container">
-                        <a href="#">Link 1</a>
-                        <a href="#">Link 2</a>
-                        <a href="#">Link 3</a>
-                    </div>
+{{--                    <a href="#contact">Contact</a>--}}
+{{--                    <button class="dropdown-btn">Dropdown--}}
+{{--                        <i class="fa fa-caret-down"></i>--}}
+{{--                    </button>--}}
+{{--                    <div class="dropdown-container">--}}
+{{--                        <a href="#">Link 1</a>--}}
+{{--                        <a href="#">Link 2</a>--}}
+{{--                        <a href="#">Link 3</a>--}}
+{{--                    </div>--}}
                 </div>
 <div style="overflow-y: scroll;height: 90vh;width: 100%">
     @yield('content')

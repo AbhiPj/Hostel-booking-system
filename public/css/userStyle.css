@@ -21,11 +21,11 @@ html, body{
     --sky: linear-gradient(120deg, #a1c4fd 0%, #c2e9fb 100%);
 
     /*      theme font-family   */
-    --Abel: 'Abel', cursive;
-    --Anton: 'Anton', cursive;
-    --Josefin : 'Josefin', cursive;
-    --Lexend: 'Lexend', cursive;
-    --Livvic : 'Livvic', cursive;
+    /*--Abel: 'Abel', cursive;*/
+    /*--Anton: 'Anton', cursive;*/
+    /*--Josefin : 'Josefin', cursive;*/
+    /*--Lexend: 'Lexend', cursive;*/
+    /*--Livvic : 'Livvic', cursive;*/
 }
 
 
@@ -34,6 +34,10 @@ html, body{
 a{
     text-decoration: none;
     color: var(--text-gray);
+}
+
+li, h2{
+    color: gray;
 }
 
 .flex-row{
@@ -104,9 +108,9 @@ p{
 /* --------------- Site title ---------------- */
 main .site-title{
     /*background: url('../assets/Background-image.png');*/
-    /*background-color: #0dcaf0;*/
+    background-color: #c2e9fb;
     background-size: cover;
-    height: 110vh;
+    height: 90vh;
     display: flex;
     justify-content: center;
 }

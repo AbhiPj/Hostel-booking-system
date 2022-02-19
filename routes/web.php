@@ -19,6 +19,8 @@ Route::get('/', function () {
 
 Route::resource('rooms', RoomsController::class);
 Route::resource('roomType', \App\Http\Controllers\RoomTypeController::class);
+Route::resource('booking', \App\Http\Controllers\BookingsController::class);
+
 
 Route::resource('hostels', \App\Http\Controllers\HostelsController::class);
 

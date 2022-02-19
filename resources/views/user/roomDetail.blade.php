@@ -2,6 +2,7 @@
 @extends('layouts.user')
 
 @section('content')
+
     <div class="content">
         <div class="slideshow-container">
 
@@ -22,11 +23,10 @@
             @endforeach
             <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
             <a class="next" onclick="plusSlides(1)">&#10095;</a>
-
         </div>
-        <br>
+{{--        <br>--}}
 
-        <div style="text-align:center">
+        <div style="text-align:center; margin-top: 10px;margin-bottom: 10px">
             <span class="dot" onclick="currentSlide(1)"></span>
             <p hidden>{{$var=2}}</p>
             @foreach(explode(',', $rooms['additionalImages']) as $count)
@@ -34,9 +34,51 @@
                 <p hidden>{{$var= $var +1}}</p>
                 @endforeach
         </div>
+        <nav class="navbar navbar-expand-lg navbar-light" style="background-color: #e3f2fd;"    >
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+                <div class="navbar-nav">
+                    <a class="nav-item nav-link" style="border-right: grey solid 2px" href="#">Description</a>
+                    <a class="nav-item nav-link" style="border-right: grey solid 2px" href="#">Services</a>
+                    <a class="nav-item nav-link" style="border-right: grey solid 2px" href="#">Features</a>
+                    <a class="nav-item nav-link" style="border-right: grey solid 2px" href="#">Pricing</a>
+                    <a href="/user/rooms/booking/{{$id}}" class="btn btn-primary" style="margin-left: 56rem" >Book this room</a>
+
+                </div>
+            </div>
+        </nav>
+        <div style="display: flex;">
+            <div style=" width: 58%;height: auto;min-height: 90vh; margin-top: 20px; border: solid 1px black; border-radius: 5px">
+                <h2 style="margin: auto; color: grey">{{$rooms->roomName}}</h2>
+                <p style="margin-top: 20px;color: grey;font-size: 15px">{{$rooms->about}}asdf asfa sdf asd fa sdf asd f asdf as fd asd fd  dsfasdf asdf
+                asdfasdfa asdfasdfaf asdfasdfa asdfasdfa sdfasfa sdfa sdf asfasdf asd sdf asdf asfa sdf asd fa sdf asd f asdf as fd asd fd  dsfasdf asdf
+                    asdfasdfa asdfasdfaf asdfasdfa asdfasdfa sdfasfa sdfa sdf asfasdf asd sdf</p>
+                <br>
+                <h2>Topic</h2>
+                <ul>
+                    <li>point</li>
+                    <li>point</li>
+                    <li>point</li>
+                    <li>point</li>
+                    <li>point</li>
+
+                </ul>
+            </div>
+            <div style="margin-top: 20px;border: solid 1px black;width: 40%; margin-left: 20px; border-radius: 5px">
+<h2> Header</h2>
+            </div>
+
+
+
+        </div>
+{{--        <div style="background-color: blue">--}}
+{{--            <a href="/user/rooms/booking/{{$id}}" class="btn btn-primary" style="right:0; position:fixed;">Book this room</a>--}}
+{{--        </div>--}}
         <div>
-            <a href="/user/rooms/booking/{{$id}}" class="btn btn-primary">Book this room</a>
-            <p>{{$id}}</p>
+
         </div>
     </div>
 
@@ -71,7 +113,10 @@
     </script>
     <style>
         .content{
-            height: 100vh;
+            height: auto;
+            min-height: 100vh;
+            width: 90%;
+            margin: auto;
         }
         * {box-sizing: border-box}
         body {font-family: Verdana, sans-serif; margin:0}
