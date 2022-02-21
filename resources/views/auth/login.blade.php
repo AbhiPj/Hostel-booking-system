@@ -7,16 +7,16 @@
         </div>
 
         <div class="col-md-8">
-            <div class="mt-5 card">
+            <div class="mt-5 card" style="width: 80%; margin: auto; height: 70vh">
 {{--                <div class="card-header">{{ __('Login') }}</div>--}}
-                <h1 style="text-align: center">Login</h1>
+                <h1 style="text-align: center; margin-top: 30px">Login</h1>
 
 
-                <div style="min-height: 50vh" class="card-body">
+                <div style="min-height: 60vh" class="card-body">
                     <form class="mt-5" method="POST" action="{{ route('login') }}">
                         @csrf
 
-                        <div class="row mb-5">
+                        <div class="row mb-3">
                             <label for="email" class="col-md-4 col-form-label text-md-end">{{ __('E-Mail Address') }}</label>
 
                             <div class="col-md-6">
@@ -58,12 +58,14 @@
 
                         <div class="row mb-0">
                             <div class="col-md-8 offset-md-4">
-                                <button type="submit" class="btn btn-primary">
+                                <button style="margin-left: 110px; margin-top: 20px" type="submit" class="btn btn-primary">
                                     {{ __('Login') }}
                                 </button>
+                                <br>
+                                <br>
 
-                                @if (Route::has('password.request'))
-                                    <a class="btn btn-link" href="{{ route('password.request') }}">
+                            @if (Route::has('password.request'))
+                                    <a style="margin-left: 160px; margin-top: 40px" class="btn btn-link" href="{{ route('password.request') }}">
                                         {{ __('Forgot Your Password?') }}
                                     </a>
                                 @endif
@@ -74,5 +76,6 @@
             </div>
         </div>
     </div>
+
 </div>
 @endsection

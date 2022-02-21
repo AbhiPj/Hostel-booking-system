@@ -20,6 +20,8 @@ Route::get('/', function () {
 Route::resource('rooms', RoomsController::class);
 Route::resource('roomType', \App\Http\Controllers\RoomTypeController::class);
 Route::resource('booking', \App\Http\Controllers\BookingsController::class);
+Route::resource('payment', \App\Http\Controllers\PaymentController::class);
+
 
 
 Route::resource('hostels', \App\Http\Controllers\HostelsController::class);
@@ -30,6 +32,11 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index']);
 Route::get('/user', [App\Http\Controllers\userRoomController::class, 'index']);
 Route::get('/user/rooms/{id}', [App\Http\Controllers\userRoomController::class, 'viewRoom']);
 Route::get('/user/rooms/booking/{id}', [App\Http\Controllers\userRoomController::class, 'bookRoom']);
+Route::get('/user/rooms/payment/{id}', [App\Http\Controllers\PaymentController::class, 'viewPayment']);
+Route::POST('/user/rooms/checkout', [App\Http\Controllers\PaymentController::class, 'checkout']);
+
+
+
 
 
 

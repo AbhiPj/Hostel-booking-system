@@ -69,12 +69,12 @@ button.btn{
     border-radius: 2rem;
     padding: 1rem 3rem;
     font-size: 1rem;
-    font-family: var(--Livvic);
+    /*font-family: var(--Livvic);*/
     cursor: pointer;
 }
 
 span{
-    font-family: var(--Abel);
+    /*font-family: var(--Abel);*/
 }
 
 .container{
@@ -85,13 +85,19 @@ span{
     margin: 0 5vw;
     display: flex;
     flex-wrap: wrap;
+    /*border: solid black 1px;*/
+}
+
+.mainRoom{
+    background-color: whitesmoke;
+
 }
 .text-gray{
     color: var(--text-gray);
 }
 
 p{
-    font-family: var(--Lexend);
+    /*font-family: var(--Lexend);*/
     color: var(--text-light);
 
 
@@ -106,31 +112,34 @@ p{
 
 
 /* --------------- Site title ---------------- */
-main .site-title{
-    /*background: url('../assets/Background-image.png');*/
-    background-color: #c2e9fb;
+main .siteTitle{
+    background: url('public/images/background/hostel.jpg');
+    background-repeat: no-repeat;
+    background-color: #f7fafc;
     background-size: cover;
     height: 90vh;
     display: flex;
     justify-content: center;
 }
 
-main .site-title .site-background{
+
+
+main .siteTitle .siteBackground{
     padding-top: 10rem;
     text-align: center;
     color: var(--white);
 }
 
-main .site-title h1, h3{
+main .siteTitle h1, h3{
     margin: .3rem;
 }
 
-main .site-title .btn{
+main .siteTitle .btn{
     margin: 1.8rem;
     background: var(--sky);
 }
 
-main .site-title .btn:hover{
+main .siteTitle .btn:hover{
     background: transparent;
     border: 1px solid var(--white);
     color: var(--white);
@@ -150,15 +159,15 @@ main .blog{
     background-size: 65%;
 }
 
-main .blog .blog-post{
+main .blog .roomPost{
     padding-top: 6rem;
 }
-.blog-img{
+.roomImg{
     width: 100%;
     height: 200px;
 }
 
-main .blog-post .blog-content{
+main .roomPost .roomContent{
     display: flex;
     flex-direction: column;
     text-align: center;
@@ -167,11 +176,11 @@ main .blog-post .blog-content{
     box-shadow: 0 15px 20px rgba(0, 0, 0, 0.2);
 }
 
-main .blog-content .blog-title{
+main .roomContent .roomTitle{
     padding: 2rem 0;
 }
 
-main .blog-content .btn-blog{
+main .roomContent .btnRoom{
     padding: .7rem 2rem;
     background: var(--sky);
     margin: .5rem;
@@ -179,7 +188,7 @@ main .blog-content .btn-blog{
 
 
 
-main .blog-content span{
+main .roomContent span{
     display: block;
 }
 

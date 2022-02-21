@@ -32,6 +32,9 @@ class userRoomController extends Controller
         $booking->price=$rooms->price;
         $booking->paymentStatus="paid";
         $booking->save();
-        return(view('user.newPage'));
+        return(view('user.home'));
+    }
+    public function payment($id){
+
     }
 }

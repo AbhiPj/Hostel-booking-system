@@ -45,7 +45,9 @@
                     <a class="nav-item nav-link" style="border-right: grey solid 2px" href="#">Services</a>
                     <a class="nav-item nav-link" style="border-right: grey solid 2px" href="#">Features</a>
                     <a class="nav-item nav-link" style="border-right: grey solid 2px" href="#">Pricing</a>
-                    <a href="/user/rooms/booking/{{$id}}" class="btn btn-primary" style="margin-left: 56rem" >Book this room</a>
+{{--                    <a href="/user/rooms/booking/{{$id}}" class="btn btn-primary" style="margin-left: 56rem" >Book this room</a>--}}
+                    <a href="/user/rooms/payment/{{$id}}" class="btn btn-primary" style="margin-left: 56rem" >Book this room</a>
+
 
                 </div>
             </div>

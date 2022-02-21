@@ -16,7 +16,10 @@ class RoomsController extends Controller
     public function index()
     {
         //
-
+        $rooms= Rooms::all();
+        $roomType= RoomType::all();
+//        dd($roomType);
+        return view('admin.dashboard',compact('roomType','rooms'));
     }
 
     /**
@@ -28,8 +31,8 @@ class RoomsController extends Controller
     {
         $rooms= Rooms::all();
         $roomType= RoomType::all();
-//        dd($roomType);
-        return view('admin.dashboard',compact('roomType','rooms'));
+        return view('admin.roomTable',compact('roomType','rooms'));
+
 //        return(view('admin.dashboard', ['rooms' => $data]));
     }
 
