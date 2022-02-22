@@ -289,3 +289,47 @@ section .container .owl-nav{
 }
 
 /*        x      Viewport less then or equal to 520px       x     */
+
+
+/*Payment Page Styles*/
+.payment-content{
+    display: flex;
+    flex-wrap: wrap;
+    margin-top: 20px;
+    /*min-height: 100vh;*/
+    /*height: auto;*/
+}
+
+.payment-form{
+
+    width: 60%;
+    background: #fff;
+    border-radius: 12px;
+    box-shadow: 0 5px 10px rgb(0 0 0 / 10%);
+    margin: 0 20px;
+    padding: 20px 30px;
+    height: 80vh;
+}
+.payment-details{
+    width: 30%;
+    background: #fff;
+    border-radius: 12px;
+    box-shadow: 0 5px 10px rgb(0 0 0 / 10%);
+    margin: 0 20px;
+    padding: 20px 30px;
+
+}
+
+@media only screen and (max-width: 520px) {
+.payment-form{
+width: 90%;
+    margin-top: 10px;
+    height: auto;
+}
+    .payment-details{
+        margin-top: 10px;
+        width: 90%;
+    }
+
+}
+

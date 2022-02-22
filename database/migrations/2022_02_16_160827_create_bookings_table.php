@@ -20,6 +20,18 @@ class CreateBookingsTable extends Migration
             $table->foreignId('roomId')->constrained('rooms');
             $table->integer('price');
             $table->string('paymentStatus');
+
+            $table->string('firstName');
+            $table->string('lastName');
+            $table->string('email');
+            $table->string('address');
+            $table->string('street');
+            $table->string('district');
+            $table->string('province');
+            $table->integer('zipCode');
+            $table->string('city');
+            $table->bigInteger('phoneNumber');
+
         });
     }
 

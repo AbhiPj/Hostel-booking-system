@@ -72,7 +72,7 @@
 </nav>
 
 
-<main>
+<main style="min-height: 88vh">
         @yield('content')
 </main>
 </body>

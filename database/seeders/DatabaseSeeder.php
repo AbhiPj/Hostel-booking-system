@@ -3,6 +3,8 @@
 namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Hash;
 
 class DatabaseSeeder extends Seeder
 {
@@ -14,5 +16,48 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
         // \App\Models\User::factory(10)->create();
+        DB::table('users')->insert([[
+            'name' => "Admin",
+            'email' => 'admin@gmail.com',
+            'password' => Hash::make('Test123!'),
+            'userType' => "admin"
+        ],
+            [
+                'name' => 'User',
+                'email' => 'user@gmail.com',
+                'password' => Hash::make('Test123!'),
+                'userType' => "user"
+            ]]
+        );
+        DB::table('roomtype')->insert([
+                'roomType' => "Single Beds",
+            ]
+        );
+        DB::table('rooms')->insert([[
+                'roomName' => "Single bed",
+                'roomType' => '1',
+                'about' => 'about section',
+                'price' => "500",
+                'primaryImg' => "download.jpg",
+                'additionalImages' => "Tperry-1920x1200.jpg",
+            ],
+                [
+                    'roomName' => "Double bed",
+                    'roomType' => '1',
+                    'about' => 'about section',
+                    'price' => "1000",
+                    'primaryImg' => "download.jpg",
+                    'additionalImages' => "Tperry-1920x1200.jpg",
+                ],
+                [
+                    'roomName' => "King size",
+                    'roomType' => '1',
+                    'about' => 'about section',
+                    'price' => "1500",
+                    'primaryImg' => "download.jpg",
+                    'additionalImages' => "Tperry-1920x1200.jpg",
+                ],
+            ]
+        );
     }
 }

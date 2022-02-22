@@ -40,6 +40,17 @@ class PaymentController extends Controller
         $booking->roomId=$rooms->id;
         $booking->price=$rooms->price;
         $booking->paymentStatus=$request->paymentMethod;
+
+        $booking->firstName = $request->firstName;
+        $booking->lastName = $request->lastName;
+        $booking->email = $request->email;
+        $booking->phoneNumber = $request->phoneNumber;
+        $booking->address = $request->address;
+        $booking->street = $request->street;
+        $booking->city = $request->city;
+        $booking->province = $request->province;
+        $booking->district = $request->district;
+        $booking->zipCode = $request->zipCode;
         $booking->save();
 
         $bookingId= $booking->id;
