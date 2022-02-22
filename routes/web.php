@@ -34,6 +34,8 @@ Route::get('/user/rooms/{id}', [App\Http\Controllers\userRoomController::class, 
 Route::get('/user/rooms/booking/{id}', [App\Http\Controllers\userRoomController::class, 'bookRoom']);
 Route::get('/user/rooms/payment/{id}', [App\Http\Controllers\PaymentController::class, 'viewPayment']);
 Route::POST('/user/rooms/checkout', [App\Http\Controllers\PaymentController::class, 'checkout']);
+Route::get('/user/hostels', [App\Http\Controllers\userRoomController::class, 'viewHostels']);
+
 
 
 

@@ -63,19 +63,12 @@
             <div id="paypal-button-container"></div>
 
         </div>
-
-
 {{--        <a href="/user/rooms/booking/{{$id}}">book</a>--}}
-
-
-
-
     </div>
     <script>
 
         function payByCash ()
         {
-
             $.ajax({
                 method:"POST",
                 url:"/user/rooms/checkout",

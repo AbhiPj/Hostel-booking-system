@@ -34,7 +34,10 @@ class userRoomController extends Controller
         $booking->save();
         return(view('user.home'));
     }
-    public function payment($id){
+
+    public function viewHostels()
+    {
+        return(view('user.hostels'));
 
     }
 }

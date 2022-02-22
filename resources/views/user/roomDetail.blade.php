@@ -34,7 +34,7 @@
                 <p hidden>{{$var= $var +1}}</p>
                 @endforeach
         </div>
-        <nav class="navbar navbar-expand-lg navbar-light" style="background-color: #e3f2fd;"    >
+        <nav class="navbar navbar-expand-lg navbar-light" style="background-color: white;box-shadow: 0 5px 10px rgb(0 0 0 / 10%);border-radius: 10px;"    >
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
@@ -53,9 +53,9 @@
             </div>
         </nav>
         <div style="display: flex;">
-            <div style=" width: 58%;height: auto;min-height: 90vh; margin-top: 20px; border: solid 1px black; border-radius: 5px">
-                <h2 style="margin: auto; color: grey">{{$rooms->roomName}}</h2>
-                <p style="margin-top: 20px;color: grey;font-size: 15px">{{$rooms->about}}asdf asfa sdf asd fa sdf asd f asdf as fd asd fd  dsfasdf asdf
+            <div class="room-info">
+                <h2 style="margin: auto">{{$rooms->roomName}}</h2>
+                <p style="margin-top: 20px;font-size: 15px">{{$rooms->about}}asdf asfa sdf asd fa sdf asd f asdf as fd asd fd  dsfasdf asdf
                 asdfasdfa asdfasdfaf asdfasdfa asdfasdfa sdfasfa sdfa sdf asfasdf asd sdf asdf asfa sdf asd fa sdf asd f asdf as fd asd fd  dsfasdf asdf
                     asdfasdfa asdfasdfaf asdfasdfa asdfasdfa sdfasfa sdfa sdf asfasdf asd sdf</p>
                 <br>
@@ -69,7 +69,7 @@
 
                 </ul>
             </div>
-            <div style="margin-top: 20px;border: solid 1px black;width: 40%; margin-left: 20px; border-radius: 5px">
+            <div class="room-info-second">
 <h2> Header</h2>
             </div>
 
@@ -114,6 +114,11 @@
         }
     </script>
     <style>
+
+        p, h2,li,a{
+            color: #313131;
+
+        }
         .content{
             height: auto;
             min-height: 100vh;
@@ -126,6 +131,8 @@
             display: none;
             height: 65vh;
             overflow: hidden;
+            box-shadow: 0 5px 10px rgb(0 0 0 / 10%);
+            border-radius: 10px;
 
         }
         img {
@@ -135,6 +142,7 @@
             display: block;
             margin-left: auto;
             margin-right: auto;
+
         }
 
         /* Slideshow container */
@@ -143,6 +151,7 @@
             width: 100%;
             position: relative;
             margin: auto;
+
 
         }
 
@@ -193,6 +202,29 @@
             top: 0;
         }
 
+        .room-info{
+            background-color: white;
+            box-shadow: 0 5px 10px rgb(0 0 0 / 10%);
+            border-radius: 10px;
+            width: 58%;
+            height: auto;
+            min-height: 90vh;
+            margin-top: 20px;
+            border-radius: 5px;
+            padding:20px;
+        }
+
+        .room-info-second{
+            background-color: white;
+            box-shadow: 0 5px 10px rgb(0 0 0 / 10%);
+            border-radius: 10px;
+            margin-top: 20px;
+            width: 40%;
+            margin-left: 20px;
+            border-radius: 5px;
+            padding:20px;
+
+        }
         /* The dots/bullets/indicators */
         .dot {
             cursor: pointer;
