@@ -17,7 +17,7 @@
 
 </head>
 <body>
-{{--<nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">--}}
+{{--<nav style="background: transparent; position:relative;"  class="navbar navbar-expand-md ">--}}
 {{--    <div class="container">--}}
 {{--        <a class="navbar-brand" href="{{ url('/') }}">--}}
 {{--            {{ config('app.name', 'Laravel') }}--}}

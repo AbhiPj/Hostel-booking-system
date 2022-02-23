@@ -2,16 +2,7 @@
 @extends('layouts.user')
 
 @section('content')
-{{--    <section>--}}
-{{--        <div class="backgroundContainer" >--}}
-{{--            <div class="tempContainer">--}}
 
-{{--            </div>--}}
-{{--            <h1 style="margin-bottom: 80px; color: #313d59; font-size: 3.2rem">Welcome to Hostel Sansar</h1>--}}
-{{--            <input name="search" placeholder="search" style="border: solid grey 2px;border-radius: 25px; width: 500px; height: 35px; margin-top: 20px "><br>--}}
-{{--            <button class="btn">Explore</button>--}}
-{{--        </div>--}}
-{{--    </section>--}}
 
     <section>
         <div class="home-main">
@@ -20,36 +11,22 @@
 
                     <h2 class="secondary-text">Landing Page</h2>
                     <p class="long-text">Here is some bullshit aboout some bullshit that is the farthest thing from the truth. Thanks!</p>
-                    <button class="home-btn">Read More</button>
+{{--                    <button class="home-btn">Read More</button>--}}
                 </div>
         </div>
     </section>
 <section>
     <div class="search-container">
-{{--        <div class="row">--}}
-{{--            <div class="col-md-12">--}}
-{{--                <form class="form_book">--}}
-{{--                    <div style="display: flex;flex-wrap: wrap">--}}
-{{--                        <div style="justify-content: center" class="col-md-12">--}}
-{{--                            <input style="border-radius: 20px; width: 60%; justify-content: center" type="text">--}}
-{{--                        </div>--}}
-{{--                        <div class="col-md-12">--}}
-{{--                            <button>Search</button>--}}
-{{--                        </div>--}}
-
-{{--                    </div>--}}
-{{--                </form>--}}
-{{--            </div>--}}
-{{--        </div>--}}
     <div class="row">
         <div class="col-md-12">
             <form class="form_book">
                 <div class="row">
-                    <div class="col-md-3" style="margin-left: 450px">
-                        <input style="width: 105%; margin-top: 10px" class="search-box" placeholder="" type="type" name="2">
-                    </div>
-                    <div class="col-md-3">
-                        <button class="btn btn-dark">Book Now</button>
+{{--                    <div class="col-md-3" style="margin-left: 450px">--}}
+{{--                        <input style="width: 105%; margin-top: 10px" class="search-box" placeholder="" type="type" name="2">--}}
+{{--                    </div>--}}
+                    <div style="margin-left: 520px" class="col-md-6">
+{{--                        <button class="btn btn-dark">Book Now</button>--}}
+                        <a  class="read_more" href="#hostel-main">See More</a>
                     </div>
                 </div>
             </form>
@@ -59,9 +36,9 @@
 
 </section>
 
-<div class="hostel-main">
+<div id="hostel-main" class="hostel-main">
     <div class="hostel-container">
-        <div class="row">
+        <div class="row" style="margin-bottom: 10px">
             <div class="col-md-6">
                 <div class="choose_box">
                     <div class="titlepage">
@@ -107,7 +84,7 @@
             <div class="col-md-6">
                 <div class="our_box">
                     <div class="titlepage">
-                        <h2><span class="text_norlam">Our Best </span> <br>Breakfast</h2>
+                        <h2><span class="text_norlam">Our Featured </span> <br>Hostels</h2>
                     </div>
                     <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore
                         et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
@@ -166,12 +143,66 @@
             </div>
         </section>
 
+    <script>
+        $(window).scroll(function() {
+            if ($(this).scrollTop()>250)
+            {
+                $('.myDiv').hide(1000);
+            }
+            else
+            {
+                $('.myDiv').show(1000);
+            }
+        });
+    </script>
+    <div class="myDiv">
+        <ul>
+            <li>Arunachal Pradesh</li>
+            <li>Himachal Pradesh</li>
+            <li>Uttar Pradesh</li>
+            <li>Madhya Pradesh</li>
+            <li>Andhra Pradesh</li>
+        </ul>
+    </div>
 
+    <script>
+        $(window).scroll(function() {
+            if ($(this).scrollTop()>250)
+            {
+                $('.long-text').hide(0);
+            }
+            else
+            {
+                $('.long-text').show(0);
+            }
+            if ($(this).scrollTop()>410)
+            {
+                $('.primary-text').hide(0);
+            }
+            else
+            {
+                $('.primary-text').show(0);
+            }
+            if ($(this).scrollTop()>320)
+            {
+                $('.secondary-text').hide(0);
+            }
+            else
+            {
+                $('.secondary-text').show(0);
+            }
+        });
+    </script>
+    <div class="myDiv">
+        <ul>
+            <li>Arunachal Pradesh</li>
+            <li>Himachal Pradesh</li>
+            <li>Uttar Pradesh</li>
+            <li>Madhya Pradesh</li>
+            <li>Andhra Pradesh</li>
+        </ul>
+    </div>
     <style>
-
-
-
-
 
         body{background-color: white}
         .home-main{
@@ -210,6 +241,9 @@
             display: flex;
             flex-direction: column;
             align-items: center;
+            position: fixed;
+
+
         }
         .primary-text{
             /*width: 100%;*/
@@ -223,6 +257,7 @@
         }
         .secondary-text{
             /*width: 100%;*/
+            margin-top: 10px;
             font-size: 45px;
             line-height: 50px;
             font-weight: bold;
@@ -238,10 +273,13 @@
             line-height: 28px;
             padding-bottom: 60px;
             color: white;
+            margin-top: 50px;
         }
 
         .form_book{
             width: 90%;
+            animation: transitionUp 0.5s;
+
             margin: auto;
             background-color: white;
             margin-top: -110px;
@@ -363,7 +401,7 @@
             max-width: 190px;
             text-align: center;
             display: inline-block;
-            transition: ease-in all 0.5s;
+            /*transition: ease-in all 0.5s;*/
             border-radius: 10px;
             border: none;
         }
@@ -380,6 +418,17 @@
             padding-bottom: 15px;
             font-weight: bold;
             text-transform: uppercase;
+        }
+        @keyframes transitionUp {
+            from {
+                transform: translateY(100px);
+
+
+            }
+            to {
+                /*transform: translateX(10px);*/
+                /*margin: auto;*/
+            }
         }
 
 

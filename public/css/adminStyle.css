@@ -209,7 +209,8 @@ nav .profile-details i {
 .home-content .overview-boxes {
     display: flex;
     align-items: center;
-    justify-content: space-between;
+    margin-right: 10px;
+    /*justify-content: space-between;*/
     flex-wrap: wrap;
     padding: 0 20px;
     margin-bottom: 26px;

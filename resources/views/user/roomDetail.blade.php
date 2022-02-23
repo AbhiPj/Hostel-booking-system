@@ -26,15 +26,15 @@
         </div>
 {{--        <br>--}}
 
-        <div style="text-align:center; margin-top: 10px;margin-bottom: 10px">
-            <span class="dot" onclick="currentSlide(1)"></span>
-            <p hidden>{{$var=2}}</p>
-            @foreach(explode(',', $rooms['additionalImages']) as $count)
-                <span class="dot" onclick="currentSlide({{$var}})"></span>
-                <p hidden>{{$var= $var +1}}</p>
-                @endforeach
-        </div>
-        <nav class="navbar navbar-expand-lg navbar-light" style="background-color: white;box-shadow: 0 5px 10px rgb(0 0 0 / 10%);border-radius: 10px;"    >
+{{--        <div style="text-align:center; margin-top: 10px;margin-bottom: 10px">--}}
+{{--            <span class="dot" onclick="currentSlide(1)"></span>--}}
+{{--            <p hidden>{{$var=2}}</p>--}}
+{{--            @foreach(explode(',', $rooms['additionalImages']) as $count)--}}
+{{--                <span class="dot" onclick="currentSlide({{$var}})"></span>--}}
+{{--                <p hidden>{{$var= $var +1}}</p>--}}
+{{--                @endforeach--}}
+{{--        </div>--}}
+        <nav class="navbar navbar-expand-lg navbar-light" style="background-color: white;box-shadow: 0 5px 10px rgb(0 0 0 / 10%);border-radius: 10px; width: 90%; margin: auto; margin-top: 10px"    >
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
@@ -52,7 +52,7 @@
                 </div>
             </div>
         </nav>
-        <div style="display: flex;">
+        <div style="display: flex; width: 90%; margin: auto">
             <div class="room-info">
                 <h2 style="margin: auto">{{$rooms->roomName}}</h2>
                 <p style="margin-top: 20px;font-size: 15px">{{$rooms->about}}asdf asfa sdf asd fa sdf asd f asdf as fd asd fd  dsfasdf asdf
@@ -72,15 +72,6 @@
             <div class="room-info-second">
 <h2> Header</h2>
             </div>
-
-
-
-        </div>
-{{--        <div style="background-color: blue">--}}
-{{--            <a href="/user/rooms/booking/{{$id}}" class="btn btn-primary" style="right:0; position:fixed;">Book this room</a>--}}
-{{--        </div>--}}
-        <div>
-
         </div>
     </div>
 
@@ -117,12 +108,16 @@
 
         p, h2,li,a{
             color: #313131;
+            font-family: Nunito;
+        }
 
+        h2{
+            font-weight: bold;
         }
         .content{
             height: auto;
             min-height: 100vh;
-            width: 90%;
+            width: 100%;
             margin: auto;
         }
         * {box-sizing: border-box}
@@ -148,9 +143,12 @@
         /* Slideshow container */
         .slideshow-container {
             /*max-width: 1000px;*/
-            width: 100%;
+            width: 95%;
+            margin-left: 35px;
             position: relative;
             margin: auto;
+            box-shadow: 0 5px 10px rgb(0 0 0 / 10%);
+            border-radius: 10px;
 
 
         }

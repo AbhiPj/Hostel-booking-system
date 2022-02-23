@@ -68,21 +68,6 @@
             </a>
         </li>
         <li>
-            <span class="dropdown-btn">Dropdown
-                <i class="fa fa-caret-down"></i>
-            </span>
-            <div class="dropdown-container">
-                <ul>
-                    <li>
-                        <a href="#">Link 1</a>
-                    </li>
-                    <li>
-                        <a href="#">Link 1</a>
-                    </li>
-                </ul>
-            </div>
-        </li>
-        <li>
             <a href="{{ route('booking.index') }}">
                 <i class='bx bx-list-ul'></i>
                 <span class="links_name">Booking</span>
