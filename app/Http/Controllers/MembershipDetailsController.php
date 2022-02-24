@@ -38,6 +38,19 @@ class MembershipDetailsController extends Controller
     public function store(Request $request)
     {
         //
+        $membershipDetails = new MembershipDetails();
+
+        $membershipDetails->duration = $request->input('duration');
+        $membershipDetails->price = $request->input('membershipPrice');
+        $membershipDetails->save();
+
+
+        return redirect()->route('membershipDetails.index');
+//        return redirect()->route('rooms.create');
+//        $memberDetails1 = MembershipDetails::all();
+//        return view('admin.addMemberPrice',compact('memberDetails1'));
+
+
     }
 
     /**
@@ -57,9 +70,11 @@ class MembershipDetailsController extends Controller
      * @param  \App\Models\MembershipDetails  $membershipDetails
      * @return \Illuminate\Http\Response
      */
-    public function edit(MembershipDetails $membershipDetails)
+    public function edit($id)
     {
         //
+        $membershipDetails = MembershipDetails::find($id);
+        return view('admin.editMembershipPrice',compact('membershipDetails'));
     }
 
     /**
@@ -69,9 +84,14 @@ class MembershipDetailsController extends Controller
      * @param  \App\Models\MembershipDetails  $membershipDetails
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, MembershipDetails $membershipDetails)
+    public function update(Request $request, $id)
     {
         //
+        $membership_detail = MembershipDetail::find($id);
+        $membership_detail->price = $request->get('price');
+        $membership_detail->save();
+
+        return redirect()->route('membershipDetails.index');
     }
 
     /**
@@ -80,8 +100,11 @@ class MembershipDetailsController extends Controller
      * @param  \App\Models\MembershipDetails  $membershipDetails
      * @return \Illuminate\Http\Response
      */
-    public function destroy(MembershipDetails $membershipDetails)
+    public function destroy($id)
     {
         //
+        $room = MembershipDetails::find($id);
+        $room->delete();
+        return redirect()->route('membershipDetails.index');
     }
 }
