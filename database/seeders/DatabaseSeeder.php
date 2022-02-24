@@ -29,10 +29,22 @@ class DatabaseSeeder extends Seeder
                 'userType' => "user"
             ]]
         );
+        DB::table('hostels')->insert([
+                'hostelName' => "John's sanctuary",
+                'userId' => "1",
+                'about' => "hostel description",
+                'location' => "Kathmandu",
+                'district' => "Jhapa",
+                'additionalImages' => "4057165.jpg",
+                'primaryImg' => "Tperry-1920x1200.jpg",
+            ]
+        );
+
         DB::table('roomtype')->insert([
                 'roomType' => "Single Beds",
             ]
         );
+
         DB::table('rooms')->insert([[
                 'roomName' => "Single bed",
                 'roomType' => '1',

@@ -1,5 +1,5 @@
 
-@extends('layouts.user')
+@extends('layouts.user.user')
 
 @section('content')
     <script src="https://www.paypal.com/sdk/js?client-id=test&currency=USD"></script>

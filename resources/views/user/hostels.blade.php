@@ -1,17 +1,18 @@
-@extends('layouts.user')
+@extends('layouts.user.user')
 
 @section('content')
 
-
     <div style="height: 50vh;overflow-y: hidden" class="hostel-top-img">
         <div class="center-cropped">
-{{--            <+img style="width: 100%;vertical-align: center;height: 100vh" src="{{asset('images/background/1.jpg')}}" alt="#" /></div>--}}
         </div>
     </div>
 
+
 <div class="hostel-search">
     <div class="search-holder">
+
         <input class="search-box" placeholder="Seach">
+
     </div>
 </div>
 
@@ -33,10 +34,7 @@
 
             </div>
             <div class="hostel-ratings">
-
                 <a  class="read_more" href="/user/rooms/1">View</a>
-
-
             </div>
         </div>
         <div class="hostel-item">
@@ -46,8 +44,17 @@
 
 
 
-
+<script>
+    $(document).ready(function() {
+        $('.multi-select').select2();
+    });
+</script>
     <style>
+        .multi-select{
+            width: 100%;
+            border-radius: 10px;
+
+        }
 
         p, h2{
             /*color: #313131;*/
@@ -61,18 +68,21 @@
         }
 
         .search-holder{
-            width: 50%;
+            width: 90%;
             height: 50px;
             justify-content: center;
             align-items: center;
             display: flex;
             margin-top: 100px;
+            margin: auto;
 
         }
         .search-box{
             width: 100%;
             height: 100%;
             border-radius: 10px;
+            border: grey solid 1px;
+
         }
 
         .center-cropped {
@@ -82,7 +92,7 @@
             background-repeat: no-repeat;
             background-size: cover;
             background-position: 10% 90%;
-            background-image: url('{{asset('images/background/1.jpg')}}');
+            background-image: url('{{asset('images/background/00.jpg')}}');
 
         }
         .hostel-top-img{

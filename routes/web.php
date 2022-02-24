@@ -21,6 +21,9 @@ Route::resource('rooms', RoomsController::class);
 Route::resource('roomType', \App\Http\Controllers\RoomTypeController::class);
 Route::resource('booking', \App\Http\Controllers\BookingsController::class);
 Route::resource('payment', \App\Http\Controllers\PaymentController::class);
+Route::resource('membership', \App\Http\Controllers\MembershipController::class);
+Route::resource('membershipDetails', \App\Http\Controllers\MembershipDetailsController::class);
+
 
 
 
@@ -35,6 +38,8 @@ Route::get('/user/rooms/booking/{id}', [App\Http\Controllers\userRoomController:
 Route::get('/user/rooms/payment/{id}', [App\Http\Controllers\PaymentController::class, 'viewPayment']);
 Route::POST('/user/rooms/checkout', [App\Http\Controllers\PaymentController::class, 'checkout']);
 Route::get('/user/hostels', [App\Http\Controllers\userRoomController::class, 'viewHostels']);
+
+
 
 
 
