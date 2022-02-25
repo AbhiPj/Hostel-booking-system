@@ -39,6 +39,9 @@ Route::get('/user/rooms/payment/{id}', [App\Http\Controllers\PaymentController::
 Route::POST('/user/rooms/checkout', [App\Http\Controllers\PaymentController::class, 'checkout']);
 Route::get('/user/hostels', [App\Http\Controllers\userRoomController::class, 'viewHostels']);
 
+Route::POST('/admin/memberPrice/delete', [App\Http\Controllers\MembershipDetailsController::class, 'memberPriceDelete']);
+Route::POST('/admin/roomType/delete', [App\Http\Controllers\RoomTypeController::class, 'roomDelete']);
+
 
 
 

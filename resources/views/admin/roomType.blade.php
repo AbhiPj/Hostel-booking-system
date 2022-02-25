@@ -9,6 +9,22 @@
             <input type="submit" value="Submit"><br><br>
         </form>
     </div>
+
+    @if(session()->has('success'))
+        <div class="alert alert-success">
+            <script>
+                swal("Success", "Data added successfully", "success");
+            </script>
+        </div>
+    @endif
+    @if(session()->has('error'))
+        <div class="alert alert-success">
+            <script>
+                swal("Error", "Duration already exists", "error");
+            </script>
+        </div>
+    @endif
+
     <table>
         <tr>
             <th>ID</th>
@@ -22,11 +38,13 @@
                 <td>
                     <a class="button" href="{{route("roomType.edit", $rooms->id)}}"
                     >Edit</a>
-                    <form action="{{route('roomType.destroy', $rooms->id)}}" method="POST">
-                        @csrf
-                        @method('delete')
-                        <button type="submit" class="button">Delete</button>
-                    </form>
+{{--                    <form action="{{route('roomType.destroy', $rooms->id)}}" method="POST">--}}
+{{--                        @csrf--}}
+{{--                        @method('delete')--}}
+{{--                        <button type="submit" class="button">Delete</button>--}}
+{{--                    </form>--}}
+                    <button onclick="deleteAlert({{$rooms['id']}}, 'roomType')" class="button">Delete</button>
+
                 </td>
             </tr>
         @endforeach

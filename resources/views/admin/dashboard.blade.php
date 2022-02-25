@@ -3,6 +3,20 @@
 @section('content')
 
     <div class="formContainer">
+        @if(session()->has('success'))
+            <div class="alert alert-success">
+                <script>
+                    swal("Success", "Data added successfully", "success");
+                </script>
+            </div>
+        @endif
+        @if(session()->has('error'))
+            <div class="alert alert-success">
+                <script>
+                    swal("Error", "Duration already exists", "error");
+                </script>
+            </div>
+        @endif
 
         <form action="{{ route('rooms.store') }}" method="POST" enctype="multipart/form-data">
                     @csrf

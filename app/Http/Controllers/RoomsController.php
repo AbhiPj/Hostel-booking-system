@@ -82,7 +82,7 @@ class RoomsController extends Controller
 
         $rooms->save();
 
-        return redirect()->route('rooms.create');
+        return redirect()->route('rooms.create')->with('success','Added successfully');
     }
 
     /**
@@ -166,4 +166,6 @@ class RoomsController extends Controller
         return redirect()->route('rooms.create');
 
     }
+
+
 }

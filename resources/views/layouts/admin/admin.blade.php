@@ -7,6 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link href="{{ asset('css/adminStyle.css') }}" rel="stylesheet">
     <link href="{{ asset('css/style.css') }}" rel="stylesheet">
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 
 
     <!-- CSRF Token -->
@@ -120,6 +121,40 @@
         });
     });
 </script>
+<script>
+    function deleteAlert(id, delName){
+        // console.log(id,);
+        swal({
+            title: "Are you sure?",
+            text: "Once deleted, you will not be able to recover this imaginary file!",
+            icon: "warning",
+            buttons: true,
+            dangerMode: true,
+        })
+            .then((willDelete) => {
+                if (willDelete) {
+                    // swal("Poof! Your imaginary file has been deleted!", {
+                    //     icon: "success",
+                    // });
+                    $.ajax({
+                        method:"POST",
+                        url:"/admin/" + delName + "/delete",
+                        headers: {
+                            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                        },
+                        data:{
+                            id:  id,
 
+                        },
+                        success:function (response){
+                            // swal(response.status);
+                            window.location.href="";
+                        }
+                    })
+                }
+            });
+    }
+
+</script>
 </body>
 </html>

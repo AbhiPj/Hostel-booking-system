@@ -38,14 +38,25 @@ class MembershipDetailsController extends Controller
     public function store(Request $request)
     {
         //
-        $membershipDetails = new MembershipDetails();
+        $allMemberships = MembershipDetails::select('duration')->get();
 
-        $membershipDetails->duration = $request->input('duration');
-        $membershipDetails->price = $request->input('membershipPrice');
-        $membershipDetails->save();
+        if(!$allMemberships->contains('duration' , $request->input('duration'))){
+            $membershipDetails = new MembershipDetails();
+
+            $membershipDetails->duration = $request->input('duration');
+            $membershipDetails->price = $request->input('membershipPrice');
+            $membershipDetails->save();
+            return redirect()->route('membershipDetails.index')->with('success','Added successfully');
+
+        }else{
+            return redirect()->route('membershipDetails.index')->with('error','Duration already exists');
+        }
 
 
-        return redirect()->route('membershipDetails.index');
+
+//        foreach ($allMemberships )
+
+
 //        return redirect()->route('rooms.create');
 //        $memberDetails1 = MembershipDetails::all();
 //        return view('admin.addMemberPrice',compact('memberDetails1'));
@@ -100,11 +111,19 @@ class MembershipDetailsController extends Controller
      * @param  \App\Models\MembershipDetails  $membershipDetails
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Request $request)
     {
         //
-        $room = MembershipDetails::find($id);
-        $room->delete();
+    }
+
+    public function memberPriceDelete(Request $request)
+    {
+        //
+        $id = $request->id;
+        $membership = MembershipDetails::find($id);
+        $membership->delete();
         return redirect()->route('membershipDetails.index');
     }
+
+
 }

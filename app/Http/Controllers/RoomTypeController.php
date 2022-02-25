@@ -47,7 +47,7 @@ class RoomTypeController extends Controller
         $roomType = new RoomType();
         $roomType->roomType = $request->get('roomType');
         $roomType->save();
-        return redirect()->route('roomType.create');
+        return redirect()->route('roomType.create')->with('success','Added successfully');
 
     }
 
@@ -105,6 +105,15 @@ class RoomTypeController extends Controller
         $delete_roomType=RoomType::find($id);
         $delete_roomType->delete();
 
+        return redirect()->route('roomType.create');
+    }
+
+    public function roomDelete(Request $request)
+    {
+        //
+        $id = $request->id;
+        $delete_roomType = RoomType::find($id);
+        $delete_roomType->delete();
         return redirect()->route('roomType.create');
     }
 }
