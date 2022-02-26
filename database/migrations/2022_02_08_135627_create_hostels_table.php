@@ -16,7 +16,8 @@ class CreateHostelsTable extends Migration
         Schema::create('hostels', function (Blueprint $table) {
             $table->id();
             $table->string('hostelName');
-            $table->unsignedBigInteger('userId');
+//            $table->unsignedBigInteger('userId');
+            $table->foreignId('userId')->constrained('users');
             $table->string('about');
             $table->string('location');
             $table->string('district');

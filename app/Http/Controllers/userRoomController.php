@@ -3,9 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Models\Bookings;
+use App\Models\Hostels;
 use App\Models\Rooms;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class userRoomController extends Controller
 {
@@ -15,6 +17,12 @@ class userRoomController extends Controller
         $rooms = Rooms::all();
         return(view('user.home', compact('rooms')));
 
+    }
+
+    public function viewHostel($id){
+        $hostel = Hostels::find($id);
+        $rooms = Rooms::where('hostelId','=',$id)->get();
+        return(view('user.hostelDetail', compact('hostel','id','rooms')));
     }
 
     public function viewRoom($id){
@@ -37,7 +45,8 @@ class userRoomController extends Controller
 
     public function viewHostels()
     {
-        return(view('user.hostels'));
-
+//        return(view('user.hostels'));
+        $hostels=Hostels::all();
+        return view('user.hostels',compact('hostels'));
     }
 }

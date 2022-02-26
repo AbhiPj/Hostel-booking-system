@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Bookings;
+use App\Models\Hostels;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -32,10 +33,15 @@ class HomeController extends Controller
         if(Auth::User()->userType == 'user'){
 //            return view('user.home');
             return redirect("/user");
-        }elseif (Auth::User()->userType == 'admin'){
+        }elseif (Auth::User()->userType == 'vendor'){
+
+            $id = Auth::id();
+            $hostel = Hostels::where('userId','=',$id)->first();
+            $hostelId= $hostel->id;
+            $booking = Bookings::where('hostelId','=',$hostelId)->orderBy('id','DESC')->get();
 
 
-            $booking = Bookings::orderBy('id','DESC')->get();
+//            $booking = Bookings::orderBy('id','DESC')->get();
             $totalBooking= count($booking);
             $totalPrice=0;
 

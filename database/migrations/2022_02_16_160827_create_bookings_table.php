@@ -18,6 +18,8 @@ class CreateBookingsTable extends Migration
             $table->timestamps();
             $table->foreignId('userId')->constrained('users');
             $table->foreignId('roomId')->constrained('rooms');
+            $table->foreignId('hostelId')->constrained('hostels');
+
             $table->integer('price');
             $table->string('paymentStatus');
 

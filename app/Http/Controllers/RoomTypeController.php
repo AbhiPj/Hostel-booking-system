@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Hostels;
 use App\Models\RoomType;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class RoomTypeController extends Controller
 {
@@ -28,8 +30,12 @@ class RoomTypeController extends Controller
     {
         //
 
+        $id = Auth::id();
+        $hostel = Hostels::where('userId','=',$id)->first();
+        $hostelId= $hostel->id;
 
-        $data = RoomType::all();
+
+        $data = RoomType::where('hostelId','=', $hostelId)->get();
         return view('admin.roomType',compact('data'));
 //        return(view('admin.roomType'));
 

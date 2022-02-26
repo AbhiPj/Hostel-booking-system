@@ -25,13 +25,13 @@
 
                     <td>
                         <div style="display:flex;">
-                            <a class="button" href="{{route("roomType.edit", $b->id)}}"
-                            >Edit</a>
-                            <form action="{{route('roomType.destroy', $b->id)}}" method="POST">
-                                @csrf
-                                @method('delete')
-                                <button type="submit" class="button">Delete</button>
-                            </form>
+                            <a class="button" href="/admin/booking/{{$b->id}}"
+                            >Details</a>
+{{--                            <form action="{{route('roomType.destroy', $b->id)}}" method="POST">--}}
+{{--                                @csrf--}}
+{{--                                @method('delete')--}}
+{{--                                <button type="submit" class="button">Delete</button>--}}
+{{--                            </form>--}}
                         </div>
 
                     </td>

@@ -20,16 +20,22 @@ class DatabaseSeeder extends Seeder
             'name' => "Admin",
             'email' => 'admin@gmail.com',
             'password' => Hash::make('Test123!'),
-            'userType' => "admin"
+            'userType' => "vendor"
         ],
             [
                 'name' => 'User',
                 'email' => 'user@gmail.com',
                 'password' => Hash::make('Test123!'),
                 'userType' => "user"
-            ]]
+            ], [
+                    'name' => 'User2',
+                    'email' => 'user2@gmail.com',
+                    'password' => Hash::make('Test123!'),
+                    'userType' => "vendor"
+                ]
+                ]
         );
-        DB::table('hostels')->insert([
+        DB::table('hostels')->insert([[
                 'hostelName' => "John's sanctuary",
                 'userId' => "1",
                 'about' => "hostel description",
@@ -37,12 +43,27 @@ class DatabaseSeeder extends Seeder
                 'district' => "Jhapa",
                 'additionalImages' => "4057165.jpg",
                 'primaryImg' => "Tperry-1920x1200.jpg",
-            ]
-        );
+            ],
+                [
+                    'hostelName' => "Plaza place",
+                    'userId' => "3",
+                    'about' => "hostel description",
+                    'location' => "Kathmandu",
+                    'district' => "Jhapa",
+                    'additionalImages' => "4057165.jpg",
+                    'primaryImg' => "Tperry-1920x1200.jpg",
+                ]
+            ]);
 
-        DB::table('roomtype')->insert([
-                'roomType' => "Single Beds",
-            ]
+        DB::table('roomtype')->insert([[
+                'roomType' => "Single bed",
+                'hostelId' => '1'
+            ],
+                [
+                    'roomType' => "Single bed",
+                    'hostelId' => '2'
+                ],
+                ]
         );
 
         DB::table('rooms')->insert([[
@@ -52,6 +73,7 @@ class DatabaseSeeder extends Seeder
                 'price' => "500",
                 'primaryImg' => "download.jpg",
                 'additionalImages' => "Tperry-1920x1200.jpg",
+                'hostelId' => '1'
             ],
                 [
                     'roomName' => "Double bed",
@@ -60,6 +82,7 @@ class DatabaseSeeder extends Seeder
                     'price' => "1000",
                     'primaryImg' => "download.jpg",
                     'additionalImages' => "Tperry-1920x1200.jpg",
+                    'hostelId' => '1'
                 ],
                 [
                     'roomName' => "King size",
@@ -68,8 +91,17 @@ class DatabaseSeeder extends Seeder
                     'price' => "1500",
                     'primaryImg' => "download.jpg",
                     'additionalImages' => "Tperry-1920x1200.jpg",
+                    'hostelId' => '1'
                 ],
-            ]
-        );
+                [
+                    'roomName' => "King size",
+                    'roomType' => '1',
+                    'about' => 'about section',
+                    'price' => "1500",
+                    'primaryImg' => "download.jpg",
+                    'additionalImages' => "Tperry-1920x1200.jpg",
+                    'hostelId' => '2'
+                ],
+            ]);
     }
 }

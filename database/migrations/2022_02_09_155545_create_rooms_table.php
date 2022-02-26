@@ -25,6 +25,8 @@ class CreateRoomsTable extends Migration
             //rating
             $table->string('primaryImg');
             $table->string('additionalImages');
+            $table->foreignId('hostelId')->constrained('hostels');
+
 
             $table->foreign('roomType')->references('id')->on('roomType')->onDelete('cascade');
 

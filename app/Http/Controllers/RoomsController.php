@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Hostels;
 use App\Models\Rooms;
 use App\Models\RoomType;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class RoomsController extends Controller
 {
@@ -16,10 +18,13 @@ class RoomsController extends Controller
     public function index()
     {
         //
-        $rooms= Rooms::all();
+        $id = Auth::id();
+        $hostel = Hostels::where('userId','=',$id)->first();
+        $hostelId= $hostel->id;
+//        $rooms =Rooms::all();
+        $rooms= Rooms::where('hostelId','=',$hostelId)->get();
         $roomType= RoomType::all();
-//        dd($roomType);
-        return view('admin.dashboard',compact('roomType','rooms'));
+        return view('admin.addRoom',compact('roomType','rooms'));
     }
 
     /**
@@ -29,10 +34,13 @@ class RoomsController extends Controller
      */
     public function create()
     {
-        $rooms= Rooms::all();
+        $id = Auth::id();
+        $hostel = Hostels::where('userId','=',$id)->first();
+        $hostelId= $hostel->id;
+        $rooms= Rooms::where('hostelId','=',$hostelId)->get();
+//        dd($rooms);
         $roomType= RoomType::all();
         return view('admin.roomTable',compact('roomType','rooms'));
-
 //        return(view('admin.dashboard', ['rooms' => $data]));
     }
 
@@ -80,8 +88,11 @@ class RoomsController extends Controller
         $secondaryImgNames = implode(",",$secondaryImgs);
         $rooms->additionalImages = $secondaryImgNames;
 
+        $id = Auth::id();
+        $hostel = Hostels::where('userId','=',$id)->first();
+        $hostelId= $hostel->id;
+        $rooms->hostelId = $hostelId;
         $rooms->save();
-
         return redirect()->route('rooms.create')->with('success','Added successfully');
     }
 

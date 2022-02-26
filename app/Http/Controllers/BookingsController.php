@@ -3,7 +3,12 @@
 namespace App\Http\Controllers;
 
 use App\Models\Bookings;
+use App\Models\Hostels;
+use App\Models\Payment;
+use App\Models\Rooms;
+use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class BookingsController extends Controller
 {
@@ -14,7 +19,11 @@ class BookingsController extends Controller
      */
     public function index()
     {
-        $booking = Bookings::all();
+
+        $id = Auth::id();
+        $hostel = Hostels::where('userId','=',$id)->first();
+        $hostelId= $hostel->id;
+        $booking = Bookings::where('hostelId','=',$hostelId)->get();
         return view('admin.booking',compact('booking'));
     }
 
@@ -82,5 +91,15 @@ class BookingsController extends Controller
     public function destroy(Bookings $bookings)
     {
         //
+    }
+
+    public function viewBookingDetails($id)
+    {
+     $bookingDetails= Bookings::find($id);
+
+     $user = User::find($bookingDetails->userId);
+     $payment = Payment::where('bookingId','=',$id)->get()->first();
+     $room = Rooms::find($bookingDetails->userId);
+        return view('admin.viewBookingDetails', compact('bookingDetails', 'user','payment','room'));
     }
 }

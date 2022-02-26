@@ -34,6 +34,8 @@ Auth::routes();
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index']);
 Route::get('/user', [App\Http\Controllers\userRoomController::class, 'index']);
 Route::get('/user/rooms/{id}', [App\Http\Controllers\userRoomController::class, 'viewRoom']);
+Route::get('/user/hostels/{id}', [App\Http\Controllers\userRoomController::class, 'viewHostel']);
+
 Route::get('/user/rooms/booking/{id}', [App\Http\Controllers\userRoomController::class, 'bookRoom']);
 Route::get('/user/rooms/payment/{id}', [App\Http\Controllers\PaymentController::class, 'viewPayment']);
 Route::POST('/user/rooms/checkout', [App\Http\Controllers\PaymentController::class, 'checkout']);
@@ -41,6 +43,7 @@ Route::get('/user/hostels', [App\Http\Controllers\userRoomController::class, 'vi
 
 Route::POST('/admin/memberPrice/delete', [App\Http\Controllers\MembershipDetailsController::class, 'memberPriceDelete']);
 Route::POST('/admin/roomType/delete', [App\Http\Controllers\RoomTypeController::class, 'roomDelete']);
+Route::get('/admin/booking/{id}', [App\Http\Controllers\BookingsController::class, 'viewBookingDetails']);
 
 
 

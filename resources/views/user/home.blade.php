@@ -54,7 +54,6 @@
     </div>
 </section>
 
-
 <div id="hostel-main" class="hostel-main">
     <div id="hostel-container" class="hostel-container">
         <div class="row" style="margin-bottom: 10px">

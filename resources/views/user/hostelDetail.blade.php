@@ -9,12 +9,12 @@
 {{--            Displaying primary Image--}}
                 <div class="mySlides">
                     <div class="numbertext">1 / 3</div>
-                    <img src="{{ asset('images/' . $rooms['primaryImg']) }}">
+                    <img src="{{ asset('images/' . $hostel['primaryImg']) }}">
 {{--                    <div class="text">Caption Text</div>--}}
                 </div>
 
 {{--            Displaying additional images--}}
-            @foreach (explode(',', $rooms['additionalImages']) as $image)
+            @foreach (explode(',', $hostel['additionalImages']) as $image)
                 <div class="mySlides">
                     <div class="numbertext">1 / 3</div>
                     <img src="{{ asset('images/' . $image) }}">
@@ -29,7 +29,7 @@
 {{--        <div style="text-align:center; margin-top: 10px;margin-bottom: 10px">--}}
 {{--            <span class="dot" onclick="currentSlide(1)"></span>--}}
 {{--            <p hidden>{{$var=2}}</p>--}}
-{{--            @foreach(explode(',', $rooms['additionalImages']) as $count)--}}
+{{--            @foreach(explode(',', $hostel['additionalImages']) as $count)--}}
 {{--                <span class="dot" onclick="currentSlide({{$var}})"></span>--}}
 {{--                <p hidden>{{$var= $var +1}}</p>--}}
 {{--                @endforeach--}}
@@ -46,7 +46,6 @@
                     <a class="nav-item nav-link" style="border-right: grey solid 2px" href="#">Features</a>
                     <a class="nav-item nav-link" style="border-right: grey solid 2px" href="#">Pricing</a>
 {{--                    <a href="/user/rooms/booking/{{$id}}" class="btn btn-primary" style="margin-left: 56rem" >Book this room</a>--}}
-                    <a href="/user/rooms/payment/{{$id}}" class="btn btn-primary" style="margin-left: 56rem" >Book this room</a>
 
 
                 </div>
@@ -54,8 +53,8 @@
         </nav>
         <div style="display: flex; width: 90%; margin: auto">
             <div class="room-info">
-                <h2 style="margin: auto">{{$rooms->roomName}}</h2>
-                <p style="margin-top: 20px;font-size: 15px">{{$rooms->about}}asdf asfa sdf asd fa sdf asd f asdf as fd asd fd  dsfasdf asdf
+                <h2 style="margin: auto">{{$hostel->hostelName}}</h2>
+                <p style="margin-top: 20px;font-size: 15px">{{$hostel->about}}asdf asfa sdf asd fa sdf asd f asdf as fd asd fd  dsfasdf asdf
                 asdfasdfa asdfasdfaf asdfasdfa asdfasdfa sdfasfa sdfa sdf asfasdf asd sdf asdf asfa sdf asd fa sdf asd f asdf as fd asd fd  dsfasdf asdf
                     asdfasdfa asdfasdfaf asdfasdfa asdfasdfa sdfasfa sdfa sdf asfasdf asd sdf</p>
                 <br>
@@ -71,9 +70,49 @@
             </div>
             <div class="room-info-second">
 <h2> Header</h2>
+
             </div>
         </div>
     </div>
+
+
+    <section>
+        <div>
+            <div style="text-align: center; color: grey">
+                <div class="mainRoom">
+                    <div style="text-align: center">
+                        <h1 style="margin-top: 20px; color:#313d59">Rooms</h1>
+                    </div>
+                    <div class="roomContainer">
+                        @foreach($rooms as $rooms)
+                            <div class="blog-post">
+                                <div class="blog-content">
+                                    <div class="blog-title">
+                                        <div class="roomPost">
+                                            <div class="roomContent">
+                                                <img class="roomImg" src="{{asset('images/' . $rooms['primaryImg'])}}" alt="post-1">
+                                                <div class="roomTitle">
+                                                    <h3 style="color: #313d59">{{$rooms->roomName}}</h3>
+                                                    <p>{{$rooms->about}}</p>
+{{--                                                    <a href="/user/rooms/{{$rooms->id}}" class="btn btn-blog">View</a>--}}
+{{--                                                    <p>{{$rooms->about}}</p>--}}
+                                                    <a href="/user/rooms/payment/{{$rooms->id}}" class="btn btnRoom"  >Book this room</a>
+
+{{--                                                    <a href="/user/rooms/{{$rooms->id}}" class="btn btnRoom">View</a>--}}
+                                                    <span>{{$rooms->price}}</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        @endforeach
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
 
 
     <script>
