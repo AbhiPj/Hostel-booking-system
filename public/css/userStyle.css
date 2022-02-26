@@ -89,7 +89,7 @@ span{
 }
 
 .mainRoom{
-    background-color: whitesmoke;
+    /*background-color: whitesmoke;*/
 
 }
 .text-gray{
@@ -173,7 +173,9 @@ main .roomPost .roomContent{
     text-align: center;
     width: 18rem;
     margin: 3rem 2rem;
-    box-shadow: 0 15px 20px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 5px 10px rgb(0 0 0 / 10%);
+    border-radius: 10px;
+    background-color: white;
 }
 
 main .roomContent .roomTitle{

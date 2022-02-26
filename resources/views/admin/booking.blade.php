@@ -1,7 +1,7 @@
 @extends('layouts.admin.admin')
 
 @section('content')
-    <div style="width: 80%;margin:auto">
+    <div class="admin-container">
         <table id="example" class="display nowrap" style="width: 100%">
             <thead>
                 <th>ID</th>

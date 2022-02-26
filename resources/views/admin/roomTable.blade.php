@@ -1,10 +1,9 @@
 @extends('layouts.admin.admin')
 
 @section('content')
-    <div style="width: 90%; margin: auto">
-        <table id="example" class="display nowrap" style="width: 100%">
+    <div class="admin-container">
+        <table id="example" class="display nowrap" >
             <thead>
-            <tr>
                 <th>ID</th>
                 <th>Room Name</th>
                 <th>Room Type</th>
@@ -12,7 +11,6 @@
                 <th>Primary Image</th>
                 <th>Additional Images</th>
                 <th>Action</th>
-            </tr>
             </thead>
             <tbody>
             @foreach($rooms as $rooms)
@@ -45,6 +43,8 @@
             @endforeach
             </tbody>
         </table>
+
+
 
     </div>
 
@@ -79,5 +79,4 @@
             modal.style.display = "none";
         }
     </script>
-
 @endsection

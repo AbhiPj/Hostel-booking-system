@@ -9,6 +9,16 @@
     font-family: 'Poppins', sans-serif;
 }
 
+    .admin-container{
+        width: 95%;
+        margin: auto;
+        border-radius: 10px;
+        background-color: white;
+        height: 80vh;
+        padding: 20px;
+        box-shadow: 0 5px 10px rgb(0 0 0 / 3%);
+    }
+
 .sidebar {
     position: fixed;
     height: 100%;
@@ -485,3 +495,33 @@ nav .profile-details i {
         display: none;
     }
 }
+
+
+    /*Add room page Style*/
+    .add-room-container{
+        display: flex;
+        flex-wrap: wrap;
+        width: 1000px;
+        justify-content: space-evenly;
+
+    }
+
+    .room-input{
+        border-radius: 10px;
+        width: 40%;
+        border: grey solid 1px;
+        margin-bottom: 20px;
+        height: 35px;
+    }
+    @media (max-width: 550px) {
+        .add-room-container {
+            width: 100%;
+        }
+        .room-input{
+            width: 100%;
+            margin-bottom: 20px;
+            height: 35px;
+        }
+
+
+    }

@@ -12,7 +12,6 @@
 
     <!-- CSRF Token -->
     <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
-
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
 {{--    <title>{{ config('app.name', 'Laravel') }}</title>--}}
@@ -90,6 +89,7 @@
         });
     }
 </script>
+
 <script>
     $(document).ready(function () {
         $("#example").DataTable({

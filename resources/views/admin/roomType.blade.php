@@ -1,13 +1,42 @@
 @extends('layouts.admin.admin')
 
 @section('content')
-    <div class="formContainer">
+    <div class="admin-container" style="height: 10vh; margin-bottom: 20px">
         <form id="editForm" action="{{ route('roomType.store') }}" method="POST" enctype="multipart/form-data">
-            @csrf
-            <label for="name">Room Type:</label><br>
-            <input type="text" name="roomType"><br>
-            <input type="submit" value="Submit"><br><br>
+            <div style="display: flex;flex-wrap: wrap">
+                @csrf
+                <label for="name">Room Type:</label><br>
+                <input class="room-input" type="text" name="roomType"><br>
+                <input class="room-input" style="width: 20%" type="submit" value="Submit"><br><br>
+            </div>
+
         </form>
+    </div>
+    <div class="admin-container">
+
+
+        <table id="example" class="display nowrap">
+            <thead>
+                    <th>ID</th>
+                    <th>Room Name</th>
+                    <th>Action</th>
+            </thead>
+            <tbody>
+                @foreach($data as $rooms)
+                    <tr>
+                        <td>{{$rooms['id']}}</td>
+                        <td>{{$rooms['roomType']}}</td>
+                        <td>
+                            <a class="button" href="{{route("roomType.edit", $rooms->id)}}"
+                            >Edit</a>
+                            <button onclick="deleteAlert({{$rooms['id']}}, 'roomType')" class="button">Delete</button>
+                        </td>
+                    </tr>
+                @endforeach
+            </tbody>
+
+        </table>
+
     </div>
 
     @if(session()->has('success'))
@@ -25,30 +54,8 @@
         </div>
     @endif
 
-    <table>
-        <tr>
-            <th>ID</th>
-            <th>Room Name</th>
-            <th>Action</th>
-        </tr>
-        @foreach($data as $rooms)
-            <tr>
-                <td>{{$rooms['id']}}</td>
-                <td>{{$rooms['roomType']}}</td>
-                <td>
-                    <a class="button" href="{{route("roomType.edit", $rooms->id)}}"
-                    >Edit</a>
-{{--                    <form action="{{route('roomType.destroy', $rooms->id)}}" method="POST">--}}
-{{--                        @csrf--}}
-{{--                        @method('delete')--}}
-{{--                        <button type="submit" class="button">Delete</button>--}}
-{{--                    </form>--}}
-                    <button onclick="deleteAlert({{$rooms['id']}}, 'roomType')" class="button">Delete</button>
 
-                </td>
-            </tr>
-        @endforeach
-    </table>
+
 
 
 @endsection

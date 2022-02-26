@@ -1,8 +1,8 @@
 
 <div class="sidebar">
     <div class="logo-details">
-        <i class='bx bxl-c-plus-plus'></i>
-        <span class="logo_name">{{ config('app.name', 'Laravel') }}</span>
+{{--        <i class='bx bxl-c-plus-plus'></i>--}}
+        <span style="padding-left: 20px" class="logo_name">{{ config('app.name', 'Laravel') }}</span>
 
     </div>
     <ul class="nav-links">
@@ -10,7 +10,7 @@
         <li>
             <a href="/home" class="active">
                 <i class='bx bx-grid-alt'></i>
-                <span class="links_name">Home</span>
+                <span class="links_name">Dashboard</span>
             </a>
         </li>
         <li>

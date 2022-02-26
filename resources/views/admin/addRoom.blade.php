@@ -2,7 +2,7 @@
 
 @section('content')
 
-    <div class="formContainer">
+    <div class="admin-container">
         @if(session()->has('success'))
             <div class="alert alert-success">
                 <script>
@@ -19,28 +19,33 @@
         @endif
 
         <form action="{{ route('rooms.store') }}" method="POST" enctype="multipart/form-data">
-                    @csrf
-                    <label for="name">Name:</label><br>
-                    <input type="text" name="name"><br>
-                    <label for="about">About:</label><br>
-                    <input type="text" name="about"><br>
-                    <label for="about">Price:</label><br>
-                    <input type="text" name="price"><br>
+            <div class="add-room-container">
+                @csrf
+{{--                <label for="name">Name:</label><br>--}}
+                <input placeholder="Name" class="room-input" type="text" name="name">
+{{--                <label for="about">About:</label><br>--}}
+                <input placeholder="About" class="room-input" type="text" name="about">
+{{--                <label for="about">Price:</label><br>--}}
+                <input placeholder="Price" class="room-input" type="text" name="price">
 
-                    <select name="roomType" id="">
-                        @foreach($roomType as $roomType1)
-                            <option value="{{$roomType1->id}}">{{$roomType1->roomType}}</option>
-                        @endforeach
-                    </select><br>
-                    <label for="room_image">Room Image:</label><br>
-                    <input type="file" id="primaryImg" name="primaryImg" onchange="preview2()"><br><br>
-                    <div id="images2"></div>
-                    <input type="file" id="roomImg" name="roomImg[]" multiple onchange="preview()"><br><br>
-                    <div id="images"></div>
-                    <input type="submit" value="Submit"><br><br>
-                </form>
+                <select class="room-input" name="roomType" id="">
+                    @foreach($roomType as $roomType1)
+                        <option value="{{$roomType1->id}}">{{$roomType1->roomType}}</option>
+                    @endforeach
+                </select>
+            </div>
+            <div class="add-room-container">
+                <label for="room_image">Room Image:</label><br>
+                <input type="file" id="primaryImg" name="primaryImg" onchange="preview2()"><br><br>
+                <div id="images2"></div>
+                <input type="file" id="roomImg" name="roomImg[]" multiple onchange="preview()"><br><br>
+                <div id="images"></div>
+            </div>
+            <input type="submit" value="Submit">
+        </form>
 
     </div>
+
 
         </div>
 
@@ -75,5 +80,10 @@
         modal.style.display = "none";
     }
 </script>
+
+    <style>
+
+
+    </style>
 
 @endsection

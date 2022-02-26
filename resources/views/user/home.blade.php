@@ -138,28 +138,6 @@
         </div>
     </div>
 </div>
-        <section>
-            <div class="mainRoom">
-                <div style="text-align: center">
-                    <h1 style=" color:#313d59">Rooms</h1>
-                </div>
-                <div class="roomContainer">
-                    @foreach($rooms as $rooms)
-                        <div class="roomPost">
-                            <div class="roomContent">
-                                <img class="roomImg" src="{{asset('images/' . $rooms['primaryImg'])}}" alt="post-1">
-                                <div class="roomTitle">
-                                    <h3 style="color: #313d59">{{$rooms->roomName}}</h3>
-                                    <p>{{$rooms->about}}</p>
-                                    <a href="/user/rooms/{{$rooms->id}}" class="btn btnRoom">View</a>
-                                    <span>{{$rooms->price}}</span>
-                                </div>
-                            </div>
-                        </div>
-                    @endforeach
-                </div>
-            </div>
-        </section>
 
 
 

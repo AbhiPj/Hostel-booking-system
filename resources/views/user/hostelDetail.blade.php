@@ -93,7 +93,7 @@
                                                 <img class="roomImg" src="{{asset('images/' . $rooms['primaryImg'])}}" alt="post-1">
                                                 <div class="roomTitle">
                                                     <h3 style="color: #313d59">{{$rooms->roomName}}</h3>
-                                                    <p>{{$rooms->about}}</p>
+                                                    <p style="font-size: 12px">{{$rooms->about}}</p>
 {{--                                                    <a href="/user/rooms/{{$rooms->id}}" class="btn btn-blog">View</a>--}}
 {{--                                                    <p>{{$rooms->about}}</p>--}}
                                                     <a href="/user/rooms/payment/{{$rooms->id}}" class="btn btnRoom"  >Book this room</a>
@@ -145,7 +145,7 @@
     </script>
     <style>
 
-        p, h2,li,a{
+        p, h2,li,a,h1,h3{
             color: #313131;
             font-family: Nunito;
         }
