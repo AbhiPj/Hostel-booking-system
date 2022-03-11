@@ -33,7 +33,7 @@ class HomeController extends Controller
         if(Auth::User()->userType == 'user'){
 //            return view('user.home');
             return redirect("/user");
-        }elseif (Auth::User()->userType == 'vendor'){
+        }elseif (Auth::User()->userType == 'admin'){
 
             $id = Auth::id();
             $hostel = Hostels::where('userId','=',$id)->first();
@@ -49,6 +49,9 @@ class HomeController extends Controller
                 $totalPrice= $bookingPrice['price'] + $totalPrice;
             }
                 return view('admin.home', compact('totalBooking','totalPrice','booking'));
+        }elseif(Auth::User()->userType == 'superadmin'){
+            return view("superadmin.dashboard");
+
         }
 
     }

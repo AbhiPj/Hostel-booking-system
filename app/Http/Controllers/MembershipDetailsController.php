@@ -16,7 +16,7 @@ class MembershipDetailsController extends Controller
     {
         //
         $memberDetails = MembershipDetails::all();
-        return view('admin.addMemberPrice',compact('memberDetails'));
+        return view('superadmin.addMemberPrice',compact('memberDetails'));
     }
 
     /**

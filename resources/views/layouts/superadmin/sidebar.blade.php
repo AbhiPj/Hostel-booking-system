@@ -14,32 +14,17 @@
             </a>
         </li>
         <li>
-            <a href="{{ route('rooms.create') }}" class="active">
+            <a href="{{ route('membershipDetails.index') }}" class="active">
                 <i class='bx bx-grid-alt'></i>
-                <span class="links_name">View Rooms</span>
+                <span class="links_name">Add membership Price</span>
             </a>
         </li>
         <li>
-            <a href="{{ route('rooms.index') }}" class="active">
+            <a href="{{ route('hostels.create') }}" class="active">
                 <i class='bx bx-grid-alt'></i>
-                <span class="links_name">Add Rooms</span>
+                <span class="links_name">Add hostels</span>
             </a>
         </li>
-
-
-        <li>
-            <a href="{{ route('roomType.create') }}">
-                <i class='bx bx-box'></i>
-                <span class="links_name">Add Roomtype</span>
-            </a>
-        </li>
-        <li>
-            <a href="{{ route('booking.index') }}">
-                <i class='bx bx-list-ul'></i>
-                <span class="links_name">Booking</span>
-            </a>
-        </li>
-
 
         <li class="log_out">
             <a href="{{ route('logout') }}" onclick="event.preventDefault();

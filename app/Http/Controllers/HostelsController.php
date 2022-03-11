@@ -27,7 +27,7 @@ class HostelsController extends Controller
     {
         //
         $data= Hostels::all();
-        return(view('admin.addHostels', ['hostels' => $data]));
+        return(view('superadmin.addHostels', ['hostels' => $data]));
     }
 
     /**
