@@ -2,7 +2,7 @@
 
 @section('content')
 
-    <div class="admin-container">
+    <div class="admin-container" style="display: flex;flex-direction: column; justify-content: center">
         @if(session()->has('success'))
             <div class="alert alert-success">
                 <script>
@@ -19,29 +19,27 @@
         @endif
 
         <form action="{{ route('rooms.store') }}" method="POST" enctype="multipart/form-data">
-            <div class="add-room-container">
-                @csrf
-{{--                <label for="name">Name:</label><br>--}}
-                <input placeholder="Name" class="room-input" type="text" name="name">
-{{--                <label for="about">About:</label><br>--}}
-                <input placeholder="About" class="room-input" type="text" name="about">
-{{--                <label for="about">Price:</label><br>--}}
-                <input placeholder="Price" class="room-input" type="text" name="price">
+                <div class="add-room-container">
+                    @csrf
+                    <input placeholder="Name" class="room-input" type="text" name="name">
+                    <input placeholder="About" class="room-input" type="text" name="about">
+                    <input placeholder="Price" class="room-input" type="text" name="price">
+                    <select class="room-input" name="roomType" id="">
+                        @foreach($roomType as $roomType1)
+                            <option value="{{$roomType1->id}}">{{$roomType1->roomType}}</option>
+                        @endforeach
+                    </select>
+                </div>
+                <div class="add-room-container" style="width: 92%; margin: auto">
+                    <label for="room_image">Room Image:</label><br>
+                    <input type="file" id="primaryImg" name="primaryImg" onchange="preview2()"><br><br>
+                    <div id="images2"></div>
+                    <label for="room_image">Additional Images:</label><br>
 
-                <select class="room-input" name="roomType" id="">
-                    @foreach($roomType as $roomType1)
-                        <option value="{{$roomType1->id}}">{{$roomType1->roomType}}</option>
-                    @endforeach
-                </select>
-            </div>
-            <div class="add-room-container">
-                <label for="room_image">Room Image:</label><br>
-                <input type="file" id="primaryImg" name="primaryImg" onchange="preview2()"><br><br>
-                <div id="images2"></div>
-                <input type="file" id="roomImg" name="roomImg[]" multiple onchange="preview()"><br><br>
-                <div id="images"></div>
-            </div>
-            <input type="submit" value="Submit">
+                    <input type="file" id="roomImg" name="roomImg[]" multiple onchange="preview()"><br><br>
+                    <div id="images"></div>
+                </div>
+                <input class="submit-button" style="height: 30px; padding:0" type="submit" value="Submit">
         </form>
 
     </div>

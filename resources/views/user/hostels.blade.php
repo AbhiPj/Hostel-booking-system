@@ -8,15 +8,29 @@
     </div>
 
 
-<div class="hostel-search">
-    <div class="search-holder">
+<div>
+    <form class="hostel-search" action="/user/hostels/search" method="POST">
+        @csrf
+        <div class="search-holder">
+            <input name="hostelSearch" class="search-box" placeholder="Seach">
+        </div>
+        <div class="search-button-container">
+{{--            <a class="search-button" href="#">Search</a>--}}
+            <button type="submit" class="search-button">Search</button>
 
-        <input class="search-box" placeholder="Seach">
+        </div>
+    </form>
 
-    </div>
 </div>
 
+{{--    <form action="{{route('rooms.destroy', $rooms->id)}}" method="POST">--}}
+{{--        @csrf--}}
+{{--        @method('delete')--}}
+{{--        <button type="submit" class="button">Delete</button>--}}
+{{--    </form>--}}
+
     <div class="hostel-container">
+        @if(!is_bool($hostels))
         @foreach($hostels as $hostel)
             <div class="hostel-item">
                 <div class="hostel-img">
@@ -32,35 +46,24 @@
                     <div class="hostel-price">
                         <p>Price: 2000</p>
                     </div>
-
                 </div>
                 <div class="hostel-ratings">
                     <a  class="read_more" href="/user/hostels/{{$hostel->id}}">View</a>
                 </div>
             </div>
         @endforeach()
-        <div class="hostel-item">
+        @endif
 
-        </div>
+        @if(is_bool($hostels))
+            <p>ver nice</p>
+
+        @endif
     </div>
 
 
 
 
-    <section>
-        <div>
-            <div style="text-align: center; color: grey">
-                <h1 style="margin-top: 20px; color:#313d59">Rooms</h1>
-                <div class="mainRoom">
-                    <div style="text-align: center">
-                        <h1 style=" color:#313d59">Rooms</h1>
-                    </div>
-                    <div class="roomContainer">
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
+
 
 
 
@@ -70,43 +73,9 @@
     });
 </script>
     <style>
-        .multi-select{
-            width: 100%;
-            border-radius: 10px;
-
-        }
-
-        p, h2{
-            /*color: #313131;*/
-            /*color: grey;*/
-            color: black;
-        }
-
-        p{
-            color: grey;
-
-        }
-
-        .search-holder{
-            width: 90%;
-            height: 50px;
-            justify-content: center;
-            align-items: center;
-            display: flex;
-            margin-top: 100px;
-            margin: auto;
-
-        }
-        .search-box{
-            width: 100%;
-            height: 100%;
-            border-radius: 10px;
-            border: grey solid 1px;
-
-        }
 
         .center-cropped {
-           height: 100vh;
+            height: 100vh;
             max-width: 100%;
             /*background-position: center center;*/
             background-repeat: no-repeat;
@@ -114,128 +83,6 @@
             background-position: 10% 90%;
             background-image: url('{{asset('images/background/00.jpg')}}');
 
-        }
-        .hostel-top-img{
-            width: 95%;
-            margin-left: 35px;
-            vertical-align: middle;
-            height: 40vh;
-            /*background-color: black;*/
-            animation: transitionIn 1s;
-            border-radius: 10px;
-            box-shadow: 0 5px 10px rgb(0 0 0 / 10%);
-
-
-        }
-
-        @keyframes transitionIn {
-            from {
-                margin-top: 5vh;
-                width: 42%;
-                margin-left: 52%;
-                height: 95vh;
-
-            }
-            to {
-                /*transform: translateX(10px);*/
-                /*margin: auto;*/
-            }
-        }
-        .hostel-container{
-            display: flex;
-            flex-direction: column;
-        }
-        .hostel-item{
-            width: 90%;
-            margin: auto;
-            min-height: 40vh;
-            margin-top: 20px;
-            background-color: white;
-            box-shadow: 0 5px 10px rgb(0 0 0 / 10%);
-            border-radius: 10px;
-            padding:20px;
-            display: flex;
-            flex-wrap: wrap;
-
-
-        }
-        .hostel-img{
-            background-color: black;
-            height: 40vh;
-            /*height: 100%;*/
-            box-shadow: 0 5px 10px rgb(0 0 0 / 10%);
-
-            width: 400px;
-            border-radius: 10px;
-        }
-
-        .hostel-search{
-            width: 95%;
-            height: 50vh;
-            display: flex;
-            padding: 20px;
-            flex-direction: column;
-            box-shadow: 0 5px 10px rgb(0 0 0 / 10%);
-            border-radius: 10px;
-            margin: 10px auto auto;
-            background-color: white;
-
-        }
-        .hostel-details{
-            /*background-color: blue;*/
-            box-shadow: 0 5px 10px rgb(0 0 0 / 10%);
-            height: 40vh;
-            width: 650px;
-            border-radius: 10px;
-            margin-left: 10px;
-            padding: 10px;
-        }
-        .hostel-ratings{
-            background-color: darkcyan;
-            box-shadow: 0 5px 10px rgb(0 0 0 / 10%);
-            height: 40vh;
-            width: 250px;
-            border-radius: 10px;
-            margin-left: 10px;
-            padding: 10px;
-        }
-
-        @media only screen and (max-device-width: 1366px) {
-            .hostel-price {
-                margin-top: 10px;
-                /*background-color: blue;*/
-            }
-            .hostel-details{
-                height: auto;
-            }
-        }
-
-        /*@media only screen and (max-width: 520px) {*/
-        /*    .hostel-price {*/
-        /*        margin-top: 0;*/
-        /*        !*background-color: blue;*!*/
-        /*    }*/
-        /*    .hostel-details{*/
-        /*        height: auto;*/
-        /*    }*/
-        /*}*/
-        .hostel-price{
-            margin-top: 100px;
-        }
-        .read_more {
-            height: 40px;
-            font-size: 17px;
-            text-decoration: none;
-            background-color: #000;
-            color: #fff;
-            padding:7px;
-            width: 100%;
-            /*max-width: 190px;*/
-            text-align: center;
-            display: inline-block;
-            margin-top: 210px;
-            transition: ease-in all 0.5s;
-            border-radius: 10px;
         }
 
     </style>

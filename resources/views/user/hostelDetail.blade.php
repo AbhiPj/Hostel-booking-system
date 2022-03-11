@@ -34,27 +34,28 @@
 {{--                <p hidden>{{$var= $var +1}}</p>--}}
 {{--                @endforeach--}}
 {{--        </div>--}}
-        <nav class="navbar navbar-expand-lg navbar-light" style="background-color: white;box-shadow: 0 5px 10px rgb(0 0 0 / 10%);border-radius: 10px; width: 90%; margin: auto; margin-top: 10px"    >
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
+{{--        <div style="background-color: white;box-shadow: 0 5px 10px rgb(0 0 0 / 10%);border-radius: 10px; width: 90%; margin: auto; margin-top: 10px"    >--}}
+{{--            <div class="collapse navbar-collapse" id="navbarNavAltMarkup">--}}
+{{--                <div class="navbar-nav">--}}
+{{--                    <a class="nav-item nav-link" style="border-right: grey solid 2px" href="#">Description</a>--}}
+{{--                    <a class="nav-item nav-link" style="border-right: grey solid 2px" href="#">Services</a>--}}
+{{--                    <a class="nav-item nav-link" style="border-right: grey solid 2px" href="#">Features</a>--}}
+{{--                    <a class="nav-item nav-link" style="border-right: grey solid 2px" href="#">Pricing</a>--}}
+{{--                </div>--}}
+{{--            </div>--}}
+{{--        </div>--}}
 
-            <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-                <div class="navbar-nav">
-                    <a class="nav-item nav-link" style="border-right: grey solid 2px" href="#">Description</a>
-                    <a class="nav-item nav-link" style="border-right: grey solid 2px" href="#">Services</a>
-                    <a class="nav-item nav-link" style="border-right: grey solid 2px" href="#">Features</a>
-                    <a class="nav-item nav-link" style="border-right: grey solid 2px" href="#">Pricing</a>
-{{--                    <a href="/user/rooms/booking/{{$id}}" class="btn btn-primary" style="margin-left: 56rem" >Book this room</a>--}}
+        <div class="hostel-nav">
+            <a href="#">Features</a>
+            <a href="#">Description</a>
+            <a href="#">Amenities</a>
+            <a href="#">Rooms</a>
+        </div>
 
-
-                </div>
-            </div>
-        </nav>
         <div style="display: flex; width: 90%; margin: auto">
             <div class="room-info">
                 <h2 style="margin: auto">{{$hostel->hostelName}}</h2>
-                <p style="margin-top: 20px;font-size: 15px">{{$hostel->about}}asdf asfa sdf asd fa sdf asd f asdf as fd asd fd  dsfasdf asdf
+                <p style="margin-top: 30px;font-size: 13px;width: 95%">{{$hostel->about}}asdf asfa sdf asd fa sdf asd f asdf as fd asd fd  dsfasdf asdf
                 asdfasdfa asdfasdfaf asdfasdfa asdfasdfa sdfasfa sdfa sdf asfasdf asd sdf asdf asfa sdf asd fa sdf asd f asdf as fd asd fd  dsfasdf asdf
                     asdfasdfa asdfasdfaf asdfasdfa asdfasdfa sdfasfa sdfa sdf asfasdf asd sdf</p>
                 <br>
@@ -80,9 +81,11 @@
         <div>
             <div style="text-align: center; color: grey">
                 <div class="mainRoom">
-                    <div style="text-align: center">
-                        <h1 style="margin-top: 20px; color:#313d59">Rooms</h1>
-                    </div>
+{{--                    <h2 style="font-weight: normal">Rooms</h2>--}}
+
+                    {{--                    <div style="text-align: center">--}}
+{{--                        <h1 style="margin-top: 20px; color:#313d59">Rooms</h1>--}}
+{{--                    </div>--}}
                     <div class="roomContainer">
                         @foreach($rooms as $rooms)
                             <div class="blog-post">
@@ -97,7 +100,6 @@
 {{--                                                    <a href="/user/rooms/{{$rooms->id}}" class="btn btn-blog">View</a>--}}
 {{--                                                    <p>{{$rooms->about}}</p>--}}
                                                     <a href="/user/rooms/payment/{{$rooms->id}}" class="btn btnRoom"  >Book this room</a>
-
 {{--                                                    <a href="/user/rooms/{{$rooms->id}}" class="btn btnRoom">View</a>--}}
                                                     <span>{{$rooms->price}}</span>
                                                 </div>
@@ -144,10 +146,36 @@
         }
     </script>
     <style>
+        .hostel-nav{
+            width: 90%;
+            margin: auto;
+            display: flex;
+            flex-wrap: wrap;
+            min-height: 8vh;
+            height: auto;
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 5px 10px rgb(0 0 0 / 10%);
+            margin-top: 20px;
+            padding: 20px;
+        }
+
+        .hostel-nav a{
+            text-decoration: none;
+            margin-right: 45px;
+        }
 
         p, h2,li,a,h1,h3{
             color: #313131;
             font-family: Nunito;
+        }
+
+        .room-info h2{
+            font-weight: normal;
+        }
+
+        .room-info-second h2{
+            font-weight: normal;
         }
 
         h2{

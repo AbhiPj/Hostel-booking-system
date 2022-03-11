@@ -218,9 +218,9 @@ nav .profile-details i {
 
 .home-content .overview-boxes {
     display: flex;
-    align-items: center;
-    margin-right: 10px;
-    /*justify-content: space-between;*/
+    /*align-items: center;*/
+    /*margin-right: 50px;*/
+    /*justify-content: space-evenly;*/
     flex-wrap: wrap;
     padding: 0 20px;
     margin-bottom: 26px;
@@ -230,7 +230,8 @@ nav .profile-details i {
     display: flex;
     align-items: center;
     justify-content: center;
-    width: calc(100% / 4 - 15px);
+    width: 30%;
+    margin-right: 20px;
     background: #fff;
     padding: 15px 14px;
     border-radius: 12px;
@@ -412,6 +413,20 @@ nav .profile-details i {
     color: #333;
 }
 
+.booking-details-container p{
+    font-size: 25px;
+}
+
+.booking-details-container li{
+    font-size: 13px;
+}
+
+.booking-details-table{
+    display: flex;
+    width: 70%;
+    margin-top: 20px;
+}
+
 /* Responsive Media Query */
 @media (max-width: 1240px) {
     .sidebar {
@@ -443,6 +458,14 @@ nav .profile-details i {
         left: 220px;
     }
 }
+
+    .submit-button{
+        margin: auto;
+        width: 14%;
+        height: 40px;
+        border-radius: 10px;
+        display: flex;
+    }
 
 @media (max-width: 1150px) {
     .home-content .sales-boxes {
@@ -510,7 +533,7 @@ nav .profile-details i {
         border-radius: 10px;
         width: 40%;
         border: grey solid 1px;
-        margin-bottom: 20px;
+        margin-bottom: 35px;
         height: 35px;
     }
     @media (max-width: 550px) {
@@ -523,5 +546,10 @@ nav .profile-details i {
             height: 35px;
         }
 
-
+        .booking-details-container p{
+            font-size: 18px;
+        }
+        .booking-details-container li{
+            font-size: 10px;
+        }
     }

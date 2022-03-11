@@ -49,4 +49,11 @@ class userRoomController extends Controller
         $hostels=Hostels::all();
         return view('user.hostels',compact('hostels'));
     }
+
+    public function searchHostel(Request $request)
+    {
+        $hostelName = $request->get('hostelSearch');
+        $hostels = Hostels::where('hostelName', 'LIKE', "%{$hostelName}%")->get();
+        return view('user.hostels',compact('hostels'));
+    }
 }

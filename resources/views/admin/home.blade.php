@@ -53,21 +53,21 @@
                                             <li>{{$b->id}}</li>
                                         @endforeach                                    </ul>
                                     <ul class="details">
-                                        <li class="topic">Sales</li>
+                                        <li class="topic">Price</li>
                                         @foreach($booking as $b)
-                                            <li>02 Jan 2021</li>
+                                            <li>{{$b->price}}</li>
                                         @endforeach
                                     </ul>
                                     <ul class="details">
-                                        <li class="topic">Total</li>
+                                        <li class="topic">Payment Method</li>
                                         @foreach($booking as $b)
-                                            <li>02 Jan 2021</li>
+                                            <li>{{$b->paymentStatus}}</li>
                                         @endforeach
                                     </ul>
 
 
                             </div>
-                            <div class="button">
+                            <div class="button" style="border: none">
                                 <a href="#">See All</a>
                             </div>
                         </div>

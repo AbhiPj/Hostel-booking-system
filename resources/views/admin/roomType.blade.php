@@ -13,8 +13,6 @@
         </form>
     </div>
     <div class="admin-container">
-
-
         <table id="example" class="display nowrap">
             <thead>
                     <th>ID</th>

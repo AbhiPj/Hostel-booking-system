@@ -33,8 +33,11 @@ Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index']);
 Route::get('/user', [App\Http\Controllers\userRoomController::class, 'index']);
+
 Route::get('/user/rooms/{id}', [App\Http\Controllers\userRoomController::class, 'viewRoom']);
 Route::get('/user/hostels/{id}', [App\Http\Controllers\userRoomController::class, 'viewHostel']);
+Route::POST('/user/hostels/search', [App\Http\Controllers\userRoomController::class, 'searchHostel']);
+
 
 Route::get('/user/rooms/booking/{id}', [App\Http\Controllers\userRoomController::class, 'bookRoom']);
 Route::get('/user/rooms/payment/{id}', [App\Http\Controllers\PaymentController::class, 'viewPayment']);
