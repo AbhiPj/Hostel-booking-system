@@ -24,6 +24,8 @@ Route::resource('payment', \App\Http\Controllers\PaymentController::class);
 Route::resource('membership', \App\Http\Controllers\MembershipController::class);
 Route::resource('membershipDetails', \App\Http\Controllers\MembershipDetailsController::class);
 Route::resource('hostels', \App\Http\Controllers\HostelsController::class);
+Route::resource('requestHostels', \App\Http\Controllers\RequestHostelController::class);
+
 
 Auth::routes();
 
@@ -41,6 +43,10 @@ Route::POST('/user/rooms/checkout', [App\Http\Controllers\PaymentController::cla
 Route::POST('/user/membership/checkout', [App\Http\Controllers\MembershipController::class, 'checkout']);
 
 Route::get('/user/hostels', [App\Http\Controllers\userRoomController::class, 'viewHostels']);
+Route::get('/user/requestHostel', [App\Http\Controllers\RequestHostelController::class, 'index']);
+Route::POST('/user/requestHostel/submit', [App\Http\Controllers\RequestHostelController::class, 'store']);
+
+
 
 
 Route::POST('/admin/memberPrice/delete', [App\Http\Controllers\MembershipDetailsController::class, 'memberPriceDelete']);

@@ -51,6 +51,12 @@
                         </li>
                     @endif
                 @else
+                    <li class="nav-item mx-3">
+                        <a style="color:white; font-size: 15px" class="nav-link" href="{{ route('membership.index') }}">Membership</a>
+                    </li>
+                    <li class="nav-item mx-3">
+                        <a style="color: white" class="nav-link" href="/user/requestHostel">Add your hostel</a>
+                    </li>
                     <li class="nav-item dropdown">
                         <a style="color:white; margin-right: 35px; font-size: 15px" id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                             {{ Auth::user()->name }}
@@ -62,9 +68,9 @@
                                                      document.getElementById('logout-form').submit();">
                                 {{ __('Logout') }}
                             </a>
-                    <li class="nav-item">
-                        <a style="color:white; font-size: 15px" class="nav-link" href="{{ route('membership.index') }}">Membership</a>
+                        </div>
                     </li>
+
 
                     <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
                         @csrf

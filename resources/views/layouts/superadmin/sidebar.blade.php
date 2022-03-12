@@ -25,6 +25,12 @@
                 <span class="links_name">Add hostels</span>
             </a>
         </li>
+        <li>
+            <a href="{{ route('requestHostels.create') }}" class="active">
+                <i class='bx bx-grid-alt'></i>
+                <span class="links_name">Hostel requests</span>
+            </a>
+        </li>
 
         <li class="log_out">
             <a href="{{ route('logout') }}" onclick="event.preventDefault();
