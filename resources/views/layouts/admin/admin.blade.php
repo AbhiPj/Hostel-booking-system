@@ -8,7 +8,7 @@
     <link href="{{ asset('css/adminStyle.css') }}" rel="stylesheet">
     <link href="{{ asset('css/style.css') }}" rel="stylesheet">
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
-
+    <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
 
     <!-- CSRF Token -->
     <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>

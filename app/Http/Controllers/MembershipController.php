@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\Membership;
+use App\Models\MembershipDetails;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class MembershipController extends Controller
 {
@@ -15,7 +17,8 @@ class MembershipController extends Controller
     public function index()
     {
         //
-        return view('user.membershipPayment');
+        $membershipDetails = MembershipDetails::all();
+        return view('user.membershipPayment',compact('membershipDetails'));
     }
 
     /**
@@ -82,5 +85,12 @@ class MembershipController extends Controller
     public function destroy(Membership $membership)
     {
         //
+    }
+
+    public function checkout(Request $request)
+    {
+        $userId= Auth::id();
+
+
     }
 }

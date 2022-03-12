@@ -9,7 +9,14 @@
     <div class="payment-content">
 
 
+
         <div class="payment-form">
+
+            <select style="height: 30px;width: 200px" name="" id="select_id" onchange="changeValue()">
+                @foreach($membershipDetails as $data)
+                    <option value="{{$data->id}}">{{ $data->duration }}</option>
+                @endforeach
+            </select>
         </div>
         <div class="payment-details">
             {{--            <p>{{$rooms->roomName}}</p>--}}
@@ -25,8 +32,8 @@
         {{--        <a href="/user/rooms/booking/{{$id}}">book</a>--}}
     </div>
     <script>
-
         paypal.Buttons({
+
             // Sets up the transaction when a payment button is clicked
             createOrder: function(data, actions) {
                 return actions.order.create({
@@ -60,15 +67,8 @@
                         },
                         data:{
                             firstName:  $('#firstName').val(),
+                            dropdown: $('#select_id').val(),
                             lastName:  $('#lastName').val(),
-                            email:  $('#email').val(),
-                            phoneNumber:  $('#phoneNumber').val(),
-                            address:  $('#address').val(),
-                            street:  $('#street').val(),
-                            city:  $('#city').val(),
-                            province:  $('#province').val(),
-                            district:  $('#district').val(),
-                            zipCode:  $('#zipCode').val(),
 
                             {{--'roomId':"{{$rooms->id}}",--}}
                             'paymentMethod':"Paid by Paypal",
@@ -81,6 +81,5 @@
                 });
             }
         }).render('#paypal-button-container');
-
     </script>
 @endsection

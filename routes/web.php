@@ -23,10 +23,6 @@ Route::resource('booking', \App\Http\Controllers\BookingsController::class);
 Route::resource('payment', \App\Http\Controllers\PaymentController::class);
 Route::resource('membership', \App\Http\Controllers\MembershipController::class);
 Route::resource('membershipDetails', \App\Http\Controllers\MembershipDetailsController::class);
-
-
-
-
 Route::resource('hostels', \App\Http\Controllers\HostelsController::class);
 
 Auth::routes();
@@ -42,7 +38,10 @@ Route::POST('/user/hostels/search', [App\Http\Controllers\userRoomController::cl
 Route::get('/user/rooms/booking/{id}', [App\Http\Controllers\userRoomController::class, 'bookRoom']);
 Route::get('/user/rooms/payment/{id}', [App\Http\Controllers\PaymentController::class, 'viewPayment']);
 Route::POST('/user/rooms/checkout', [App\Http\Controllers\PaymentController::class, 'checkout']);
+Route::POST('/user/membership/checkout', [App\Http\Controllers\MembershipController::class, 'checkout']);
+
 Route::get('/user/hostels', [App\Http\Controllers\userRoomController::class, 'viewHostels']);
+
 
 Route::POST('/admin/memberPrice/delete', [App\Http\Controllers\MembershipDetailsController::class, 'memberPriceDelete']);
 Route::POST('/admin/roomType/delete', [App\Http\Controllers\RoomTypeController::class, 'roomDelete']);

@@ -14,11 +14,16 @@
         margin: auto;
         border-radius: 10px;
         background-color: white;
-        height: 80vh;
+        min-height: 80vh;
+        height: auto;
         padding: 20px;
         box-shadow: 0 5px 10px rgb(0 0 0 / 3%);
     }
 
+    .admin-map{
+        width: 30%;
+        height: 65vh;
+    }
 .sidebar {
     position: fixed;
     height: 100%;
@@ -298,6 +303,8 @@ nav .profile-details i {
     background: #ffe8b3;
 }
 
+
+
 .home-content .box .cart.four {
     color: #e05260;
     background: #f7d4d7;
@@ -524,7 +531,7 @@ nav .profile-details i {
     .add-room-container{
         display: flex;
         flex-wrap: wrap;
-        width: 1000px;
+        width: 90%;
         justify-content: space-evenly;
 
     }

@@ -21,8 +21,10 @@ class userRoomController extends Controller
 
     public function viewHostel($id){
         $hostel = Hostels::find($id);
+
+        $featureArr = explode(',',$hostel->features );
         $rooms = Rooms::where('hostelId','=',$id)->get();
-        return(view('user.hostelDetail', compact('hostel','id','rooms')));
+        return(view('user.hostelDetail', compact('hostel','id','rooms','featureArr')));
     }
 
     public function viewRoom($id){

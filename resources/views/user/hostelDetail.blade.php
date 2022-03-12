@@ -2,8 +2,25 @@
 @extends('layouts.user.user')
 
 @section('content')
-
+    <link rel="stylesheet" type="text/css" href="./style.css" />
     <div class="content">
+        <script>
+            function initMap() {
+                // The location of Uluru
+                const kathmandu = { lat: {{$hostel->latitude}}, lng: {{$hostel->longitude}} };
+                // The map, centered at Uluru
+                const map = new google.maps.Map(document.getElementById("map"), {
+                    zoom: 10,
+                    center: kathmandu,
+                });
+
+                let makar = new google.maps.Marker({
+                    position: kathmandu,
+                    map: map,
+                });
+                marker.setMap(map);
+            }
+        </script>
         <div class="slideshow-container">
 
 {{--            Displaying primary Image--}}
@@ -24,32 +41,13 @@
             <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
             <a class="next" onclick="plusSlides(1)">&#10095;</a>
         </div>
-{{--        <br>--}}
-
-{{--        <div style="text-align:center; margin-top: 10px;margin-bottom: 10px">--}}
-{{--            <span class="dot" onclick="currentSlide(1)"></span>--}}
-{{--            <p hidden>{{$var=2}}</p>--}}
-{{--            @foreach(explode(',', $hostel['additionalImages']) as $count)--}}
-{{--                <span class="dot" onclick="currentSlide({{$var}})"></span>--}}
-{{--                <p hidden>{{$var= $var +1}}</p>--}}
-{{--                @endforeach--}}
-{{--        </div>--}}
-{{--        <div style="background-color: white;box-shadow: 0 5px 10px rgb(0 0 0 / 10%);border-radius: 10px; width: 90%; margin: auto; margin-top: 10px"    >--}}
-{{--            <div class="collapse navbar-collapse" id="navbarNavAltMarkup">--}}
-{{--                <div class="navbar-nav">--}}
-{{--                    <a class="nav-item nav-link" style="border-right: grey solid 2px" href="#">Description</a>--}}
-{{--                    <a class="nav-item nav-link" style="border-right: grey solid 2px" href="#">Services</a>--}}
-{{--                    <a class="nav-item nav-link" style="border-right: grey solid 2px" href="#">Features</a>--}}
-{{--                    <a class="nav-item nav-link" style="border-right: grey solid 2px" href="#">Pricing</a>--}}
-{{--                </div>--}}
-{{--            </div>--}}
-{{--        </div>--}}
-
         <div class="hostel-nav">
             <a href="#">Features</a>
             <a href="#">Description</a>
             <a href="#">Amenities</a>
             <a href="#">Rooms</a>
+            <a href="#">Reviews</a>
+            <a href="#">Policies</a>
         </div>
 
         <div style="display: flex; width: 90%; margin: auto">
@@ -59,19 +57,27 @@
                 asdfasdfa asdfasdfaf asdfasdfa asdfasdfa sdfasfa sdfa sdf asfasdf asd sdf asdf asfa sdf asd fa sdf asd f asdf as fd asd fd  dsfasdf asdf
                     asdfasdfa asdfasdfaf asdfasdfa asdfasdfa sdfasfa sdfa sdf asfasdf asd sdf</p>
                 <br>
-                <h2>Topic</h2>
-                <ul>
-                    <li>point</li>
-                    <li>point</li>
-                    <li>point</li>
-                    <li>point</li>
-                    <li>point</li>
+                <h2>Features</h2>
+                <ul class="feature-container">
+                    @foreach($featureArr as $item)
+                        <li class="feature-item">{{$item}}</li>
+                    @endforeach
+                        @foreach($featureArr as $item)
+                            <li class="feature-item">{{$item}}</li>
+                        @endforeach
+                        @foreach($featureArr as $item)
+                            <li class="feature-item">{{$item}}</li>
+                        @endforeach
 
                 </ul>
             </div>
             <div class="room-info-second">
-<h2> Header</h2>
-
+<h2> Location</h2>
+                <div id="map"></div>
+                <script
+                    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDLHJrMCWUn3MaoEKRnW0Y0rD22yU6Rp7I&callback=initMap&libraries=&v=weekly&channel=2"
+                    async
+                ></script>
             </div>
         </div>
     </div>
@@ -114,6 +120,8 @@
             </div>
         </div>
     </section>
+    <!-- Async script executes immediately and must be after any DOM elements used in callback. -->
+
 
 
 
@@ -145,7 +153,24 @@
             dots[slideIndex-1].className += " active";
         }
     </script>
+
+
     <style>
+
+        .feature-container{
+            display: flex;
+            flex-wrap: wrap;
+            flex-direction: column;
+            height: 40vh;
+        }
+        .feature-item{
+            margin-top: 15px;
+        }
+        #map {
+            border-radius: 10px;
+            margin-top: 20px;
+            height: 90%;
+        }
         .hostel-nav{
             width: 90%;
             margin: auto;

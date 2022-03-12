@@ -48,7 +48,7 @@
                     </div>
                 </div>
                 <div class="hostel-ratings">
-                    <a  class="read_more" href="/user/hostels/{{$hostel->id}}">View</a>
+                    <a  class="view-hostel" href="/user/hostels/{{$hostel->id}}">View</a>
                 </div>
             </div>
         @endforeach()
