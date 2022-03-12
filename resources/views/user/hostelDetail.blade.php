@@ -158,10 +158,11 @@
     <style>
 
         .feature-container{
+            list-style-type: disc;
             display: flex;
             flex-wrap: wrap;
             flex-direction: column;
-            height: 40vh;
+            height: 30vh;
         }
         .feature-item{
             margin-top: 15px;

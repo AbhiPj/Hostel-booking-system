@@ -2,7 +2,7 @@
 
 @section('content')
 
-    <div class="admin-container" style="height: 10vh;margin-bottom: 20px">
+    <div class="admin-container" style="min-height: 10vh;margin-bottom: 20px">
         <form action="{{ route('membershipDetails.store') }}" method="POST">
             @csrf
             <label for="">Duration</label>

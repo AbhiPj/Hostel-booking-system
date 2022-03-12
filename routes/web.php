@@ -47,11 +47,11 @@ Route::get('/user/requestHostel', [App\Http\Controllers\RequestHostelController:
 Route::POST('/user/requestHostel/submit', [App\Http\Controllers\RequestHostelController::class, 'store']);
 
 
-
-
 Route::POST('/admin/memberPrice/delete', [App\Http\Controllers\MembershipDetailsController::class, 'memberPriceDelete']);
 Route::POST('/admin/roomType/delete', [App\Http\Controllers\RoomTypeController::class, 'roomDelete']);
 Route::get('/admin/booking/{id}', [App\Http\Controllers\BookingsController::class, 'viewBookingDetails']);
+Route::get('/admin/requestHostel/activate/{id}', [App\Http\Controllers\RequestHostelController::class, 'activateHostel']);
+
 
 
 

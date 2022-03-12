@@ -22,6 +22,13 @@
 
     <nav style="background-color: #30b1f7; position:relative;"  class="navbar navbar-expand-md ">
     <div class="container">
+        @if(session()->has('exists'))
+            <div class="alert alert-success">
+                <script>
+                    swal("Error", "Already requested", "error");
+                </script>
+            </div>
+        @endif
         <a style="font-size: 20px" class="navbar-brand" href="{{ url('/') }}">
             {{ config('app.name', 'Laravel') }}
         </a>

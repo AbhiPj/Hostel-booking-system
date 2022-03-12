@@ -15,6 +15,8 @@ class HostelsController extends Controller
     public function index()
     {
         //
+        $hostels = Hostels::all();
+        return view('superadmin.viewHostel', compact('hostels'));
 
     }
 
@@ -67,6 +69,7 @@ class HostelsController extends Controller
         $hostels->userId = $request->get('userId');
 //        $hostels->roomType = $request->get('roomType');
         $hostels->about=$request->get('about');
+        $hostels->hostelStatus="active";
         $hostels->location=$request->get('location');
         $hostels->district=$request->get('district');
         $hostels->primaryImg = $primaryImageName;

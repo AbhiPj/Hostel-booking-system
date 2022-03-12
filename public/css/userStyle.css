@@ -87,9 +87,9 @@ span{
     flex-wrap: wrap;
     width: 90%;
     margin: auto;
-    background-color: white;
+    /*background-color: white;*/
     border-radius: 10px;
-    box-shadow: 0 5px 10px rgb(0 0 0 / 10%);
+    /*box-shadow: 0 5px 10px rgb(0 0 0 / 10%);*/
     /*border: solid black 1px;*/
 }
 
@@ -178,7 +178,7 @@ main .roomPost .roomContent{
     flex-direction: column;
     text-align: center;
     width: 18rem;
-    margin: 3rem 2rem;
+    margin: 50px 50px 10px 0;
     box-shadow: 0 5px 10px rgb(0 0 0 / 10%);
     border-radius: 10px;
     background-color: white;

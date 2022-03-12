@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Hostels;
 use App\Models\RequestHostel;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -26,7 +28,7 @@ class RequestHostelController extends Controller
      */
     public function create()
     {
-        $requestHostels = RequestHostel::all();
+        $requestHostels = Hostels::where('hostelStatus','=','pending')->get();
         return view('superadmin.viewRequests',compact('requestHostels'));
     }
 
@@ -38,23 +40,55 @@ class RequestHostelController extends Controller
      */
     public function store(Request $request)
     {
+
         $userId= Auth::id();
-        $hostelRequest = new RequestHostel();
+        $allHostels = Hostels::all();
+        foreach ($allHostels as $item){
+            if($item->userId == $userId){
+                return redirect('/user')->with('exists','Already exists');
+            }
+        }
 
-        $hostelRequest->hostelName = $request->get('hostelName');
-        $hostelRequest->userId = $userId;
-        $hostelRequest->hostelDescription = $request->get('hostelDescription');
-        $hostelRequest->features = $request->get('features');
-        $hostelRequest->district = $request->get('district');
-        $hostelRequest->location = $request->get('location');
+        $validatedData = $request->validate([
+            'primaryImg' => 'required|image|mimes:jpg,png,jpeg,gif,svg|max:2048',
+            'roomImg.*' => 'image|mimes:jpg,png,jpeg,gif,svg|max:2048',
+        ]);
 
-        $hostelRequest->save();
+        $primaryImageName = $request->file('primaryImg')->getClientOriginalName();
+        $primaryImagePath = $request->file('primaryImg')->store('public/images');
+        $request->primaryImg->move(public_path('images'), $primaryImageName);
+        $secondaryImgs = [];
+        if($request->hasfile('roomImg'))
+        {
+            foreach($request->file('roomImg') as $img)
+            {
+                // $secondaryImgName = $request->file('img')->getClientOriginalName();
+                $secondaryImgName = $img->getClientOriginalName();
+                $img->move(public_path('images'), $secondaryImgName);
+                $secondaryImgs[] = $secondaryImgName;
+            }
+        }
+
+
+        $hostels = new Hostels();
+        $hostels->hostelName = $request->get('hostelName');
+        $hostels->userId = $userId;
+        $hostels->about=$request->get('hostelDescription');
+        $hostels->hostelStatus="pending";
+        $hostels->location=$request->get('location');
+        $hostels->features=$request->get('features');
+        $hostels->latitude=$request->get('latitude');
+        $hostels->longitude=$request->get('longitude');
+
+
+        $hostels->district=$request->get('district');
+        $hostels->primaryImg = $primaryImageName;
+        $secondaryImgNames = implode(",",$secondaryImgs);
+        $hostels->additionalImages = $secondaryImgNames;
+
+        $hostels->save();
+
         return redirect('/user');
-
-
-
-
-
     }
 
     /**
@@ -74,9 +108,13 @@ class RequestHostelController extends Controller
      * @param  \App\Models\RequestHostel  $requestHostel
      * @return \Illuminate\Http\Response
      */
-    public function edit(RequestHostel $requestHostel)
+    public function edit(Hostels $hostels, $id)
     {
         //
+        $hostels=Hostels::find($id);
+        dd($hostels);
+        return view('superadmin.editHostel',compact('hostels'));
+
     }
 
     /**
@@ -100,5 +138,22 @@ class RequestHostelController extends Controller
     public function destroy(RequestHostel $requestHostel)
     {
         //
+    }
+
+    public function activateHostel($id)
+    {
+
+        $activateHostel = Hostels::find($id);
+        $activateHostel->hostelStatus="active";
+        $activateHostel->save();
+
+        $userId= $activateHostel->userId;
+        $user = User::find($userId);
+        $user->userType="admin";
+        $user->save();
+
+        return redirect()->route('hostels.index');
+
+
     }
 }

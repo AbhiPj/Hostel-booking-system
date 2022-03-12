@@ -23,9 +23,8 @@
                         @endforeach
                     </td>
                     <td>{{$requests['location']}}</td>
-
-                                        <td>
-                        <a href="{{route('requestHostels.edit', $requests->id)}}" class="button">Edit</a>
+                    <td>
+                        <a href="/admin/requestHostel/activate/{{$requests->id}}" class="button">Activate</a>
                         <form action="{{route('requestHostels.destroy', $requests->id)}}" method="POST">
                             @csrf
                             @method('delete')

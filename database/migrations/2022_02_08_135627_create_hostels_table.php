@@ -22,6 +22,8 @@ class CreateHostelsTable extends Migration
             $table->string('location');
             $table->string('district');
             $table->string('features');
+            $table->string('hostelStatus');
+
             $table->string('latitude');
             $table->string('longitude');
 

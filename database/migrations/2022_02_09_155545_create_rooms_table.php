@@ -19,15 +19,13 @@ class CreateRoomsTable extends Migration
             $table->unsignedBigInteger('roomType');
             $table->string('about');
             $table->integer('price');
-//            $table->integer('roomStatus');
+            $table->string('roomStatus');
 //            $table->string('facilities');
             //hostel foreign key
             //rating
             $table->string('primaryImg');
             $table->string('additionalImages');
             $table->foreignId('hostelId')->constrained('hostels');
-
-
             $table->foreign('roomType')->references('id')->on('roomType')->onDelete('cascade');
 
             $table->timestamps();

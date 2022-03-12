@@ -48,7 +48,7 @@ class userRoomController extends Controller
     public function viewHostels()
     {
 //        return(view('user.hostels'));
-        $hostels=Hostels::all();
+        $hostels= Hostels::where('hostelStatus','=','active')->get();
         return view('user.hostels',compact('hostels'));
     }
 
