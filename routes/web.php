@@ -25,6 +25,8 @@ Route::resource('membership', \App\Http\Controllers\MembershipController::class)
 Route::resource('membershipDetails', \App\Http\Controllers\MembershipDetailsController::class);
 Route::resource('hostels', \App\Http\Controllers\HostelsController::class);
 Route::resource('requestHostels', \App\Http\Controllers\RequestHostelController::class);
+Route::resource('hostelReview', \App\Http\Controllers\ReviewController::class);
+
 
 
 Auth::routes();
@@ -34,6 +36,7 @@ Route::get('/user', [App\Http\Controllers\userRoomController::class, 'index']);
 
 Route::get('/user/rooms/{id}', [App\Http\Controllers\userRoomController::class, 'viewRoom']);
 Route::get('/user/hostels/{id}', [App\Http\Controllers\userRoomController::class, 'viewHostel']);
+Route::POST('/user/review/{id}', [App\Http\Controllers\ReviewController::class, 'store']);
 Route::POST('/user/hostels/search', [App\Http\Controllers\userRoomController::class, 'searchHostel']);
 
 

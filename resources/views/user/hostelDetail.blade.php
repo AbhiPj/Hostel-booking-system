@@ -3,6 +3,8 @@
 
 @section('content')
     <link rel="stylesheet" type="text/css" href="./style.css" />
+    <link rel="stylesheet" type="text/css" href="{{asset('css/ratingbar.css')}}" />
+
     <div class="content">
         <script>
             function initMap() {
@@ -120,7 +122,94 @@
             </div>
         </div>
     </section>
-    <!-- Async script executes immediately and must be after any DOM elements used in callback. -->
+
+
+    <div>
+{{--        <div class="user-review">--}}
+
+{{--        </div>--}}
+        <div style="display: flex; width: 90%; margin: auto">
+            <div style="width: 30%;margin-right: 20px" class="room-info-second">
+                <h2> Ratings</h2>
+                <div class="ratings-container">
+                    <h2 style="font-size: 55px">4.5</h2>
+                    <div style="margin-left: 10px; margin-top: 10px ">
+                        <h2>Wonderful</h2>
+                        <p>2222 reviews</p>
+                    </div>
+                </div>
+                <div>
+{{--                    <script type="text/javascript" src="jquery-1.4.2.min.js"></script>--}}
+                    <script type="text/javascript" src="{{ asset('js/jquery.ratingbar.js') }}"></script>
+                    <script type="text/javascript" charset="utf-8">
+                        $(document).ready(function () {
+                            $('.movie_rating').ratingbar();
+                        });
+                    </script>
+
+                    <table id="movies" style="margin: auto">
+                        <tr>
+                            <td>5 Stars</td>
+                            <td class="movie_rating">70</td>
+                        </tr>
+                        <tr>
+                            <td>4 Stars</td>
+                            <td class="movie_rating">22</td>
+                        </tr>
+                        <tr>
+                            <td>3 Stars</td>
+                            <td class="movie_rating">22</td>
+                        </tr>
+                        <tr>
+                            <td>2 Stars</td>
+                            <td class="movie_rating">22</td>
+                        </tr>
+                        <tr>
+                            <td>1 Star</td>
+                            <td class="movie_rating">22</td>
+                        </tr>
+                    </table>
+                </div>
+
+            </div>
+
+            <div style="width: 68%" class="room-info">
+                <h2 style="margin: auto">Reviews</h2>
+                <div >
+                    <form action="/user/review/{{$hostel->id}}" method="POST">
+                        @csrf
+                        <textarea name="reviewMessage" placeholder="Write a review..." style="border-radius: 10px; width: 60%;border: grey 1px solid; height: 150px; margin-top: 50px;margin-bottom: 30px;"></textarea>
+                        <button type="submit" class="search-button">submit</button>
+                    </form>
+
+
+                    <hr>
+                    @foreach($reviews as $review)
+                        <div>
+                            @foreach($users as $user)
+                                @if($user->id == $review->userId )
+                                    <p class="user-review-name">{{$user->name}}</p>
+                                    <p class="user-review-message">{{$review->review}}</p>
+
+                                @endif
+                            @endforeach
+                            <p style="font-size: 10px">2022/03/19</p>
+                            <hr>
+                        </div>
+                    @endforeach
+                    <div>
+                        <p class="user-review-name">Joseph Joestar</p>
+                        <p class="user-review-message">Everything was adequate, but the internet was very slow and took forever to load a single website</p>
+                        <p style="font-size: 10px">2022/03/19</p>
+                        <hr>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
 
 
 
@@ -157,6 +246,58 @@
 
     <style>
 
+        /*-------------------User Review Style start--------------------*/
+        .user-review-name{
+            margin-top: 40px;
+            font-weight: bold;
+            font-size: 18px;
+        }
+
+        .user-review-message{
+            font-size: 14px;
+        }
+
+
+        .user-review{
+            display: flex;
+            flex-wrap: wrap;
+            width: 90%;
+            margin: auto;
+            border-radius: 10px;
+            min-height: 30vh;
+            height: auto;
+            box-shadow: 0 5px 10px rgb(0 0 0 / 10%);
+            background-color: white;
+            margin-top: 20px;
+        }
+
+        /*--------------User Review style end---------------*/
+
+
+        /*-------------------User Ratings style start---------------*/
+
+        .ratings-container{
+            display:flex;
+        }
+
+        .ratings-container p{
+            margin-bottom: 5px;
+            font-size: 11px;
+        }
+
+        .ratings-container h2{
+            font-weight: bold;
+            font-size: 18px;
+        }
+
+
+
+
+
+
+
+
+        /*--------------------User Ratings style end----------------*/
         .feature-container{
             list-style-type: disc;
             display: flex;

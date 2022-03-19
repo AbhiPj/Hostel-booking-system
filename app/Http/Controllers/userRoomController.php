@@ -4,7 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Models\Bookings;
 use App\Models\Hostels;
+use App\Models\review;
 use App\Models\Rooms;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -24,7 +26,9 @@ class userRoomController extends Controller
 
         $featureArr = explode(',',$hostel->features );
         $rooms = Rooms::where('hostelId','=',$id)->get();
-        return(view('user.hostelDetail', compact('hostel','id','rooms','featureArr')));
+        $reviews = review::all();
+        $users = User::all();
+        return(view('user.hostelDetail', compact('hostel','id','rooms','featureArr','reviews','users')));
     }
 
     public function viewRoom($id){
