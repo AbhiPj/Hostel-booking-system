@@ -2,7 +2,7 @@
 
 @section('content')
     <div class="admin-container">
-        <table id="example" class="display nowrap" style="width: 100%">
+        <table id="example" class="hover" style="width: 100%">
             <thead>
                 <th>ID</th>
                 <th>User ID</th>

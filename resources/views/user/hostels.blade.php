@@ -34,6 +34,7 @@
         @foreach($hostels as $hostel)
             <div class="hostel-item">
                 <div class="hostel-img">
+                    <img style="width: 100%;height: 100%; border-radius: 10px" src="{{asset('images/'.$hostel->primaryImg)}}">
 
                 </div>
                 <div class="hostel-details">

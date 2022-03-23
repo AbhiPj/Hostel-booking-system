@@ -55,7 +55,15 @@
         </div>
         <div class="payment-details">
 {{--            <p>{{$rooms->roomName}}</p>--}}
-            <div style="min-height: 40vh; width: 100%; background-color: black; margin-bottom: 20px"></div>
+            <div class="payment-details-item">
+                <h4 style="display:flex; justify-content: center">Payment overview</h4>
+                <hr>
+                <p>Hostel name</p>
+                <p>Room name</p>
+                <p>Room type</p>
+                <p>2000 Rs</p>
+
+            </div>
             <div>
                 <button onclick="payByCash()" class="btn btn-dark" style="border-radius: 5px; width: 100%; padding:0.76rem">Pay by cash</button>
             </div>

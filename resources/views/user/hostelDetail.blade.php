@@ -179,7 +179,7 @@
                     <form action="/user/review/{{$hostel->id}}" method="POST">
                         @csrf
                         <textarea name="reviewMessage" placeholder="Write a review..." style="border-radius: 10px; width: 60%;border: grey 1px solid; height: 150px; margin-top: 50px;margin-bottom: 30px;"></textarea>
-                        <button type="submit" class="search-button">submit</button>
+                        <button style="margin-left: 60px" type="submit" class="search-button">submit</button>
                     </form>
 
 
@@ -193,16 +193,10 @@
 
                                 @endif
                             @endforeach
-                            <p style="font-size: 10px">2022/03/19</p>
+                            <p style="font-size: 10px;color: grey">2022/03/19</p>
                             <hr>
                         </div>
                     @endforeach
-                    <div>
-                        <p class="user-review-name">Joseph Joestar</p>
-                        <p class="user-review-message">Everything was adequate, but the internet was very slow and took forever to load a single website</p>
-                        <p style="font-size: 10px">2022/03/19</p>
-                        <hr>
-                    </div>
                 </div>
 
             </div>
@@ -210,10 +204,6 @@
         </div>
 
     </div>
-
-
-
-
     <script>
         var slideIndex = 1;
         showSlides(slideIndex);

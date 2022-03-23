@@ -28,6 +28,10 @@ class userRoomController extends Controller
         $rooms = Rooms::where('hostelId','=',$id)->get();
         $reviews = review::all();
         $users = User::all();
+
+//        $reviewStars = review::all()
+
+
         return(view('user.hostelDetail', compact('hostel','id','rooms','featureArr','reviews','users')));
     }
 

@@ -3,24 +3,25 @@
     <div class="logo-details">
 {{--        <i class='bx bxl-c-plus-plus'></i>--}}
         <span style="padding-left: 20px" class="logo_name">{{ config('app.name', 'Laravel') }}</span>
-
     </div>
+    <hr>
+
     <ul class="nav-links">
 
         <li>
-            <a href="/home" class="active">
+            <a href="/home">
                 <i class='bx bx-grid-alt'></i>
                 <span class="links_name">Dashboard</span>
             </a>
         </li>
         <li>
-            <a href="{{ route('rooms.create') }}" class="active">
+            <a href="{{ route('rooms.create') }}">
                 <i class='bx bx-grid-alt'></i>
                 <span class="links_name">View Rooms</span>
             </a>
         </li>
         <li>
-            <a href="{{ route('rooms.index') }}" class="active">
+            <a href="{{ route('rooms.index') }}" >
                 <i class='bx bx-grid-alt'></i>
                 <span class="links_name">Add Rooms</span>
             </a>

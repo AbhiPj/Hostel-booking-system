@@ -1,7 +1,7 @@
 @extends('layouts.admin.admin')
 
 @section('content')
-    <div class="admin-container" style="height: 10vh; margin-bottom: 20px">
+    <div class="admin-container" style="min-height: 10vh; height:auto; margin-bottom: 20px">
         <form id="editForm" action="{{ route('roomType.store') }}" method="POST" enctype="multipart/form-data">
             <div style="display: flex;flex-wrap: wrap">
                 @csrf
@@ -13,7 +13,7 @@
         </form>
     </div>
     <div class="admin-container">
-        <table id="example" class="display nowrap">
+        <table id="example" style="width: 100%" class="hover">
             <thead>
                     <th>ID</th>
                     <th>Room Name</th>
