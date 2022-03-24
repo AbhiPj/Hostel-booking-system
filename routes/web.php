@@ -57,7 +57,17 @@ Route::get('/admin/requestHostel/activate/{id}', [App\Http\Controllers\RequestHo
 
 
 
+Route::get('send-mail', function () {
 
+    $details = [
+        'title' => 'Mail from HostelSansar.com',
+        'body' => 'New booking alert'
+    ];
+
+    \Mail::to('parajuli.abhinav.ap@gmail.com')->send(new \App\Mail\Mail($details));
+
+    dd("Email is Sent.");
+});
 
 
 

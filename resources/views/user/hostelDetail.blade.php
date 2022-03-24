@@ -49,7 +49,7 @@
             <a href="#">Amenities</a>
             <a href="#">Rooms</a>
             <a href="#">Reviews</a>
-            <a href="#">Policies</a>
+            <a href="/send-mail">Policies</a>
         </div>
 
         <div style="display: flex; width: 90%; margin: auto">

@@ -3,8 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Models\Bookings;
+use App\Models\Hostels;
 use App\Models\Payment;
 use App\Models\Rooms;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -30,9 +32,22 @@ class PaymentController extends Controller
 
     public function checkout(Request $request)
     {
+
+
+
         $roomId=$request->roomId;
-        $rooms = Rooms::find($roomId);
         $userId= Auth::id();
+
+
+        $userInfo= Auth::user();
+        $userEmail = $userInfo->email;
+
+        $rooms = Rooms::find($roomId);
+        $hostelId= $rooms->hostelId;
+        $admin = Hostels::where('id','=',$hostelId)->first();
+        $adminDetails= User::find($admin->id);
+        $adminEmail = $adminDetails->email;
+
 
 
         $booking = new Bookings();
@@ -64,6 +79,17 @@ class PaymentController extends Controller
         $payment->save();
 
 
+        $details = [
+            'title' => 'Mail from HostelSansar.com',
+            'body' => 'New booking alert'
+        ];
+
+
+
+
+
+        \Mail::to($userEmail)->send(new \App\Mail\Mail($details));
+        \Mail::to($adminEmail)->send(new \App\Mail\Mail($details));
 
 
     }
