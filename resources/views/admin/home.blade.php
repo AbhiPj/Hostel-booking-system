@@ -73,6 +73,40 @@
                         </div>
 
                     </div>
+
+                    <div class="sales-boxes">
+                            <div class="recent-sales box" style="width: 40%; margin-top: 20px">
+                                <div class="title">Available Rooms</div>
+                                <div class="sales-details">
+
+                                    <ul class="details">
+                                        <li class="topic">Date</li>
+                                        @foreach($availableRooms as $ar)
+                                            <li>{{$ar->created_at}}</li>
+                                        @endforeach
+                                    </ul>
+
+                                    <ul class="details">
+                                        <li class="topic">ID</li>
+                                        @foreach($availableRooms as $ar)
+                                            <li>{{$ar->id}}</li>
+                                        @endforeach                                    </ul>
+                                    <ul class="details">
+                                        <li class="topic">Rooms</li>
+                                        @foreach($availableRooms as $ar)
+                                            <li>{{$ar->roomName}}</li>
+                                        @endforeach
+                                    </ul>
+
+
+                                </div>
+                                <div class="button" style="border: none">
+                                    <a href="#">See All</a>
+                                </div>
+                            </div>
+
+                        </div>
+
                 </div>
             </div>
         </div>

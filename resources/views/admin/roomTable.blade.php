@@ -9,7 +9,7 @@
                 <th>Room Type</th>
                 <th>Price</th>
                 <th>Primary Image</th>
-{{--                <th>Additional Images</th>--}}
+                <th>Room Status</th>
                 <th>Action</th>
             </thead>
             <tbody>
@@ -26,11 +26,14 @@
                     <td>
                         <img class="myImg" onclick="image(event)"  id="myImg" src="{{ asset('images/' . $rooms['primaryImg']) }}" />
                     </td>
-                    <td>
+{{--                    <td>--}}
 {{--                        @foreach (explode(',', $rooms['additionalImages']) as $image)--}}
 {{--                            <img class="myImg" onclick="image(event)" src="{{ asset('images/'.$image)}}">--}}
 {{--                        @endforeach--}}
 {{--                    </td>--}}
+                    <td>
+                        {{$rooms->roomStatus}}
+                    </td>
                     <td>
                         <a href="{{route('rooms.edit', $rooms->id)}}" class="button">Edit</a>
                         <form action="{{route('rooms.destroy', $rooms->id)}}" method="POST">

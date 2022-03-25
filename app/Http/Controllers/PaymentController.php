@@ -78,6 +78,10 @@ class PaymentController extends Controller
         $payment->price=$rooms->price;
         $payment->save();
 
+        //updating room status to unavailable after customer checks in
+        $room = Rooms::find($roomId);
+        $room->roomStatus="booked";
+        $room->save();
 
         $details = [
             'title' => 'Mail from HostelSansar.com',

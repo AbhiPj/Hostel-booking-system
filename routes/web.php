@@ -18,6 +18,7 @@ Route::get('/', function () {
 });
 
 Route::resource('rooms', RoomsController::class);
+Route::resource('customers', \App\Http\Controllers\CustomerController::class);
 Route::resource('roomType', \App\Http\Controllers\RoomTypeController::class);
 Route::resource('booking', \App\Http\Controllers\BookingsController::class);
 Route::resource('payment', \App\Http\Controllers\PaymentController::class);
@@ -54,6 +55,10 @@ Route::POST('/admin/memberPrice/delete', [App\Http\Controllers\MembershipDetails
 Route::POST('/admin/roomType/delete', [App\Http\Controllers\RoomTypeController::class, 'roomDelete']);
 Route::get('/admin/booking/{id}', [App\Http\Controllers\BookingsController::class, 'viewBookingDetails']);
 Route::get('/admin/requestHostel/activate/{id}', [App\Http\Controllers\RequestHostelController::class, 'activateHostel']);
+
+Route::get('/admin/customer/view', [App\Http\Controllers\CustomerController::class, 'viewAllCustomer']);
+Route::get('/admin/customer/checkout', [App\Http\Controllers\CustomerController::class, 'checkout']);
+Route::get('/admin/customer/checkout/{id}', [App\Http\Controllers\CustomerController::class, 'checkoutCustomer']);
 
 
 

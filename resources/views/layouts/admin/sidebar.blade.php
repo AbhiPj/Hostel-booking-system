@@ -20,6 +20,30 @@
                 <span class="links_name">View Rooms</span>
             </a>
         </li>
+
+        <li>
+            <a href="{{ route('customers.create') }}">
+                <i class='bx bx-grid-alt'></i>
+                <span class="links_name">Check in</span>
+            </a>
+        </li>
+
+        <li>
+            <a href="/admin/customer/checkout">
+                <i class='bx bx-grid-alt'></i>
+                <span class="links_name">Checkout</span>
+            </a>
+        </li>
+
+        <li>
+            <a href="/admin/customer/view">
+                <i class='bx bx-grid-alt'></i>
+                <span class="links_name">Customers</span>
+            </a>
+        </li>
+
+
+
         <li>
             <a href="{{ route('rooms.index') }}" >
                 <i class='bx bx-grid-alt'></i>
