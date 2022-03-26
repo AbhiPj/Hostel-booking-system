@@ -8,33 +8,40 @@
     <ul class="nav-links">
 
         <li>
-            <a href="/home" class="active">
+            <a href="/home">
                 <i class='bx bx-grid-alt'></i>
                 <span class="links_name">Dashboard</span>
             </a>
         </li>
         <li>
-            <a href="{{ route('membershipDetails.index') }}" class="active">
+            <a href="{{ route('membershipDetails.index') }}">
                 <i class='bx bx-grid-alt'></i>
                 <span class="links_name">Add membership Price</span>
             </a>
         </li>
         <li>
-            <a href="{{ route('hostels.create') }}" class="active">
+            <a href="{{ route('hostels.create') }}">
                 <i class='bx bx-grid-alt'></i>
                 <span class="links_name">Add hostels</span>
             </a>
         </li>
         <li>
-            <a href="{{ route('requestHostels.create') }}" class="active">
+            <a href="{{ route('requestHostels.create') }}" >
                 <i class='bx bx-grid-alt'></i>
                 <span class="links_name">Hostel requests</span>
             </a>
         </li>
         <li>
-            <a href="{{ route('hostels.index') }}" class="active">
+            <a href="{{ route('hostels.index') }}">
                 <i class='bx bx-grid-alt'></i>
                 <span class="links_name"> View Hostels</span>
+            </a>
+        </li>
+
+        <li>
+            <a href="{{ route('featured.index') }}" >
+                <i class='bx bx-grid-alt'></i>
+                <span class="links_name">Featured Hostels</span>
             </a>
         </li>
 

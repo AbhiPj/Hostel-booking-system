@@ -27,7 +27,12 @@ class PaymentController extends Controller
     public function viewPayment($id)
     {
         $rooms = Rooms::find($id);
-        return view('user.payment',compact('rooms'));
+        if ($rooms->roomStatus !== "available")
+        {
+            return redirect('/home');
+        }else{
+            return view('user.payment',compact('rooms'));
+        }
     }
 
     public function checkout(Request $request)

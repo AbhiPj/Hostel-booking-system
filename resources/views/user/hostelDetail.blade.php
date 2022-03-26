@@ -96,26 +96,30 @@
 {{--                    </div>--}}
                     <div class="roomContainer">
                         @foreach($rooms as $rooms)
-                            <div class="blog-post">
-                                <div class="blog-content">
-                                    <div class="blog-title">
-                                        <div class="roomPost">
-                                            <div class="roomContent">
-                                                <img class="roomImg" src="{{asset('images/' . $rooms['primaryImg'])}}" alt="post-1">
-                                                <div class="roomTitle">
-                                                    <h3 style="color: #313d59">{{$rooms->roomName}}</h3>
-                                                    <p style="font-size: 12px">{{$rooms->about}}</p>
-{{--                                                    <a href="/user/rooms/{{$rooms->id}}" class="btn btn-blog">View</a>--}}
-{{--                                                    <p>{{$rooms->about}}</p>--}}
-                                                    <a href="/user/rooms/payment/{{$rooms->id}}" class="btn btnRoom"  >Book this room</a>
-{{--                                                    <a href="/user/rooms/{{$rooms->id}}" class="btn btnRoom">View</a>--}}
-                                                    <span>{{$rooms->price}}</span>
+                                <div class="blog-post">
+                                    <div class="blog-content">
+                                        <div class="blog-title">
+                                            <div class="roomPost">
+                                                <div class="roomContent">
+                                                    <img class="roomImg" src="{{asset('images/' . $rooms['primaryImg'])}}" alt="post-1">
+                                                    <div class="roomTitle">
+                                                        <h3 style="color: #313d59">{{$rooms->roomName}}</h3>
+                                                        <p style="font-size: 12px">{{$rooms->about}}</p>
+    {{--                                                    <a href="/user/rooms/{{$rooms->id}}" class="btn btn-blog">View</a>--}}
+    {{--                                                    <p>{{$rooms->about}}</p>--}}
+                                                        @if($rooms->roomStatus === "available")
+                                                            <a href="/user/rooms/payment/{{$rooms->id}}" class="btn btnRoom"  >Book this room</a>
+                                                        @else
+                                                            <a class="btn btnRoom"  >Unavailable</a>
+                                                        @endif
+                                                            <span>{{$rooms->price}}</span>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
+
                         @endforeach
                     </div>
                 </div>
@@ -128,7 +132,7 @@
 {{--        <div class="user-review">--}}
 
 {{--        </div>--}}
-        <div style="display: flex; width: 90%; margin: auto">
+        <div style="display: flex; width: 94%; margin: auto;padding:10px">
             <div style="width: 30%;margin-right: 20px" class="room-info-second">
                 <h2> Ratings</h2>
                 <div class="ratings-container">

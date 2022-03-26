@@ -101,7 +101,7 @@ class HostelsController extends Controller
     public function edit($id)
     {
         $hostels=Hostels::find($id);
-        return view('admin.editHostel',compact('hostels'));
+        return view('superadmin.editHostel',compact('hostels'));
     }
 
     /**
@@ -141,7 +141,7 @@ class HostelsController extends Controller
         }
         $hostels->save();
 
-        return redirect()->route('hostels.create');
+        return redirect()->route('hostels.index');
     }
 
     /**
@@ -155,6 +155,6 @@ class HostelsController extends Controller
         //
         $room = Hostels::find($id);
         $room->delete();
-        return redirect()->route('hostels.create');
+        return redirect()->route('hostels.index');
     }
 }

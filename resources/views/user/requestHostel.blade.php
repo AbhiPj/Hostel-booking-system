@@ -17,28 +17,52 @@
 {{--        </div>--}}
 {{--    </form>--}}
 
-    <form action="/user/requestHostel/submit" method="POST" enctype="multipart/form-data" style="width: 60%;">
+    <form class="row g-3" action="/user/requestHostel/submit" method="POST" enctype="multipart/form-data" style="width: 60%;">
         <div class="add-room-container">
             @csrf
-            <input style="width: 88%" class="room-input" placeholder="Name" type="text" name="hostelName"><br>
-            <textarea class="room-input" style="width: 88%; height: 10vh" placeholder="Hostel Description" type="text" name="hostelDescription"></textarea><br>
-            <textarea class="room-input" style="width: 88%; height: 10vh" placeholder="Features" type="text" name="features"></textarea><br>
+            <div class="col-12">
+            <input class="form-control" class="room-input" placeholder="Name" type="text" name="hostelName"><br>
+            </div>
 
-            <input class="room-input" placeholder="Latitude" id="latitude" type="text" name="latitude"><br>
-            <input class="room-input" id="longitude" placeholder="Longitude" type="text" name="longitude"><br>
-            <input class="room-input" placeholder="Location" type="text" name="location"><br>
-            <input class="room-input" placeholder="District" type="text" name="district">
+            <div class="col-12">
+                <textarea class="form-control" placeholder="Hostel Description" type="text" name="hostelDescription"></textarea><br>
+            </div>
+
+            <div class="col-12">
+                <textarea  class="form-control" placeholder="Features" type="text" name="features"></textarea><br>
+            </div>
+
+            <div  hidden class="col-md-6">
+                <input class="form-control" placeholder="Latitude" id="latitude" type="text" name="latitude"><br>
+            </div>
+
+            <div  hidden class="col-md-6">
+                <input class="form-control" id="longitude" placeholder="Longitude" type="text" name="longitude"><br>
+            </div>
+
+            <div class="col-md-6">
+                <input class="form-control" placeholder="Location" type="text" name="location"><br>
+            </div>
+
+            <div class="col-md-6">
+                <input class="form-control" placeholder="District" type="text" name="district">
+            </div>
         </div>
 
         <div>
-            <label for="room_image">Hostel Image:</label><br>
-            <input type="file" id="primaryImg" name="primaryImg" onchange="preview2()"><br><br>
-            <div id="images2"></div>
-            <label for="room_image">Additional images:</label><br>
+            <div class="col-12">
+                <label for="room_image">Hostel Image:</label><br>
+                <input class="form-control" type="file" id="primaryImg" name="primaryImg" onchange="preview2()"><br><br>
+            </div>
 
-            <input type="file" id="roomImg" name="roomImg[]" multiple onchange="preview()"><br><br>
+            <div class="col-12">
+                <label for="room_image">Additional images:</label><br>
+                <input class="form-control" type="file" id="roomImg" name="roomImg[]" multiple onchange="preview()"><br><br>
+            </div>
+
+            {{--            <div id="images2"></div>--}}
             <div id="images"></div>
-            <input class="submit-button" style="height: 30px; padding:0" type="submit" value="Submit">
+            <input class="btn btn-primary"  type="submit" value="Submit">
         </div>
     </form>
     <div class="admin-map">
@@ -94,6 +118,8 @@
     <style>
         .request-hostel-container{
             display: flex;
+            flex-wrap: wrap;
+            justify-content: space-evenly;
             background-color: white;
             border-radius: 10px;
             min-height: 90vh;

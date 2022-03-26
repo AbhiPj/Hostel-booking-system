@@ -2,7 +2,7 @@
 
 @section('content')
     <div class="admin-container">
-        <table id="example" class="display nowrap" >
+        <table id="example" class="nowrap" >
             <thead>
                 <th>ID</th>
                 <th>Room Name</th>
@@ -35,12 +35,15 @@
                         {{$rooms->roomStatus}}
                     </td>
                     <td>
-                        <a href="{{route('rooms.edit', $rooms->id)}}" class="button">Edit</a>
-                        <form action="{{route('rooms.destroy', $rooms->id)}}" method="POST">
-                            @csrf
-                            @method('delete')
-                            <button type="submit" class="button">Delete</button>
-                        </form>
+                        <div style="display:flex;">
+                            <a href="{{route('rooms.edit', $rooms->id)}}" class="button">Edit</a>
+                            <form action="{{route('rooms.destroy', $rooms->id)}}" method="POST">
+                                @csrf
+                                @method('delete')
+                                    <button type="submit" class="button">Delete</button>
+                            </form>
+                        </div>
+
                     </td>
                 </tr>
             @endforeach

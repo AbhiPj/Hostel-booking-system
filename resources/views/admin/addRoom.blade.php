@@ -17,7 +17,7 @@
             </script>
         </div>
     @endif
-{{--    <form action="{{ route('rooms.store') }}" method="POST" enctype="multipart/form-data">--}}
+{{--    <form class="row g-3" action="{{ route('rooms.store') }}" method="POST" enctype="multipart/form-data">--}}
 {{--        <div class="add-room-container">--}}
 {{--            @csrf--}}
 {{--            <input placeholder="Name" class="room-input" type="text" name="name">--}}
@@ -34,54 +34,44 @@
 {{--            <input type="file" id="primaryImg" name="primaryImg" onchange="preview2()"><br><br>--}}
 {{--            <div id="images2"></div>--}}
 {{--            <label for="room_image">Additional Images:</label><br>--}}
-
 {{--            <input type="file" id="roomImg" name="roomImg[]" multiple onchange="preview()"><br><br>--}}
 {{--            <div id="images"></div>--}}
 {{--        </div>--}}
 {{--        <input class="submit-button" style="height: 30px; padding:0" type="submit" value="Submit">--}}
 {{--    </form>--}}
+
         <form class="row g-3">
             <div class="col-md-6">
-                <label for="inputEmail4" class="form-label">Email</label>
-                <input type="email" class="form-control" id="inputEmail4">
-            </div>
-            <div class="col-md-6">
-                <label for="inputPassword4" class="form-label">Password</label>
-                <input type="password" class="form-control" id="inputPassword4">
+                <label for="inputName" class="form-label">Name</label>
+                <input name="name" type="text" class="form-control" id="inputName">
             </div>
             <div class="col-12">
-                <label for="inputAddress" class="form-label">Address</label>
-                <input type="text" class="form-control" id="inputAddress" placeholder="1234 Main St">
-            </div>
-            <div class="col-12">
-                <label for="inputAddress2" class="form-label">Address 2</label>
-                <input type="text" class="form-control" id="inputAddress2" placeholder="Apartment, studio, or floor">
+                <label for="inputAbout" class="form-label">about</label>
+                <textarea name="address" type="text" class="form-control" id="inputAbout"></textarea>
             </div>
             <div class="col-md-6">
-                <label for="inputCity" class="form-label">City</label>
-                <input type="text" class="form-control" id="inputCity">
+                <label for="inputPrice" class="form-label">Price</label>
+                <input name="price" type="text" class="form-control" id="inputPrice">
             </div>
-            <div class="col-md-4">
+            <div class="col-md-6">
                 <label for="inputState" class="form-label">State</label>
-                <select id="inputState" class="form-select">
-                    <option selected>Choose...</option>
-                    <option>...</option>
-                </select>
+                            <select class="form-select" name="roomType" id="">
+                                <option selected>Choose...</option>
+                            @foreach($roomType as $roomType1)
+                                    <option value="{{$roomType1->id}}">{{$roomType1->roomType}}</option>
+                                @endforeach
+                            </select>
             </div>
-            <div class="col-md-2">
-                <label for="inputZip" class="form-label">Zip</label>
-                <input type="text" class="form-control" id="inputZip">
+            <div class="col-md-6">
+                <label class="form-label" for="room_image">Room Image:</label><br>
+                <input class="form-control" type="file" id="primaryImg" name="primaryImg" onchange="preview2()"><br><br>
             </div>
-            <div class="col-12">
-                <div class="form-check">
-                    <input class="form-check-input" type="checkbox" id="gridCheck">
-                    <label class="form-check-label" for="gridCheck">
-                        Check me out
-                    </label>
-                </div>
+            <div class="col-md-6">
+                <label class="form-label" for="room_image">Additional Images:</label><br>
+                <input class="form-control" type="file" id="roomImg" name="roomImg[]" multiple onchange="preview()"><br><br>
             </div>
             <div class="col-12">
-                <button type="submit" class="btn btn-primary">Sign in</button>
+                <button type="submit" class="btn btn-primary">Add room</button>
             </div>
         </form>
 </div>

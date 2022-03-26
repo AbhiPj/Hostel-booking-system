@@ -420,15 +420,37 @@ p{
     animation: transitionIn 1s;
     border-radius: 10px;
     box-shadow: 0 5px 10px rgb(0 0 0 / 10%);
-
-
 }
-
 @keyframes transitionIn {
     from {
         margin-top: 5vh;
         width: 42%;
         margin-left: 52%;
+        height: 95vh;
+
+    }
+    to {
+        /*transform: translateX(10px);*/
+        /*margin: auto;*/
+    }
+}
+
+.featured-top-img{
+    width: 95%;
+    margin-left: 35px;
+    vertical-align: middle;
+    height: 40vh;
+    /*background-color: black;*/
+    animation: transitionLeft 1s;
+    border-radius: 10px;
+    box-shadow: 0 5px 10px rgb(0 0 0 / 10%);
+}
+
+@keyframes transitionLeft {
+    from {
+        margin-top: 5vh;
+        width: 42%;
+        margin-right: 52%;
         height: 95vh;
 
     }

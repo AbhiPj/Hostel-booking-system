@@ -1,31 +1,57 @@
 @extends('layouts.superadmin.superadmin')
 
 @section('content')
+    <link rel="stylesheet" href="{{asset('css/app.css')}}">
+    <div class="admin-container" style="display: flex; justify-content: center;flex-wrap: wrap;justify-content: space-between">
 
-    <div class="admin-container" style="display: flex; justify-content: center;flex-wrap: wrap;">
-
-        <form action="{{ route('hostels.store') }}" method="POST" enctype="multipart/form-data" style="width: 50%;">
+        <form class="row g-3" action="{{ route('hostels.store') }}" method="POST" enctype="multipart/form-data" style="width: 50%;">
             <div class="add-room-container">
                 @csrf
-                <input class="room-input" placeholder="Name" type="text" name="hostelName"><br>
-                <input class="room-input" placeholder="UserId" type="text" name="userId"><br>
-                <input class="room-input" id="latitude" type="text" name="latitude"><br>
-                <input class="room-input" id="longitude" type="text" name="longitude"><br>
+                <div class="col-md-6">
+                <input class="form-control" placeholder="Name" type="text" name="hostelName"><br>
+                </div>
+                <div class="col-md-6">
 
-                <textarea class="room-input" style="width: 88%; height: 10vh" placeholder="About" type="text" name="about"></textarea><br>
-                <textarea class="room-input" style="width: 88%; height: 10vh" placeholder="Features" type="text" name="Features"></textarea><br>
+                <input class="form-control" placeholder="UserId" type="text" name="userId"><br>
+                </div>
+                <div class="col-md-6">
 
-                <input class="room-input" placeholder="Location" type="text" name="location"><br>
-                <input class="room-input" placeholder="District" type="text" name="district">
+                <input class="form-control" id="latitude" type="text" name="latitude"><br>
+                </div>
+
+                <div class="col-md-6">
+                <input class="form-control" id="longitude" type="text" name="longitude"><br>
+                </div>
+
+                <div class="col-md-6">
+                <textarea class="form-control" style="width: 88%; height: 10vh" placeholder="About" type="text" name="about"></textarea><br>
+                </div>
+
+                <div class="col-md-6">
+                <textarea class="form-control" style="width: 88%; height: 10vh" placeholder="Features" type="text" name="Features"></textarea><br>
+                </div>
+
+                <div class="col-md-6">
+                <input class="form-control" placeholder="Location" type="text" name="location"><br>
+                </div>
+
+                <div class="col-md-6">
+                <input class="form-control" placeholder="District" type="text" name="district">
+                </div>
             </div>
 
             <div>
+                <div class="col-md-6">
                 <label for="room_image">Room Image:</label><br>
-                <input type="file" id="primaryImg" name="primaryImg" onchange="preview2()"><br><br>
-                <div id="images2"></div>
-                <input type="file" id="roomImg" name="roomImg[]" multiple onchange="preview()"><br><br>
-                <div id="images"></div>
-                <input class="submit-button" style="height: 30px; padding:0" type="submit" value="Submit">
+                <input class="form-control" type="file" id="primaryImg" name="primaryImg" onchange="preview2()"><br><br>
+                </div>
+
+                <div class="col-md-6">
+{{--                <div id="images2"></div>--}}
+                <input class="form-control" type="file" id="roomImg" name="roomImg[]" multiple onchange="preview()"><br><br>
+                </div>
+{{--                <div id="images"></div>--}}
+                <input class="btn btn-primary" type="submit" value="Submit">
             </div>
         </form>
         <div class="admin-map">

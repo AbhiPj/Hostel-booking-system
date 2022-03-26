@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Bookings;
+use App\Models\Featured;
 use App\Models\Hostels;
 use App\Models\review;
 use App\Models\Rooms;
@@ -66,4 +67,13 @@ class userRoomController extends Controller
         $hostels = Hostels::where('hostelName', 'LIKE', "%{$hostelName}%")->get();
         return view('user.hostels',compact('hostels'));
     }
+    public function viewFeatured()
+    {
+        $hostels = Featured::join('hostels','hostels.id', '=', 'featureds.hostelId')->get();
+        return view('user.featuredHostel', compact('hostels'));
+//        $hostels= Hostels::where('hostelStatus','=','active')->get();
+//        return view('user.hostels',compact('hostels'));
+    }
+
+
 }

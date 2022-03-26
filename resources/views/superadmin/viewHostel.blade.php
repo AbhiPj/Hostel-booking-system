@@ -1,43 +1,50 @@
 @extends('layouts.superadmin.superadmin')
 
 @section('content')
-<table>
-    <tr>
-        <th>ID</th>
-        <th>Hostel Name</th>
-        <th>Location</th>
-        <th>District</th>
-        <th>UserId</th>
-        <th>Primary Image</th>
-        <th>Additional Images</th>
-        <th>Action</th>
-    </tr>
-    @foreach($hostels as $hostels)
-        <tr>
-            <td>{{$hostels['id']}}</td>
-            <td>{{$hostels['hostelName']}}</td>
-            <td>{{$hostels['location']}}</td>
-            <td>{{$hostels['district']}}</td>
-            <td>{{$hostels['userId']}}</td>
-            <td>
-                <img class="myImg" onclick="image(event)"  id="myImg" src="{{ asset('images/' . $hostels['primaryImg']) }}" />
-            </td>
-            <td>
-                @foreach (explode(',', $hostels['additionalImages']) as $image)
-                    <img class="myImg" onclick="image(event)" src="{{ asset('images/'.$image)}}">
-                @endforeach
-            </td>
-            <td>
-                <a href="{{route('hostels.edit', $hostels->id)}}" class="button">Edit</a>
-                <form action="{{route('hostels.destroy', $hostels->id)}}" method="POST">
-                    @csrf
-                    @method('delete')
-                    <button type="submit" class="button">Delete</button>
-                </form>
-            </td>
-        </tr>
-    @endforeach
-</table>
+    <div class="admin-container" style="display: flex;flex-direction: column;">
+        <table id="example" class="nowrap" >
+        <thead>
+            <th>ID</th>
+            <th>Hostel Name</th>
+            <th>Location</th>
+            <th>District</th>
+            <th>UserId</th>
+            <th>Primary Image</th>
+    {{--        <th>Additional Images</th>--}}
+            <th>Action</th>
+        </thead>
+            <tbody>
+        @foreach($hostels as $hostels)
+            <tr>
+                <td>{{$hostels['id']}}</td>
+                <td>{{$hostels['hostelName']}}</td>
+                <td>{{$hostels['location']}}</td>
+                <td>{{$hostels['district']}}</td>
+                <td>{{$hostels['userId']}}</td>
+                <td>
+                    <img class="myImg" onclick="image(event)"  id="myImg" src="{{ asset('images/' . $hostels['primaryImg']) }}" />
+                </td>
+    {{--            <td>--}}
+    {{--                @foreach (explode(',', $hostels['additionalImages']) as $image)--}}
+    {{--                    <img class="myImg" onclick="image(event)" src="{{ asset('images/'.$image)}}">--}}
+    {{--                @endforeach--}}
+    {{--            </td>--}}
+                <td>
+                    <div style="display: flex">
+                        <a href="{{route('hostels.edit', $hostels->id)}}" class="button">Edit</a>
+                        <form action="{{route('hostels.destroy', $hostels->id)}}" method="POST">
+                            @csrf
+                            @method('delete')
+                            <button type="submit" class="button">Delete</button>
+                        </form>
+                    </div>
+
+                </td>
+            </tr>
+        @endforeach
+            </tbody>
+    </table>
+    </div>
 
 <!-- The Modal -->
 <div id="myModal" class="modal">

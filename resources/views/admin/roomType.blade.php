@@ -25,9 +25,11 @@
                         <td>{{$rooms['id']}}</td>
                         <td>{{$rooms['roomType']}}</td>
                         <td>
-                            <a class="button" href="{{route("roomType.edit", $rooms->id)}}"
-                            >Edit</a>
-                            <button onclick="deleteAlert({{$rooms['id']}}, 'roomType')" class="button">Delete</button>
+                            <div style="display:flex;"> 
+                                <a class="button" href="{{route("roomType.edit", $rooms->id)}}"
+                                >Edit</a>
+                                <button onclick="deleteAlert({{$rooms['id']}}, 'roomType')" class="button">Delete</button>
+                            </div>
                         </td>
                     </tr>
                 @endforeach
