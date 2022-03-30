@@ -1,6 +1,7 @@
 @extends('layouts.admin.admin')
 
 @section('content')
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.7.1/chart.min.js" integrity="sha512-QSkVNOCYLtj73J4hbmVoOV6KVZuMluZlioC+trLpewV8qMjsWqlIQvkn1KGX2StWvPMdWGBqim1xlC8krl1EKQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
@@ -14,7 +15,7 @@
                     @endif
 {{--                    {{ __('You are logged in!') }}--}}
 {{--                        <a href="{{ route('rooms.create') }}">rooms</a>--}}
-                                <div class="overview-boxes">
+                    <div class="overview-boxes">
                                     <div class="box">
                                         <div class="right-side">
                                             <div class="box-topic">Total Booking</div>
@@ -29,11 +30,7 @@
                                         </div>
                                         <i class='bx bxs-cart-add cart two'></i>
                                     </div>
-                                </div>
-
-                        @foreach($booking as $b)
-
-                        @endforeach
+                        </div>
 
                     <div class="sales-boxes">
                         <div class="recent-sales box">
@@ -106,6 +103,70 @@
                             </div>
 
                         </div>
+
+                    <div>
+                        <canvas id="myChart" width="100" height="30"></canvas>
+                        <script>
+                            var sites = {!! json_encode($date) !!};
+                            var sites2 = {!! json_encode($total) !!};
+
+                            date = [];
+                            for (const [key, value] of Object.entries(sites)) {
+                                date.push(value.date);
+                            }
+                            console.log(date,"date log");
+
+
+
+
+                            total = [];
+                            for (const [key, value] of Object.entries(sites2)) {
+                                total.push(value.total);
+                            }
+                            console.log(total,"total log ");
+
+
+
+
+
+
+                            const ctx = document.getElementById('myChart').getContext('2d');
+                            const myChart = new Chart(ctx, {
+                                type: 'bar',
+                                data: {
+                                    labels: date,
+                                    datasets: [{
+                                        label: '# of Votes',
+                                        data: total,
+                                        backgroundColor: [
+                                            'rgba(255, 99, 132, 0.2)',
+                                            'rgba(54, 162, 235, 0.2)',
+                                            'rgba(255, 206, 86, 0.2)',
+                                            'rgba(75, 192, 192, 0.2)',
+                                            'rgba(153, 102, 255, 0.2)',
+                                            'rgba(255, 159, 64, 0.2)'
+                                        ],
+                                        borderColor: [
+                                            'rgba(255, 99, 132, 1)',
+                                            'rgba(54, 162, 235, 1)',
+                                            'rgba(255, 206, 86, 1)',
+                                            'rgba(75, 192, 192, 1)',
+                                            'rgba(153, 102, 255, 1)',
+                                            'rgba(255, 159, 64, 1)'
+                                        ],
+                                        borderWidth: 1
+                                    }]
+                                },
+                                options: {
+                                    scales: {
+                                        y: {
+                                            beginAtZero: true
+                                        }
+                                    }
+                                }
+                            });
+                        </script>
+                    </div>
 
                 </div>
             </div>

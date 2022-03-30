@@ -122,9 +122,9 @@
             justify-content: space-evenly;
             background-color: white;
             border-radius: 10px;
-            min-height: 90vh;
+            min-height: 70vh;
             height: auto;
-            width: 90%;
+            width: 75%;
             margin:auto;
             box-shadow: 0 5px 10px rgb(0 0 0 / 10%);
             margin-top: 10px;
