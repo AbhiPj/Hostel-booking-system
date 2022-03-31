@@ -37,6 +37,8 @@ class ReviewController extends Controller
     public function store(Request $request, $hostelId)
     {
         //
+        $str = $request->get('rating');
+        dd($str);
         $review = new review();
         $userId = Auth::id();
 
