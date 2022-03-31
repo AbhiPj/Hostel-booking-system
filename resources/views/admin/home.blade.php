@@ -62,7 +62,8 @@
                                         <li class="topic">ID</li>
                                         @foreach($booking as $b)
                                             <li>{{$b->id}}</li>
-                                        @endforeach                                    </ul>
+                                        @endforeach
+                                    </ul>
                                     <ul class="details">
                                         <li class="topic">Price</li>
                                         @foreach($booking as $b)
@@ -118,123 +119,123 @@
 
                         </div>
 
-                    <div class="chart-container">
-                        <canvas id="myChart" width="100" height="50"></canvas>
-                        <script>
-                            var sites = {!! json_encode($date) !!};
-                            var sites2 = {!! json_encode($total) !!};
+{{--                    <div class="chart-container">--}}
+{{--                        <canvas id="myChart" width="100" height="50"></canvas>--}}
+{{--                        <script>--}}
+{{--                            var sites = {!! json_encode($date) !!};--}}
+{{--                            var sites2 = {!! json_encode($total) !!};--}}
 
-                            //storing date in array
-                            date = [];
-                            for (const [key, value] of Object.entries(sites)) {
-                                date.push(value.date);
-                            }
-                            console.log(date,"date log");
+{{--                            //storing date in array--}}
+{{--                            date = [];--}}
+{{--                            for (const [key, value] of Object.entries(sites)) {--}}
+{{--                                date.push(value.date);--}}
+{{--                            }--}}
+{{--                            console.log(date,"date log");--}}
 
-                            //storing total in array
-                            total = [];
-                            for (const [key, value] of Object.entries(sites2)) {
-                                total.push(value.total);
-                            }
-                            console.log(total,"total log ");
+{{--                            //storing total in array--}}
+{{--                            total = [];--}}
+{{--                            for (const [key, value] of Object.entries(sites2)) {--}}
+{{--                                total.push(value.total);--}}
+{{--                            }--}}
+{{--                            console.log(total,"total log ");--}}
 
-                            //chart
-                            const ctx = document.getElementById('myChart').getContext('2d');
-                            const myChart = new Chart(ctx, {
-                                type: 'bar',
-                                data: {
-                                    labels: date,
-                                    datasets: [{
-                                        label: 'Number of bookings',
-                                        data: total,
-                                        backgroundColor: [
-                                            'rgba(255, 99, 132, 0.2)',
-                                            'rgba(54, 162, 235, 0.2)',
-                                            'rgba(255, 206, 86, 0.2)',
-                                            'rgba(75, 192, 192, 0.2)',
-                                            'rgba(153, 102, 255, 0.2)',
-                                            'rgba(255, 159, 64, 0.2)'
-                                        ],
-                                        borderColor: [
-                                            'rgba(255, 99, 132, 1)',
-                                            'rgba(54, 162, 235, 1)',
-                                            'rgba(255, 206, 86, 1)',
-                                            'rgba(75, 192, 192, 1)',
-                                            'rgba(153, 102, 255, 1)',
-                                            'rgba(255, 159, 64, 1)'
-                                        ],
-                                        borderWidth: 1
-                                    }]
-                                },
-                                options: {
-                                    scales: {
-                                        y: {
-                                            beginAtZero: true
-                                        }
-                                    }
-                                }
-                            });
-                        </script>
-                    </div>
+{{--                            //chart--}}
+{{--                            const ctx = document.getElementById('myChart').getContext('2d');--}}
+{{--                            const myChart = new Chart(ctx, {--}}
+{{--                                type: 'bar',--}}
+{{--                                data: {--}}
+{{--                                    labels: date,--}}
+{{--                                    datasets: [{--}}
+{{--                                        label: 'Number of bookings',--}}
+{{--                                        data: total,--}}
+{{--                                        backgroundColor: [--}}
+{{--                                            'rgba(255, 99, 132, 0.2)',--}}
+{{--                                            'rgba(54, 162, 235, 0.2)',--}}
+{{--                                            'rgba(255, 206, 86, 0.2)',--}}
+{{--                                            'rgba(75, 192, 192, 0.2)',--}}
+{{--                                            'rgba(153, 102, 255, 0.2)',--}}
+{{--                                            'rgba(255, 159, 64, 0.2)'--}}
+{{--                                        ],--}}
+{{--                                        borderColor: [--}}
+{{--                                            'rgba(255, 99, 132, 1)',--}}
+{{--                                            'rgba(54, 162, 235, 1)',--}}
+{{--                                            'rgba(255, 206, 86, 1)',--}}
+{{--                                            'rgba(75, 192, 192, 1)',--}}
+{{--                                            'rgba(153, 102, 255, 1)',--}}
+{{--                                            'rgba(255, 159, 64, 1)'--}}
+{{--                                        ],--}}
+{{--                                        borderWidth: 1--}}
+{{--                                    }]--}}
+{{--                                },--}}
+{{--                                options: {--}}
+{{--                                    scales: {--}}
+{{--                                        y: {--}}
+{{--                                            beginAtZero: true--}}
+{{--                                        }--}}
+{{--                                    }--}}
+{{--                                }--}}
+{{--                            });--}}
+{{--                        </script>--}}
+{{--                    </div>--}}
 
-                    <div class="chart-container">
-                            <canvas id="myChart2" width="100" height="50"></canvas>
-                            <script>
-                                var cdate = {!! json_encode($customerDate) !!};
-                                var ctotal = {!! json_encode($customerTotal) !!};
+{{--                    <div class="chart-container">--}}
+{{--                            <canvas id="myChart2" width="100" height="50"></canvas>--}}
+{{--                            <script>--}}
+{{--                                var cdate = {!! json_encode($customerDate) !!};--}}
+{{--                                var ctotal = {!! json_encode($customerTotal) !!};--}}
 
-                                //storing date in array
-                                date2 = [];
-                                for (const [key, value] of Object.entries(cdate)) {
-                                    date2.push(value.cdate);
-                                }
-                                console.log(date,"cdate log");
+{{--                                //storing date in array--}}
+{{--                                date2 = [];--}}
+{{--                                for (const [key, value] of Object.entries(cdate)) {--}}
+{{--                                    date2.push(value.cdate);--}}
+{{--                                }--}}
+{{--                                console.log(date,"cdate log");--}}
 
-                                //storing total in array
-                                total2 = [];
-                                for (const [key, value] of Object.entries(ctotal)) {
-                                    total2.push(value.ctotal);
-                                }
-                                console.log(total2,"ctotal log ");
+{{--                                //storing total in array--}}
+{{--                                total2 = [];--}}
+{{--                                for (const [key, value] of Object.entries(ctotal)) {--}}
+{{--                                    total2.push(value.ctotal);--}}
+{{--                                }--}}
+{{--                                console.log(total2,"ctotal log ");--}}
 
-                                //chart
-                                const ctx2 = document.getElementById('myChart2').getContext('2d');
-                                const myChart2 = new Chart(ctx2, {
-                                    type: 'bar',
-                                    data: {
-                                        labels: date2,
-                                        datasets: [{
-                                            label: 'Number of Checkins',
-                                            data: total2,
-                                            backgroundColor: [
-                                                'rgba(255, 99, 132, 0.2)',
-                                                'rgba(54, 162, 235, 0.2)',
-                                                'rgba(255, 206, 86, 0.2)',
-                                                'rgba(75, 192, 192, 0.2)',
-                                                'rgba(153, 102, 255, 0.2)',
-                                                'rgba(255, 159, 64, 0.2)'
-                                            ],
-                                            borderColor: [
-                                                'rgba(255, 99, 132, 1)',
-                                                'rgba(54, 162, 235, 1)',
-                                                'rgba(255, 206, 86, 1)',
-                                                'rgba(75, 192, 192, 1)',
-                                                'rgba(153, 102, 255, 1)',
-                                                'rgba(255, 159, 64, 1)'
-                                            ],
-                                            borderWidth: 1
-                                        }]
-                                    },
-                                    options: {
-                                        scales: {
-                                            y: {
-                                                beginAtZero: true
-                                            }
-                                        }
-                                    }
-                                });
-                            </script>
-                        </div>
+{{--                                //chart--}}
+{{--                                const ctx2 = document.getElementById('myChart2').getContext('2d');--}}
+{{--                                const myChart2 = new Chart(ctx2, {--}}
+{{--                                    type: 'bar',--}}
+{{--                                    data: {--}}
+{{--                                        labels: date2,--}}
+{{--                                        datasets: [{--}}
+{{--                                            label: 'Number of Checkins',--}}
+{{--                                            data: total2,--}}
+{{--                                            backgroundColor: [--}}
+{{--                                                'rgba(255, 99, 132, 0.2)',--}}
+{{--                                                'rgba(54, 162, 235, 0.2)',--}}
+{{--                                                'rgba(255, 206, 86, 0.2)',--}}
+{{--                                                'rgba(75, 192, 192, 0.2)',--}}
+{{--                                                'rgba(153, 102, 255, 0.2)',--}}
+{{--                                                'rgba(255, 159, 64, 0.2)'--}}
+{{--                                            ],--}}
+{{--                                            borderColor: [--}}
+{{--                                                'rgba(255, 99, 132, 1)',--}}
+{{--                                                'rgba(54, 162, 235, 1)',--}}
+{{--                                                'rgba(255, 206, 86, 1)',--}}
+{{--                                                'rgba(75, 192, 192, 1)',--}}
+{{--                                                'rgba(153, 102, 255, 1)',--}}
+{{--                                                'rgba(255, 159, 64, 1)'--}}
+{{--                                            ],--}}
+{{--                                            borderWidth: 1--}}
+{{--                                        }]--}}
+{{--                                    },--}}
+{{--                                    options: {--}}
+{{--                                        scales: {--}}
+{{--                                            y: {--}}
+{{--                                                beginAtZero: true--}}
+{{--                                            }--}}
+{{--                                        }--}}
+{{--                                    }--}}
+{{--                                });--}}
+{{--                            </script>--}}
+{{--                        </div>--}}
 
 
                 </div>

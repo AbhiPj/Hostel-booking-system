@@ -28,6 +28,8 @@ Route::resource('hostels', \App\Http\Controllers\HostelsController::class);
 Route::resource('requestHostels', \App\Http\Controllers\RequestHostelController::class);
 Route::resource('hostelReview', \App\Http\Controllers\ReviewController::class);
 Route::resource('featured', \App\Http\Controllers\FeaturedController::class);
+Route::resource('message', \App\Http\Controllers\MessageController::class);
+
 
 
 
@@ -63,6 +65,15 @@ Route::get('/admin/requestHostel/activate/{id}', [App\Http\Controllers\RequestHo
 Route::get('/admin/customer/view', [App\Http\Controllers\CustomerController::class, 'viewAllCustomer']);
 Route::get('/admin/customer/checkout', [App\Http\Controllers\CustomerController::class, 'checkout']);
 Route::get('/admin/customer/checkout/{id}', [App\Http\Controllers\CustomerController::class, 'checkoutCustomer']);
+
+Route::get('/admin/messages', [App\Http\Controllers\MessageController::class, 'index']);
+Route::get('/admin/messages/{id}', [App\Http\Controllers\MessageController::class, 'viewMessage']);
+Route::POST('/admin/messages/{id}', [App\Http\Controllers\MessageController::class, 'storeMessage']);
+
+Route::get('/user/messages', [App\Http\Controllers\MessageController::class, 'userMessage']);
+Route::get('/user/messages/{id}', [App\Http\Controllers\MessageController::class, 'viewUserMessages']);
+Route::POST('/user/messages/{id}', [App\Http\Controllers\MessageController::class, 'storeUserMessage']);
+
 
 
 

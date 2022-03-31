@@ -42,6 +42,13 @@
             </a>
         </li>
 
+        <li>
+            <a href="/admin/messages">
+                <i class='bx bx-grid-alt'></i>
+                <span class="links_name">Messages</span>
+            </a>
+        </li>
+
 
 
         <li>

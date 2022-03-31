@@ -12,6 +12,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Carbon\Carbon;
 use DateTime;
+use function PHPUnit\Framework\isNull;
 
 
 class HomeController extends Controller
@@ -42,7 +43,6 @@ class HomeController extends Controller
             $id = Auth::id();
             $hostel = Hostels::where('userId','=',$id)->first();
             $hostelId= $hostel->id;
-
 
             $customerMonth = Customer::whereMonth('created_at', date('m'))
                 ->whereYear('created_at', date('Y'))
@@ -80,19 +80,26 @@ class HomeController extends Controller
 //                ->groupby('year','month')
 //                ->get();
 
-            $i=0;
-            foreach ($bookingp as $b){
-                $i++;
-                $dateObj   = DateTime::createFromFormat('!m', $b->date);
-                $monthName = $dateObj->format('F'); // March
-                $date[$i] = [
-                    'date'     => $monthName,
-                ];
-                $total[$i] = [
-                    'total'      => $b->total,
-                ]; }
-            $this->date = $date;
-            $this->total = $total;
+            $date=[];
+            $total=[];
+            $customerDate=[];
+            $customerTotal=[];
+            if (!isNull($bookingp)){
+                $i=0;
+                foreach ($bookingp as $b){
+                    $i++;
+                    $dateObj   = DateTime::createFromFormat('!m', $b->date);
+                    $monthName = $dateObj->format('F'); // March
+                    $date[$i] = [
+                        'date'     => $monthName,
+                    ];
+                    $total[$i] = [
+                        'total'      => $b->total,
+                    ]; }
+                $this->date = $date;
+                $this->total = $total;
+            }
+
 
 
 
@@ -103,20 +110,24 @@ class HomeController extends Controller
                 ->groupBy('date')
                 ->get();
 
+            if (!isNull($customers))
+            {
+                $j=0;
+                foreach ($customers as $customer){
+                    $j++;
+                    $dateObj   = DateTime::createFromFormat('!m', $customer->date);
+                    $monthName = $dateObj->format('F'); // March
+                    $customerDate[$j] = [
+                        'cdate'     => $monthName,
+                    ];
+                    $customerTotal[$j] = [
+                        'ctotal'      => $customer->total,
+                    ]; }
+                $this->cdate = $customerDate;
+                $this->ctotal = $customerTotal;
+            }
 
-            $j=0;
-            foreach ($customers as $customer){
-                $j++;
-                $dateObj   = DateTime::createFromFormat('!m', $customer->date);
-                $monthName = $dateObj->format('F'); // March
-                $customerDate[$j] = [
-                    'cdate'     => $monthName,
-                ];
-                $customerTotal[$j] = [
-                    'ctotal'      => $customer->total,
-                ]; }
-            $this->cdate = $customerDate;
-            $this->ctotal = $customerTotal;
+
 
             $booking = Bookings::where('hostelId','=',$hostelId)->orderBy('id','DESC')->get();
 

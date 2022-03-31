@@ -36,6 +36,9 @@
                     <li class="nav-item mx-3    ">
                         <a style="color: black" class="nav-link" href="/user/requestHostel">Add your hostel</a>
                     </li>
+                    <li class="nav-item mx-3    ">
+                        <a style="color: black" class="nav-link" href="/user/messages">Messages</a>
+                    </li>
                     <li class="nav-item dropdown">
                         <a style="color: black" id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                             {{ Auth::user()->name }}
