@@ -8,6 +8,7 @@ use App\Models\Rooms;
 use App\Models\RoomType;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use function PHPUnit\Framework\isNull;
 
 class CustomerController extends Controller
 {
@@ -152,6 +153,8 @@ class CustomerController extends Controller
         $hostel = Hostels::where('userId','=',$id)->first();
         $hostelId= $hostel->id;
         $customers= Customer::where('hostelId','=',$hostelId)->where('checkout_status','=','false')->get();
-        return view('admin.checkout',compact('customers'));
+        $rooms= Rooms::all();
+
+        return view('admin.checkout',compact('customers','rooms'));
     }
 }

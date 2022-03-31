@@ -7,6 +7,7 @@
             <thead>
             <th>ID</th>
             <th>Customer Name</th>
+            <th>Price</th>
             <th>Action</th>
             </thead>
             <tbody>
@@ -15,16 +16,26 @@
                     <td>{{$customer['id']}}</td>
                     <td>{{$customer['customer_name']}}</td>
                     <td>
-                        <a class="button" href="{{route("roomType.edit", $customer->id)}}"
-                        >Edit</a>
-                        <a class="button" href="/admin/customer/checkout/{{$customer->id}}"
-                        >Checkout</a>
-{{--                        <button onclick="deleteAlert({{$customer['id']}}, 'roomType')" class="button">Delete</button>--}}
-                        <form action="{{route('customers.destroy', $customer->id)}}" method="POST">
-                            @csrf
-                            @method('delete')
-                            <button type="submit" class="button">Delete</button>
-                        </form>
+
+                        @foreach($rooms as $room)
+                            @if($room->id == $customer->roomId)
+                                {{$room->price}}
+
+                            @endif
+                        @endforeach
+                    </td>
+
+                    <td>
+                        <div style="display: flex">
+                            <a class="button" href="/admin/customer/checkout/{{$customer->id}}"
+                            >Checkout</a>
+                            {{--                        <button onclick="deleteAlert({{$customer['id']}}, 'roomType')" class="button">Delete</button>--}}
+                            <form action="{{route('customers.destroy', $customer->id)}}" method="POST">
+                                @csrf
+                                @method('delete')
+                                <button type="submit" class="button">Delete</button>
+                            </form>
+                        </div>
                     </td>
                 </tr>
             @endforeach

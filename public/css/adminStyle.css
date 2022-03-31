@@ -24,6 +24,15 @@
         width: 30%;
         height: 65vh;
     }
+
+    .chart-container{
+        width: 40%;
+        background: #fff;
+        padding: 20px 30px;
+        margin: 30px 20px;
+        border-radius: 12px;
+        box-shadow: 0 5px 10px rgb(0 0 0 / 10%);
+    }
 .sidebar {
     position: fixed;
     border-radius: 10px;
