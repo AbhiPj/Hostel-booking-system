@@ -4,7 +4,6 @@
 @section('content')
     <link rel="stylesheet" type="text/css" href="./style.css" />
     <link rel="stylesheet" type="text/css" href="{{asset('css/ratingbar.css')}}" />
-
     <div class="content">
         <script>
             function initMap() {
@@ -50,6 +49,10 @@
             <a href="#">Rooms</a>
             <a href="#">Reviews</a>
             <a href="/user/messages/{{$hostel->userId}}">Message</a>
+            <a href="/user/appointment/{{$hostel->id}}">Appointment</a>
+
+
+
         </div>
 
         <div style="display: flex; width: 90%; margin: auto">
@@ -218,12 +221,13 @@
                         </div>
                     @endforeach
                 </div>
-
             </div>
 
         </div>
 
     </div>
+
+
     <script>
         var slideIndex = 1;
         showSlides(slideIndex);

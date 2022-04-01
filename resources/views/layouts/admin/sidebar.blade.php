@@ -49,7 +49,19 @@
             </a>
         </li>
 
+        <li>
+            <a href="/admin/appointments">
+                <i class='bx bx-grid-alt'></i>
+                <span class="links_name">Appointments</span>
+            </a>
+        </li>
 
+        <li>
+            <a href="/admin/requestAppointment">
+                <i class='bx bx-grid-alt'></i>
+                <span class="links_name">View appointment requests</span>
+            </a>
+        </li>
 
         <li>
             <a href="{{ route('rooms.index') }}" >

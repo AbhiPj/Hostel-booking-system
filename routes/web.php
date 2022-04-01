@@ -29,6 +29,8 @@ Route::resource('requestHostels', \App\Http\Controllers\RequestHostelController:
 Route::resource('hostelReview', \App\Http\Controllers\ReviewController::class);
 Route::resource('featured', \App\Http\Controllers\FeaturedController::class);
 Route::resource('message', \App\Http\Controllers\MessageController::class);
+Route::resource('appointments', \App\Http\Controllers\AppointmentController::class);
+
 
 
 
@@ -73,6 +75,17 @@ Route::POST('/admin/messages/{id}', [App\Http\Controllers\MessageController::cla
 Route::get('/user/messages', [App\Http\Controllers\MessageController::class, 'userMessage']);
 Route::get('/user/messages/{id}', [App\Http\Controllers\MessageController::class, 'viewUserMessages']);
 Route::POST('/user/messages/{id}', [App\Http\Controllers\MessageController::class, 'storeUserMessage']);
+
+Route::get('/user/appointment/{id}', [App\Http\Controllers\AppointmentController::class, 'index']);
+Route::POST('/user/appointment/{id}', [App\Http\Controllers\AppointmentController::class, 'storeAppointment']);
+
+Route::get('/admin/appointments', [App\Http\Controllers\AppointmentController::class, 'adminAppointment']);
+Route::get('/admin/requestAppointment/', [App\Http\Controllers\AppointmentController::class, 'requestAppointment']);
+Route::get('/admin/requestAppointment/activate/{id}', [App\Http\Controllers\AppointmentController::class, 'activateRequestAppointment']);
+
+
+
+
 
 
 

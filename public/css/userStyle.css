@@ -555,3 +555,34 @@ p{
     transition: ease-in all 0.5s;
     border-radius: 10px;
 }
+/*********************** Appointment page style******************************/
+.mobile-container{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 90vh;
+    outline: solid black;
+    /*width: 40%;*/
+}
+
+.appointment-form-container{
+    height: 75vh;
+    padding: 30px;
+    width: 34%;
+    /*outline: solid black;*/
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 5px 10px rgb(0 0 0 / 10%);
+
+}
+
+.appointment-form-container form{
+    margin-top: 50px;
+}
+
+.appointment-form-container h2{
+    display: flex;
+    justify-content: center;
+}
+
+/***************************** Appointment style end *******************************/
