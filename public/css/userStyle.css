@@ -561,18 +561,19 @@ p{
     align-items: center;
     justify-content: center;
     height: 90vh;
-    outline: solid black;
     /*width: 40%;*/
+
 }
 
-.appointment-form-container{
+.mobile-form-container{
     height: 75vh;
     padding: 30px;
     width: 34%;
-    /*outline: solid black;*/
     background-color: white;
     border-radius: 10px;
     box-shadow: 0 5px 10px rgb(0 0 0 / 10%);
+    display: flex;
+    flex-direction: column;
 
 }
 
@@ -586,3 +587,20 @@ p{
 }
 
 /***************************** Appointment style end *******************************/
+
+
+
+/******************************** Chat style start *********************************/
+
+
+
+.mobile-background{
+    background: linear-gradient(180deg, rgba(50,178,248,1) 33%, rgba(21,150,252,1) 54%);
+    height: 92vh;
+    overflow: hidden;
+}
+
+
+.mobile-header{
+
+}
