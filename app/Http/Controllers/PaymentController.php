@@ -17,6 +17,12 @@ class PaymentController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
     public function index()
     {
         //
@@ -26,20 +32,23 @@ class PaymentController extends Controller
 
     public function viewPayment($id)
     {
-        $rooms = Rooms::find($id);
-        if ($rooms->roomStatus !== "available")
-        {
-            return redirect('/home');
+        if (Auth::check()) {
+            // The user is logged in...
+            $rooms = Rooms::find($id);
+            if ($rooms->roomStatus !== "available")
+            {
+                return redirect('/home');
+            }else{
+                return view('user.payment',compact('rooms'));
+            }
         }else{
-            return view('user.payment',compact('rooms'));
+            return redirect('/login');
         }
+
     }
 
     public function checkout(Request $request)
     {
-
-
-
         $roomId=$request->roomId;
         $userId= Auth::id();
 

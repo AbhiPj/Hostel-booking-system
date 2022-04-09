@@ -15,11 +15,9 @@ class FeaturedController extends Controller
      */
     public function index()
     {
-        //
-
-//        $hostels =Hostels::where('hostelStatus','=','active')->get();
-        $hostels = Featured::join('hostels','hostels.id', '=', 'featureds.hostelId')->get();
-        return view('superadmin.featuredHostel', compact('hostels'));
+        $hostels =Hostels::where('hostelStatus','=','active')->get();
+        $hostelsFeatured = Featured::join('hostels','hostels.id', '=', 'featureds.hostelId')->get();
+        return view('superadmin.featuredHostel', compact('hostelsFeatured','hostels'));
     }
 
     /**

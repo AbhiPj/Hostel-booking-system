@@ -7,27 +7,23 @@
 
 
     <div class="payment-content">
-
-
-
-        <div class="payment-form">
-
+        <div style="height: auto; " class="payment-form">
+            <div style="background-color: black;height:30vh;border-radius: 10px;width: 80%;margin-bottom: 20px"></div>
+            <div style="background-color: blue;height:30vh;border-radius: 10px;width: 90%; margin-bottom: 20px"></div>
+            <div style="background-color: green;height:30vh; border-radius: 10px;width: 80%; margin-bottom: 20px"></div>
+        </div>
+        <div class="payment-details">
+            <div style="min-height: 40vh; width: 100%; margin-bottom: 20px"></div>
+{{--            <div>--}}
+{{--                <button onclick="payByCash()" class="btn btn-dark" style="border-radius: 5px; width: 100%; padding:0.76rem">Pay by cash</button>--}}
+{{--            </div>--}}
             <select style="height: 30px;width: 200px" name="" id="select_id" onchange="changeValue()">
                 @foreach($membershipDetails as $data)
                     <option value="{{$data->id}}">{{ $data->duration }}</option>
                 @endforeach
             </select>
-        </div>
-        <div class="payment-details">
-            {{--            <p>{{$rooms->roomName}}</p>--}}
-            <div style="min-height: 40vh; width: 100%; background-color: black; margin-bottom: 20px"></div>
-{{--            <div>--}}
-{{--                <button onclick="payByCash()" class="btn btn-dark" style="border-radius: 5px; width: 100%; padding:0.76rem">Pay by cash</button>--}}
-{{--            </div>--}}
             <hr>
             <div id="paypal-button-container"></div>
-
-
         </div>
         {{--        <a href="/user/rooms/booking/{{$id}}">book</a>--}}
     </div>

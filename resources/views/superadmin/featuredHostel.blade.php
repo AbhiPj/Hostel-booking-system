@@ -29,15 +29,15 @@
             <th>Action</th>
             </thead>
             <tbody>
-            @foreach($hostels as $hostels)
+            @foreach($hostelsFeatured as $hostelsF)
                 <tr>
-                    <td>{{$hostels['id']}}</td>
-                    <td>{{$hostels['hostelName']}}</td>
-                    <td>{{$hostels['location']}}</td>
-                    <td>{{$hostels['district']}}</td>
-                    <td>{{$hostels['userId']}}</td>
+                    <td>{{$hostelsF['id']}}</td>
+                    <td>{{$hostelsF['hostelName']}}</td>
+                    <td>{{$hostelsF['location']}}</td>
+                    <td>{{$hostelsF['district']}}</td>
+                    <td>{{$hostelsF['userId']}}</td>
                     <td>
-                        <img class="myImg" onclick="image(event)"  id="myImg" src="{{ asset('images/' . $hostels['primaryImg']) }}" />
+                        <img class="myImg" onclick="image(event)"  id="myImg" src="{{ asset('images/' . $hostelsF['primaryImg']) }}" />
                     </td>
                     {{--            <td>--}}
                     {{--                @foreach (explode(',', $hostels['additionalImages']) as $image)--}}
@@ -46,8 +46,8 @@
                     {{--            </td>--}}
                     <td>
                         <div style="display: flex">
-                            <a href="{{route('hostels.edit', $hostels->id)}}" class="button">Edit</a>
-                            <form action="{{route('hostels.destroy', $hostels->id)}}" method="POST">
+                            <a href="{{route('hostels.edit', $hostelsF->id)}}" class="button">Edit</a>
+                            <form action="{{route('hostels.destroy', $hostelsF->id)}}" method="POST">
                                 @csrf
                                 @method('delete')
                                 <button type="submit" class="button">Delete</button>

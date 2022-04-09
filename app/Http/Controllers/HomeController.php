@@ -22,10 +22,10 @@ class HomeController extends Controller
      *
      * @return void
      */
-    public function __construct()
-    {
-        $this->middleware('auth');
-    }
+//    public function __construct()
+//    {
+//        $this->middleware('auth');
+//    }
 
     /**
      * Show the application dashboard.
@@ -84,12 +84,12 @@ class HomeController extends Controller
             $total=[];
             $customerDate=[];
             $customerTotal=[];
-            if (!isNull($bookingp)){
+            if (isNull($bookingp)){
                 $i=0;
                 foreach ($bookingp as $b){
                     $i++;
                     $dateObj   = DateTime::createFromFormat('!m', $b->date);
-                    $monthName = $dateObj->format('F'); // March
+                    $monthName = $dateObj->format('F');
                     $date[$i] = [
                         'date'     => $monthName,
                     ];
@@ -100,17 +100,12 @@ class HomeController extends Controller
                 $this->total = $total;
             }
 
-
-
-
-
-
             $customers= DB::table('customers')
                 ->select(DB::raw("month(created_at) date"), DB::raw('count(id) as total'))
                 ->groupBy('date')
                 ->get();
 
-            if (!isNull($customers))
+            if (isNull($customers))
             {
                 $j=0;
                 foreach ($customers as $customer){
@@ -126,6 +121,7 @@ class HomeController extends Controller
                 $this->cdate = $customerDate;
                 $this->ctotal = $customerTotal;
             }
+
 
 
 
