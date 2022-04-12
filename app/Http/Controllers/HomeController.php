@@ -34,12 +34,13 @@ class HomeController extends Controller
      */
     public function index()
     {
-//        return view('user.home');
-//          return view('home');
-        if(Auth::User()->userType == 'user'){
-//            return view('user.home');
+        //Redirecting users to their respective home page after checking role
+        if(Auth::User()->userType == 'user')
+        {
             return redirect("/user");
-        }elseif (Auth::User()->userType == 'admin'){
+        }
+        elseif (Auth::User()->userType == 'admin')
+        {
             $id = Auth::id();
             $hostel = Hostels::where('userId','=',$id)->first();
             $hostelId= $hostel->id;
@@ -47,7 +48,6 @@ class HomeController extends Controller
             $customerMonth = Customer::whereMonth('created_at', date('m'))
                 ->whereYear('created_at', date('Y'))
                 ->get(['customer_name','created_at','roomId']);
-
             $rooms=Rooms::all();
             $customerMonthSum=0;
             $countCustomers=count($customerMonth);
@@ -57,7 +57,6 @@ class HomeController extends Controller
                 {
                     if ($checkin->roomId == $room->id)
                     {
-
                         $customerMonthSum = $customerMonthSum + $room->price;
                     }
                 }
@@ -67,18 +66,6 @@ class HomeController extends Controller
                 ->select(DB::raw("month(created_at) date"), DB::raw('count(id) as total'))
                 ->groupBy('date')
                 ->get();
-
-//            $bookingp= DB::table('bookings')
-//                ->select(DB::raw("DATE_FORMAT(created_at, '%m-%Y') date"), DB::raw('count(id) as total'))
-////                ->select(DB::raw("DATE_FORMAT(created_at, '%m-%Y') date"), DB::raw('count(id) as total'))
-//
-//                ->groupBy('date')
-//                ->get();
-    //            dd($bookingp);
-
-//            ->select(DB::raw('count(id) as `data`'), DB::raw("DATE_FORMAT(created_at, '%m-%Y') new_date"),  DB::raw('YEAR(created_at) year, MONTH(created_at) month'))
-//                ->groupby('year','month')
-//                ->get();
 
             $date=[];
             $total=[];
@@ -123,8 +110,6 @@ class HomeController extends Controller
             }
 
 
-
-
             $booking = Bookings::where('hostelId','=',$hostelId)->orderBy('id','DESC')->get();
 
             //getting available rooms
@@ -142,11 +127,12 @@ class HomeController extends Controller
                 $totalPrice= $bookingPrice['price'] + $totalPrice;
             }
                 return view('admin.home', compact('totalBooking','totalPrice','booking','availableRooms','date','total','customerMonthSum','countCustomers','customerDate','customerTotal'));
-        }elseif(Auth::User()->userType == 'superadmin'){
+        }
+        elseif(Auth::User()->userType == 'superadmin')
+        {
             return view("superadmin.dashboard");
 
         }
-
     }
 
 }

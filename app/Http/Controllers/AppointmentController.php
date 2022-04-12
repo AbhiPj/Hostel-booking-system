@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Auth;
 use function PHPUnit\Framework\isNull;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class AppointmentController extends Controller
 {
@@ -93,10 +94,11 @@ class AppointmentController extends Controller
     public function storeAppointment(Request $request,$id)
     {
         $userId =Auth::id();
+        $appointmentFind = Appointment::where('userId','=',$userId)->where('hostelId','=',$id)->first();
 
-        $appointmentFind = Appointment::where('userId','=',$userId)->first();
-
-        if (isNull($appointmentFind)) {
+        //checking if appointment already exists before making appointment request
+        if (!$appointmentFind)
+        {
             $appointment = new Appointment();
             $appointment->appointment_date = $request->get('appointmentDate');
             $appointment->appointment_status = "pending";
@@ -104,10 +106,15 @@ class AppointmentController extends Controller
             $appointment->userId = $userId;
             $appointment->hostelId = $id;
             $appointment->save();
-        }else{
-            dd('appointment already exists');
         }
-        return view('user.home');
+        else
+        {
+            Alert::error('Warning', 'Appointment already exists');
+                return redirect()->back();
+        }
+        Alert::success('Success', 'Appointment request sent');
+        return back();
+//        return view('user.home')->with('Success','Appointment request sent');
     }
 
     public function adminAppointment()

@@ -36,6 +36,7 @@ Route::resource('appointments', \App\Http\Controllers\AppointmentController::cla
 
 
 
+
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index']);

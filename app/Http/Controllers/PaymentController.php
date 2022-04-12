@@ -30,8 +30,10 @@ class PaymentController extends Controller
         return view('user.payment',compact('booking'));
     }
 
+    //Viewing the payment page
     public function viewPayment($id)
     {
+        //redirecting to home page if room is not available
         if (Auth::check()) {
             // The user is logged in...
             $rooms = Rooms::find($id);
@@ -49,28 +51,18 @@ class PaymentController extends Controller
 
     public function checkout(Request $request)
     {
-        $roomId=$request->roomId;
         $userId= Auth::id();
-
-
-        $userInfo= Auth::user();
-        $userEmail = $userInfo->email;
-
+        $roomId=$request->roomId;
         $rooms = Rooms::find($roomId);
         $hostelId= $rooms->hostelId;
-        $admin = Hostels::where('id','=',$hostelId)->first();
-        $adminDetails= User::find($admin->id);
-        $adminEmail = $adminDetails->email;
 
-
-
+        //Saving booking details to database
         $booking = new Bookings();
         $booking->userId=$userId;
         $booking->roomId=$rooms->id;
         $booking->price=$rooms->price;
         $booking->hostelId=$rooms->hostelId;
         $booking->paymentStatus=$request->paymentMethod;
-
         $booking->firstName = $request->firstName;
         $booking->lastName = $request->lastName;
         $booking->email = $request->email;
@@ -81,10 +73,9 @@ class PaymentController extends Controller
         $booking->province = $request->province;
         $booking->district = $request->district;
         $booking->zipCode = $request->zipCode;
-
-
         $booking->save();
 
+        //Saving payment details to database
         $bookingId= $booking->id;
         $payment = new Payment();
         $payment->bookingId=$bookingId;
@@ -104,10 +95,17 @@ class PaymentController extends Controller
 
 
 
+        //Getting user email
+        $userInfo= Auth::user();
+        $userEmail = $userInfo->email;
 
+        //Getting admin email
+        $admin = Hostels::where('id','=',$hostelId)->first();
+        $adminDetails= User::find($admin->id);
+        $adminEmail = $adminDetails->email;
 
-        \Mail::to($userEmail)->send(new \App\Mail\Mail($details));
-        \Mail::to($adminEmail)->send(new \App\Mail\Mail($details));
+        \Mail::to($userEmail)->send(new \App\Mail\Mail($details));  //Sending mail to user
+        \Mail::to($adminEmail)->send(new \App\Mail\Mail($details));  //Sending mail to admin
 
 
     }

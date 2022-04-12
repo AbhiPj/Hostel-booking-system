@@ -21,6 +21,7 @@
 
 </head>
 <body>
+@include('sweetalert::alert')
 @include('layouts.user.navbar')
 <main style="min-height: 88vh">
         @yield('content')

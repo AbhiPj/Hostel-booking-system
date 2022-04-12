@@ -3,7 +3,7 @@
 @section('content')
 <div class="mobile-background">
     <div class="mobile-container">
-        <div style="width: 40%" class="mobile-form-container">
+        <div style="width: 30%" class="mobile-form-container">
                 <div>
                     <h1 style="text-align: center; margin-top: 30px">Register</h1>
                 </div>
