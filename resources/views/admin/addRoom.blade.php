@@ -1,7 +1,6 @@
 @extends('layouts.admin.admin')
 
 @section('content')
-    <link rel="stylesheet" href="{{asset('css/app.css')}}">
 <div class="admin-container" style="display: flex;flex-direction: column; justify-content: center">
     @if(session()->has('success'))
         <div class="alert alert-success">

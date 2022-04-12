@@ -37,19 +37,24 @@ class ReviewController extends Controller
     public function store(Request $request, $hostelId)
     {
         //
-        $str = $request->get('rating');
-        dd($str);
-        $review = new review();
-        $userId = Auth::id();
+        if(Auth::check()){
 
-        $review->review = $request->get('reviewMessage');
-        $review->userId = $userId;
-        $review->hostelId = $hostelId;
-        $review->stars = "3";
-        $review->save();
+            $str = $request->get('rating');
+            $review = new review();
+            $userId = Auth::id();
+
+            $review->review = $request->get('reviewMessage');
+            $review->userId = $userId;
+            $review->hostelId = $hostelId;
+            $review->stars = "3";
+            $review->save();
 
 
-        return redirect()->back();
+            return redirect()->back();
+        }
+        else{
+            return view('auth.login');
+        }
     }
 
     public function addReview(Request $request, $hostelId)

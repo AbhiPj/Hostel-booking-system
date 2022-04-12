@@ -49,13 +49,13 @@
                     @guest
                         @if (Route::has('login'))
                             <li class="nav-item">
-                                <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
+                                <a style="color: white" class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
                             </li>
                         @endif
 
                         @if (Route::has('register'))
                             <li class="nav-item">
-                                <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
+                                <a style="color: white" class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
                             </li>
                         @endif
                     @else
@@ -110,7 +110,7 @@
                     <div class="title-container">
                         <h1 class="primary-text">Welcome to Hostel Sansar</h1>
 
-                        <h2 class="secondary-text">Tagline</h2>
+                        <h2 class="secondary-text">We value your comfort</h2>
                         <p class="long-text">Find a place you can call home.</p>
     {{--                    <button class="home-btn">Read More</button>--}}
                     </div>
@@ -162,9 +162,9 @@
                         <div class="titlepage">
                             <h2><span class="text_norlam">Choose The Perfect</span> <br>Hostel</h2>
                         </div>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore
-                            et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-                            aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit </p>
+                        <p>Find yourself with nowhere to go? HostelSansar has got you covered.
+                            It has a place for everyone. Doors are open to anyone that wishes to join us.
+                            Together lets make this place a home. </p>
                         <a class="read_more" href="/user/hostels">See More</a>
                     </div>
                 </div>
@@ -204,9 +204,10 @@
                         <div class="titlepage">
                             <h2><span class="text_norlam">Our Featured </span> <br>Hostels</h2>
                         </div>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore
-                            et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-                            aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit </p>
+                        <p>We pride ourselves for our selection of hostels. Comfort, Cheap, Luxurious, We've got it all.
+                        What we don't have is you on our doorstep. Hurry on over! You don't wanna miss out on this opportunity.
+
+                        </p>
                         <a class="read_more" href="/user/features/hostel">Read More</a>
                     </div>
                 </div>
@@ -221,10 +222,9 @@
                     <div class="about_text">
                         <div class="titlepage">
                             <h2>About Us</h2>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
-                                labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco
-                                laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in
-                                voluptate velit </p>
+                            <p>HostelSansar is a not just a website, It is your guide to your journey, a friend to your misery,
+                                a companion to your forlornness. We aim to help you find your paradise. What we long for is your satisfaction
+                            and happiness. Help us fill that void and join us in our venture.</p>
                         </div>
                     </div>
                 </div>

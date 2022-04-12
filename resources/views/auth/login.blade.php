@@ -40,17 +40,17 @@
                             </div>
                         </div>
 
-                        <div class="row mb-3">
-                            <div class="col-md-6" style="margin-top: 20px">
-                                <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }}>
+{{--                        <div class="row mb-3">--}}
+{{--                            <div class="col-md-6" style="margin-top: 20px">--}}
+{{--                                <div class="form-check">--}}
+{{--                                    <input class="form-check-input" type="checkbox" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }}>--}}
 
-                                    <label class="form-check-label" for="remember">
-                                        {{ __('Remember Me') }}
-                                    </label>
-                                </div>
-                            </div>
-                        </div>
+{{--                                    <label class="form-check-label" for="remember">--}}
+{{--                                        {{ __('Remember Me') }}--}}
+{{--                                    </label>--}}
+{{--                                </div>--}}
+{{--                            </div>--}}
+{{--                        </div>--}}
 
                         <div class="row mb-0">
                             <div class="col-md-8 offset-md-4">
@@ -59,13 +59,15 @@
                                 </button>
                                 <br>
                                 <br>
-
                             @if (Route::has('password.request'))
                                     <a style="margin-left: 62px; margin-top: 30px" class="btn btn-link" href="{{ route('password.request') }}">
                                         {{ __('Forgot Your Password?') }}
                                     </a>
                                 @endif
                             </div>
+                        </div>
+                        <div class="row mt-4">
+                            <a href="/user" class="btn btn-primary">Continue as guest</a>
                         </div>
                     </form>
                 </div>

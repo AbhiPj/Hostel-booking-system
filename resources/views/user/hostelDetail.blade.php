@@ -185,8 +185,8 @@
                 <div >
                     <form action="/user/review/{{$hostel->id}}" method="POST">
                         @csrf
-                        <textarea name="reviewMessage" placeholder="Write a review..." style="border-radius: 10px; width: 60%;border: grey 1px solid; height: 150px; margin-top: 50px;margin-bottom: 30px;"></textarea>
-                        <fieldset>
+                        <textarea required name="reviewMessage" placeholder="Write a review..." style="border-radius: 10px; width: 60%;border: grey 1px solid; height: 150px; margin-top: 50px;margin-bottom: 30px;"></textarea>
+                        <fieldset >
                             <span class="star-cb-group">
                               <input type="radio" id="rating-5" name="rating" value="5" />
                               <label for="rating-5">5</label>

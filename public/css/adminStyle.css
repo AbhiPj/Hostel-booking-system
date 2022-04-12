@@ -348,13 +348,13 @@ nav .profile-details i {
 
 .home-content .sales-boxes {
     display: flex;
-    justify-content: space-between;
+    /*justify-content: space-between;*/
     /* padding: 0 20px; */
 }
 
 /* left box */
 .home-content .sales-boxes .recent-sales {
-    width: 65%;
+    width: 90%;
     background: #fff;
     padding: 20px 30px;
     margin: 0 20px;

@@ -31,7 +31,6 @@ class MessageController extends Controller
         $user = User::all();
 
         $messages= Message::where('to','=',$id)->distinct()->get('from','message');
-//        dd($messages);
 
         return view ('admin.messages',compact('messages','user'));
     }
@@ -104,14 +103,13 @@ class MessageController extends Controller
 
     public function viewMessage($id)
     {
-        $userId = Auth::id();
+        $userId = Auth::id();   //Getting the user Id
 
+        //Getting user messages and admin messages and combining them
         $messageAdmin = Message::where('to','=',$userId)->where('from','=',$id);
         $messages = Message::where('from','=',$userId)->where('to','=',$id)->union($messageAdmin)->orderBy('created_at')->get();
-
         $user = User::all();
-        return view('admin.viewMessages',compact('messages','user','id'));
-
+        return view('admin.viewMessages',compact('messages','user','id'));  //returning the data to the page
     }
 
     public function storeMessage(Request $request, $toId)
@@ -122,13 +120,11 @@ class MessageController extends Controller
         $message->to=  $toId;
         $message->message= $request->get('newMessage');
         $message->save();
-
         return redirect()->back();
     }
 
     public function userMessage()
     {
-        //
         $id = Auth::id();
         $user = User::all();
 
@@ -139,11 +135,11 @@ class MessageController extends Controller
 
     public function viewUserMessages($id)
     {
-        $userId = Auth::id();
+        $userId = Auth::id();   //Getting the user Id
 
+        //Getting admin messages and user messages and combining them
         $messageAdmin = Message::where('to','=',$userId)->where('from','=',$id);
         $messages = Message::where('from','=',$userId)->where('to','=',$id)->union($messageAdmin)->orderBy('created_at')->get();
-
         $user = User::all();
         return view('user.viewUserMessages',compact('messages','user','id'));
     }

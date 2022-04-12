@@ -41,14 +41,18 @@ class HomeController extends Controller
         }
         elseif (Auth::User()->userType == 'admin')
         {
+            //Getting hostel Id
             $id = Auth::id();
             $hostel = Hostels::where('userId','=',$id)->first();
             $hostelId= $hostel->id;
 
+            //Getting customers this month
             $customerMonth = Customer::whereMonth('created_at', date('m'))
                 ->whereYear('created_at', date('Y'))
                 ->get(['customer_name','created_at','roomId']);
-            $rooms=Rooms::all();
+            $rooms=Rooms::all();    //Getting all room data
+
+            //Calculating the total earning this month
             $customerMonthSum=0;
             $countCustomers=count($customerMonth);
             foreach ($customerMonth as $checkin)
@@ -69,8 +73,7 @@ class HomeController extends Controller
 
             $date=[];
             $total=[];
-            $customerDate=[];
-            $customerTotal=[];
+
             if (isNull($bookingp)){
                 $i=0;
                 foreach ($bookingp as $b){
@@ -87,16 +90,22 @@ class HomeController extends Controller
                 $this->total = $total;
             }
 
+            $customerDate=[];
+            $customerTotal=[];
+
+            //Getting customer data by each month
             $customers= DB::table('customers')
                 ->select(DB::raw("month(created_at) date"), DB::raw('count(id) as total'))
                 ->groupBy('date')
                 ->get();
 
+            // Splitting month and total customers to display on graph
             if (isNull($customers))
             {
                 $j=0;
                 foreach ($customers as $customer){
                     $j++;
+                    //Converting date into month
                     $dateObj   = DateTime::createFromFormat('!m', $customer->date);
                     $monthName = $dateObj->format('F'); // March
                     $customerDate[$j] = [

@@ -11,11 +11,17 @@ use RealRashid\SweetAlert\Facades\Alert;
 
 class AppointmentController extends Controller
 {
+
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
+
     public function index($id)
     {
         //
@@ -94,9 +100,9 @@ class AppointmentController extends Controller
     public function storeAppointment(Request $request,$id)
     {
         $userId =Auth::id();
-        $appointmentFind = Appointment::where('userId','=',$userId)->where('hostelId','=',$id)->first();
 
         //checking if appointment already exists before making appointment request
+        $appointmentFind = Appointment::where('userId','=',$userId)->where('hostelId','=',$id)->first();
         if (!$appointmentFind)
         {
             $appointment = new Appointment();
