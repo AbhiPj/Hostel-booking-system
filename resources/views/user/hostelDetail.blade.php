@@ -4,7 +4,9 @@
 @section('content')
     <link rel="stylesheet" type="text/css" href="./style.css" />
     <link rel="stylesheet" type="text/css" href="{{asset('css/ratingbar.css')}}" />
+
     <div class="content">
+
         <script>
             function initMap() {
                 // The location of Uluru
@@ -22,16 +24,17 @@
                 marker.setMap(map);
             }
         </script>
+
         <div class="slideshow-container">
 
-{{--            Displaying primary Image--}}
+    {{--            Displaying primary Image--}}
                 <div class="mySlides">
                     <div class="numbertext">1 / 3</div>
                     <img src="{{ asset('images/' . $hostel['primaryImg']) }}">
-{{--                    <div class="text">Caption Text</div>--}}
+    {{--                    <div class="text">Caption Text</div>--}}
                 </div>
 
-{{--            Displaying additional images--}}
+    {{--            Displaying additional images--}}
             @foreach (explode(',', $hostel['additionalImages']) as $image)
                 <div class="mySlides">
                     <div class="numbertext">1 / 3</div>
@@ -42,12 +45,12 @@
             <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
             <a class="next" onclick="plusSlides(1)">&#10095;</a>
         </div>
+
         <div class="hostel-nav">
-            <a href="#">Features</a>
-            <a href="#">Description</a>
-            <a href="#">Amenities</a>
-            <a href="#">Rooms</a>
-            <a href="#">Reviews</a>
+            <a href="#description" href="#">Description</a>
+            <a href="#location">Location</a>
+            <a href="#rooms">Rooms</a>
+            <a href="#reviews">Reviews</a>
             <a href="/user/messages/{{$hostel->userId}}">Message</a>
             <a href="/user/appointment/{{$hostel->id}}">Appointment</a>
 
@@ -56,7 +59,7 @@
         </div>
 
         <div style="display: flex; width: 90%; margin: auto">
-            <div class="room-info">
+            <div id="description" class="room-info">
                 <h2 style="margin: auto">{{$hostel->hostelName}}</h2>
                 <p style="margin-top: 30px;font-size: 13px;width: 95%">{{$hostel->about}}asdf asfa sdf asd fa sdf asd f asdf as fd asd fd  dsfasdf asdf
                 asdfasdfa asdfasdfaf asdfasdfa asdfasdfa sdfasfa sdfa sdf asfasdf asd sdf asdf asfa sdf asd fa sdf asd f asdf as fd asd fd  dsfasdf asdf
@@ -76,8 +79,8 @@
 
                 </ul>
             </div>
-            <div class="room-info-second">
-<h2> Location</h2>
+            <div id="location" class="room-info-second">
+                <h2> Location</h2>
                 <div id="map"></div>
                 <script
                     src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDLHJrMCWUn3MaoEKRnW0Y0rD22yU6Rp7I&callback=initMap&libraries=&v=weekly&channel=2"
@@ -85,13 +88,14 @@
                 ></script>
             </div>
         </div>
+
     </div>
 
 
     <section>
         <div>
             <div style="text-align: center; color: grey">
-                <div class="mainRoom">
+                <div id="rooms" class="mainRoom">
 {{--                    <h2 style="font-weight: normal">Rooms</h2>--}}
 
                     {{--                    <div style="text-align: center">--}}
@@ -139,11 +143,34 @@
             <div style="width: 30%;margin-right: 20px" class="room-info-second">
                 <h2> Ratings</h2>
                 <div class="ratings-container">
-                    <h2 style="font-size: 55px">4.5</h2>
-                    <div style="margin-left: 10px; margin-top: 10px ">
-                        <h2>Wonderful</h2>
-                        <p>2222 reviews</p>
-                    </div>
+                    <h2 style="font-size: 55px">
+                        @if($reviewStars)
+                            {{$reviewStars->average}}</h2>
+                            <div style="margin-left: 10px; margin-top: 10px ">
+                            @if(round($reviewStars->average) == 5 )
+                            <h2>Wonderful</h2>
+                                @elseif(round($reviewStars->average) == 4 )
+                                <h2>Good</h2>
+
+                                @elseif(round($reviewStars->average) == 3 )
+                                <h2>Average</h2>
+
+                                @elseif(round($reviewStars->average) == 2 )
+                                <h2>Unsatisfactory</h2>
+
+                            @elseif(round($reviewStars->average) == 1 )
+                                <h2>Bad</h2>
+
+                            @endif
+                            <p>{{$reviewStars->total}} reviews</p>
+                        </div>
+                        @endif
+
+                        @if(!$reviewStars)
+                            <div style="margin-left: 10px; margin-top: 10px ">
+                                <p>0 reviews</p>
+                            </div>
+                        @endif
                 </div>
                 <div>
 {{--                    <script type="text/javascript" src="jquery-1.4.2.min.js"></script>--}}
@@ -155,32 +182,43 @@
                     </script>
 
                     <table id="movies" style="margin: auto">
-                        <tr>
+                        @foreach($groupbyStars as $groupbyStar)
+                            @if($groupbyStar->stars == 5)
+                            <tr>
                             <td>5 Stars</td>
-                            <td class="movie_rating">70</td>
+                            <td class="movie_rating">{{$groupbyStar->total}}</td>
                         </tr>
-                        <tr>
+                                    @elseif($groupbyStar->stars == 4)
+                                <tr>
                             <td>4 Stars</td>
-                            <td class="movie_rating">22</td>
+                            <td class="movie_rating">{{$groupbyStar->total}}</td>
                         </tr>
+                                @elseif($groupbyStar->stars == 3)
                         <tr>
                             <td>3 Stars</td>
-                            <td class="movie_rating">22</td>
+                            <td class="movie_rating">{{$groupbyStar->total}}</td>
                         </tr>
+
+                                @elseif($groupbyStar->stars == 2)
                         <tr>
                             <td>2 Stars</td>
-                            <td class="movie_rating">22</td>
+                            <td class="movie_rating">{{$groupbyStar->total}}</td>
                         </tr>
+
+
+                                @elseif($groupbyStar->stars == 1)
                         <tr>
                             <td>1 Star</td>
-                            <td class="movie_rating">22</td>
+                            <td class="movie_rating">{{$groupbyStar->total}}</td>
                         </tr>
+                            @endif
+                        @endforeach
                     </table>
                 </div>
 
             </div>
 
-            <div style="width: 68%" class="room-info">
+            <div id="reviews" style="width: 68%" class="room-info">
                 <h2 style="margin: auto">Reviews</h2>
                 <div >
                     <form action="/user/review/{{$hostel->id}}" method="POST">
@@ -227,7 +265,6 @@
 
     </div>
 
-
     <script>
         var slideIndex = 1;
         showSlides(slideIndex);
@@ -256,7 +293,6 @@
             dots[slideIndex-1].className += " active";
         }
     </script>
-
 
     <style>
 

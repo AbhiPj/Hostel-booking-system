@@ -393,6 +393,8 @@ p{
     margin:auto;
     margin-top: 20px;
     /*width: 20%;*/
+    display: flex;
+    justify-content: center;
 }
 
 .search-button{
@@ -401,8 +403,8 @@ p{
     text-decoration: none;
     background-color: #000;
     color: #fff;
-    padding: 10px 20px 10px 20px;
-    width: 150px;
+    /*padding: 10px 20px 10px 20px;*/
+    width: 200px;
     /* max-width: 190px; */
     text-align: center;
     /*display: inline-block;*/
@@ -509,14 +511,22 @@ p{
     padding: 10px;
 }
 .hostel-ratings{
-    background-color: darkcyan;
+    /*background-color: darkcyan;*/
     box-shadow: 0 5px 10px rgb(0 0 0 / 10%);
-    height: 40vh;
+    min-height: 40vh;
+    height: auto;
     width: 250px;
     border-radius: 10px;
     margin-left: 10px;
     padding: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
 }
+
+/*.hostel-ratings p, h2, h1, h3{*/
+/*    color: white;*/
+/*}*/
 
 @media only screen and (max-device-width: 1366px) {
     .hostel-price {
@@ -551,7 +561,7 @@ p{
     /*max-width: 190px;*/
     text-align: center;
     display: inline-block;
-    margin-top: 210px;
+    /*margin-top: 210px;*/
     transition: ease-in all 0.5s;
     border-radius: 10px;
 }
@@ -600,7 +610,4 @@ p{
     overflow: hidden;
 }
 
-
-.mobile-header{
-
-}
+/*******************************************88*/

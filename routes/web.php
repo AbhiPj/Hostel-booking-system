@@ -48,6 +48,7 @@ Route::get('/user/features/hostel', [App\Http\Controllers\userRoomController::cl
 
 Route::POST('/user/review/{id}', [App\Http\Controllers\ReviewController::class, 'store']);
 Route::POST('/user/hostels/search', [App\Http\Controllers\userRoomController::class, 'searchHostel']);
+Route::POST('/user/hostels/filter', [App\Http\Controllers\userRoomController::class, 'filterHostel']);
 
 
 Route::get('/user/rooms/booking/{id}', [App\Http\Controllers\userRoomController::class, 'bookRoom']);

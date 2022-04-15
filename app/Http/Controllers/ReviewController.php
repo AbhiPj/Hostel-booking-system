@@ -46,7 +46,7 @@ class ReviewController extends Controller
             $review->review = $request->get('reviewMessage');
             $review->userId = $userId;
             $review->hostelId = $hostelId;
-            $review->stars = "3";
+            $review->stars = $request->get('rating');
             $review->save();
 
 

@@ -25,15 +25,25 @@ class userRoomController extends Controller
     public function viewHostel($id){
         $hostel = Hostels::find($id);
 
+
         $featureArr = explode(',',$hostel->features );
         $rooms = Rooms::where('hostelId','=',$id)->get();
-        $reviews = review::all();
+        $reviews = review::where('hostelId','=',$id)->get();
         $users = User::all();
 
-//        $reviewStars = review::all()
+        $reviewStars= DB::table('reviews')
+            ->select(DB::raw("round(avg(stars),1) average, hostelId, count(id) as total"))
+            ->groupBy('hostelId')
+            ->where('hostelId','=',$id)
+            ->first();
 
+        $groupbyStars= DB::table('reviews')
+            ->select(DB::raw("stars, count(id) as total"))
+            ->groupBy('stars')
+            ->where('hostelId','=',$id)
+            ->get();
 
-        return(view('user.hostelDetail', compact('hostel','id','rooms','featureArr','reviews','users')));
+        return(view('user.hostelDetail', compact('hostel','id','rooms','featureArr','reviews','users','reviewStars','groupbyStars')));
     }
 
     public function viewRoom($id){
@@ -58,19 +68,47 @@ class userRoomController extends Controller
     {
 //        return(view('user.hostels'));
         $hostels= Hostels::where('hostelStatus','=','active')->get();
-        return view('user.hostels',compact('hostels'));
+//        $reviews = review::groupBy('hostelId')->avg('stars');
+        $reviews= DB::table('reviews')
+            ->select(DB::raw("round(avg(stars),1) average, hostelId, count(id) as total"))
+            ->groupBy('hostelId')
+            ->get();
+        return view('user.hostels',compact('hostels','reviews'));
     }
 
     public function searchHostel(Request $request)
     {
         $hostelName = $request->get('hostelSearch');
         $hostels = Hostels::where('hostelName', 'LIKE', "%{$hostelName}%")->get();
-        return view('user.hostels',compact('hostels'));
+        $reviews= DB::table('reviews')
+            ->select(DB::raw("round(avg(stars),1) average, hostelId, count(id) as total"))
+            ->groupBy('hostelId')
+            ->get();
+        return view('user.hostels',compact('hostels','reviews'));
     }
+
+    public function filterHostel(Request $request)
+    {
+        $minPrice = $request->get('minPrice');
+        $maxPrice = $request->get('maxPrice');
+
+        $hostels = Hostels::whereBetween('price', [$minPrice,$maxPrice])->get();
+        $reviews= DB::table('reviews')
+            ->select(DB::raw("round(avg(stars),1) average, hostelId, count(id) as total"))
+            ->groupBy('hostelId')
+            ->get();
+        return view('user.hostels',compact('hostels','reviews'));
+    }
+
     public function viewFeatured()
     {
         $hostels = Featured::join('hostels','hostels.id', '=', 'featureds.hostelId')->get();
-        return view('user.featuredHostel', compact('hostels'));
+        $reviews= DB::table('reviews')
+            ->select(DB::raw("round(avg(stars),1) average, hostelId, count(id) as total"))
+            ->groupBy('hostelId')
+            ->get();
+
+        return view('user.featuredHostel', compact('hostels','reviews'));
 //        $hostels= Hostels::where('hostelStatus','=','active')->get();
 //        return view('user.hostels',compact('hostels'));
     }

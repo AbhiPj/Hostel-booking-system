@@ -23,7 +23,7 @@ class CreateHostelsTable extends Migration
             $table->string('district');
             $table->string('features');
             $table->string('hostelStatus');
-
+            $table->string('searchFilters');
             $table->string('latitude');
             $table->string('longitude');
 
