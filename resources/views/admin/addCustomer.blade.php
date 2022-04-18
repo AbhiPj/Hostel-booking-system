@@ -22,34 +22,24 @@
                 <label for="inputPhone" class="form-label">Phone number</label>
                 <input type="text" class="form-control" id="inputPhone" name="phoneNumber">
             </div>
-                        <div class="col-md-4">
-                            <label for="inputState" class="form-label">Room</label>
-                            <select name="selectRoom" id="inputState" class="form-select">
-                                <option selected>Choose...</option>
-                                @foreach($rooms as $room)
-                                    <option value="{{$room->id}}">{{$room->roomName}}</option>
-                                @endforeach
-                            </select>
-                        </div>
-{{--            <div class="col-12">--}}
-{{--                <label for="inputAddress" class="form-label">Address</label>--}}
-{{--                <input type="text" class="form-control" id="inputAddress" name="address">--}}
-{{--            </div>--}}
+
+            <div class="col-12">
+                <label for="inputAddress" class="form-label">Address</label>
+                <input type="text" class="form-control" id="inputAddress" name="address">
+            </div>
 {{--            <div class="col-12">--}}
 {{--                <label for="inputAddress2" class="form-label">Address 2</label>--}}
-{{--                <input type="text" class="form-control" id="inputAddress2" placeholder="Apartment, studio, or floor">--}}
+{{--                <input type="text" class="form-control" id="inputAddress2">--}}
 {{--            </div>--}}
-{{--            <div class="col-md-6">--}}
-{{--                <label for="inputCity" class="form-label">City</label>--}}
-{{--                <input type="text" class="form-control" id="inputCity">--}}
-{{--            </div>--}}
-{{--            <div class="col-md-4">--}}
-{{--                <label for="inputState" class="form-label">State</label>--}}
-{{--                <select id="inputState" class="form-select">--}}
-{{--                    <option selected>Choose...</option>--}}
-{{--                    <option>...</option>--}}
-{{--                </select>--}}
-{{--            </div>--}}
+
+            <div class="col-md-6">
+                <label for="inputCity" class="form-label">Street</label>
+                <input type="text" class="form-control" id="inputCity">
+            </div>
+            <div class="col-md-4">
+                <label for="inputCity" class="form-label">City</label>
+                <input type="text" class="form-control" id="inputCity">
+            </div>
 {{--            <div class="col-md-2">--}}
 {{--                <label for="inputZip" class="form-label">Zip</label>--}}
 {{--                <input type="text" class="form-control" id="inputZip">--}}
@@ -62,6 +52,15 @@
 {{--                    </label>--}}
 {{--                </div>--}}
 {{--            </div>--}}
+            <div class="col-md-4">
+                <label for="inputState" class="form-label">Room</label>
+                <select name="selectRoom" id="inputState" class="form-select">
+                    <option selected>Choose...</option>
+                    @foreach($rooms as $room)
+                        <option value="{{$room->id}}">{{$room->roomName}}</option>
+                    @endforeach
+                </select>
+            </div>
             <div class="col-12">
                 <button type="submit" class="btn btn-primary">Check in</button>
             </div>

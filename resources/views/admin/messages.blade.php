@@ -1,7 +1,9 @@
 @extends('layouts.admin.admin')
 
 @section('content')
-<div>
+<div class="admin-container">
+    <h2>Messages</h2>
+    <hr>
 @foreach($messages as $message)
     <a href="/admin/messages/{{$message->from}}" class="message-user">
         @foreach($user as $u)
@@ -16,17 +18,20 @@
     <style>
         .message-user{
          display: flex;
-            height: 10vh;
+            height: 7vh;
             width: 100%;
-            background-color: #4a5568;
-            align-items: center;
+            background-color: #c2e8fd;
+            /*border: 1px solid grey;*/
+            /*align-items: center;*/
+            border-radius: 4px;
             text-decoration: none;
             color: black;
+            margin-bottom: 3px;
         }
 
         .message-user:hover{
-            background-color: black;
-            color: white;
+            background-color: #fff2eb;
+            color: black;
         }
     </style>
 

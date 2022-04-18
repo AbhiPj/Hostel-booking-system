@@ -4,51 +4,53 @@
 @section('content')
     <script src="https://www.paypal.com/sdk/js?client-id=test&currency=USD"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.js"></script>
 
 
     <div class="payment-content">
-
-
+        <div class="alert alert-danger print-error-msg" style="display:none">
+            <ul></ul>
+        </div>
         <div class="payment-form">
             <form>
                 <div class="row"  >
                     <div class="col-md-6 col-sm-12 my-3">
-                        <input id="firstName" type="text" class="form-control" placeholder="First name">
+                        <input id="firstName" type="text" class="form-control" placeholder="First name" required>
                     </div>
                     <div class="col-md-6 col-sm-12 my-3">
-                        <input id="lastName" type="text" class="form-control" placeholder="Last name">
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-md-6 col-sm-12 my-3">
-                        <input id="email" type="text" class="form-control" placeholder="Email">
-                    </div>
-                    <div class="col-md-6 col-sm-12 my-3">
-                        <input id="phoneNumber" type="text" class="form-control" placeholder="Phone Number">
+                        <input id="lastName" type="text" class="form-control" placeholder="Last name" required>
                     </div>
                 </div>
                 <div class="row">
                     <div class="col-md-6 col-sm-12 my-3">
-                        <input id="address" type="text" class="form-control" placeholder="Address">
+                        <input id="email" type="email" class="form-control" placeholder="Email" required>
                     </div>
                     <div class="col-md-6 col-sm-12 my-3">
-                        <input id="street" type="text" class="form-control" placeholder="Street">
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-md-6 col-sm-12 my-3">
-                        <input id="city" type="text" class="form-control" placeholder="City">
-                    </div>
-                    <div class="col-md-6 col-sm-12 my-3">
-                        <input id="province" type="text" class="form-control" placeholder="Province">
+                        <input id="phoneNumber" type="number" class="form-control" placeholder="Phone Number" required>
                     </div>
                 </div>
                 <div class="row">
                     <div class="col-md-6 col-sm-12 my-3">
-                        <input id="district" type="text" class="form-control" placeholder="District">
+                        <input id="address" type="text" class="form-control" placeholder="Address" required>
                     </div>
                     <div class="col-md-6 col-sm-12 my-3">
-                        <input id="zipCode" type="text" class="form-control" placeholder="Zip code">
+                        <input id="street" type="text" class="form-control" placeholder="Street" required>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6 col-sm-12 my-3">
+                        <input id="city" type="text" class="form-control" placeholder="City" required>
+                    </div>
+                    <div class="col-md-6 col-sm-12 my-3">
+                        <input id="province" type="text" class="form-control" placeholder="Province" required>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6 col-sm-12 my-3">
+                        <input id="district" type="text" class="form-control" placeholder="District" required>
+                    </div>
+                    <div class="col-md-6 col-sm-12 my-3">
+                        <input id="zipCode" type="number" class="form-control" placeholder="Zip code" required>
                     </div>
                 </div>
             </form>
@@ -77,6 +79,19 @@
 
         function payByCash ()
         {
+            if($('#firstName').val() =="" ||
+                $('#lastName').val() =="" ||
+                $('#email').val()=="" ||
+                $('#phoneNumber').val()=="" ||
+                $('#address').val()=="" ||
+                $('#street').val()=="" ||
+                $('#city').val()=="" ||
+                $('#province').val()=="" ||
+                $('#district').val()=="" ||
+                $('#zipCode').val()=="" )
+            {
+                swal("Error", "Please fill the form with valid data", "error");
+            }
             $.ajax({
                 method:"POST",
                 url:"/user/rooms/checkout",
@@ -100,9 +115,16 @@
                 success:function (response){
                     // swal(response.status);
                     swal("Success", "Data added successfully", "success");
-                    // window.location.href="";
+                    window.location.href="/home";
                 }
             })
+        }
+        function printErrorMsg (msg) {
+            $(".print-error-msg").find("ul").html('');
+            $(".print-error-msg").css('display', 'block');
+            $.each(msg, function (key, value) {
+                $(".print-error-msg").find("ul").append('<li>' + value + '</li>');
+            });
         }
 
         paypal.Buttons({

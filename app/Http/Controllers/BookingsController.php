@@ -25,7 +25,9 @@ class BookingsController extends Controller
             $hostel = Hostels::where('userId', '=', $id)->first();
             $hostelId = $hostel->id;
             $booking = Bookings::where('hostelId', '=', $hostelId)->get();
-            return view('admin.booking', compact('booking'));
+            $users = User::all();
+            $rooms = Rooms::all();
+            return view('admin.booking', compact('booking','users','rooms'));
         }
         return redirect('/home');
     }

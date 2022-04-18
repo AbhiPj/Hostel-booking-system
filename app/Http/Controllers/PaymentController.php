@@ -51,6 +51,27 @@ class PaymentController extends Controller
 
     public function checkout(Request $request)
     {
+
+        $validator = \Validator::make($request->all(), [
+            'firstName' => 'required',
+            'lastName' => 'required',
+            'email' => 'required',
+            'phoneNumber' => 'required',
+            'address' => 'required',
+            'street' => 'required',
+            'city' => 'required',
+            'province' => 'required',
+            'district' => 'required',
+            'zipCode' => 'required',
+
+
+        ]);
+
+        if ($validator->fails())
+        {
+            return response()->json(['errors'=>$validator->errors()->all()]);
+        }
+
         $userId= Auth::id();
         $roomId=$request->roomId;
         $rooms = Rooms::find($roomId);
@@ -106,7 +127,6 @@ class PaymentController extends Controller
 
         \Mail::to($userEmail)->send(new \App\Mail\Mail($details));  //Sending mail to user
         \Mail::to($adminEmail)->send(new \App\Mail\Mail($details));  //Sending mail to admin
-
 
     }
 
