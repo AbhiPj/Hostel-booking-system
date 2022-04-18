@@ -2,70 +2,59 @@
 
 @section('content')
 <div class="request-hostel-container">
-{{--    <form action="/user/requestHostel/submit" method="POST" enctype="multipart/form-data" style="width: 65%; margin: auto;margin-top: 100px">--}}
-{{--        <div class="add-room-container">--}}
-{{--            @csrf--}}
-{{--            <input class="room-input" style="width: 88%" placeholder="Hostel Name" type="text" name="hostelName"><br>--}}
-{{--            <textarea class="room-input" style="width: 88%; height: 10vh" placeholder="Hostel Description" type="text" name="hostelDescription"></textarea><br>--}}
-{{--            <textarea class="room-input" style="width: 88%; height: 10vh" placeholder="Features" type="text" name="features"></textarea><br>--}}
-{{--            <input class="room-input" placeholder="Location" type="text" name="location"><br>--}}
-{{--            <input class="room-input" placeholder="District" type="text" name="district"><br>--}}
-{{--        </div>--}}
+{{--    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>--}}
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.0/jquery.validate.min.js"></script>
 
-{{--        <div>--}}
-{{--            <input class="submit-button" style="height: 30px; padding:0" type="submit" value="Submit">--}}
-{{--        </div>--}}
-{{--    </form>--}}
-
-    <form class="row g-3" action="/user/requestHostel/submit" method="POST" enctype="multipart/form-data" style="width: 60%;">
+    <form class="row g-3" action="/user/requestHostel/submit" id="requestHostel" method="POST" enctype="multipart/form-data" style="width: 60%;">
         <div class="add-room-container">
             @csrf
             <div class="col-12">
-            <input class="form-control" class="room-input" placeholder="Name" type="text" name="hostelName"><br>
+            <input class="form-control" class="room-input" id="hostelName" placeholder="Name" type="text" name="hostelName" required><br>
             </div>
 
             <div class="col-12">
-                <textarea class="form-control" placeholder="Hostel Description" type="text" name="hostelDescription"></textarea><br>
+                <textarea class="form-control" placeholder="Hostel Description" type="text" name="hostelDescription" required></textarea><br>
             </div>
 
             <div class="col-12">
-                <textarea  class="form-control" placeholder="Features" type="text" name="features"></textarea><br>
+                <textarea  class="form-control" placeholder="Features" type="text" name="features" required></textarea><br>
             </div>
 
-            <div  hidden class="col-md-6">
-                <input class="form-control" placeholder="Latitude" id="latitude" type="text" name="latitude"><br>
+            <div   class="col-md-6">
+                <input class="form-control" placeholder="Latitude" id="latitude" type="text" name="latitude" readonly ><br>
             </div>
 
-            <div  hidden class="col-md-6">
-                <input class="form-control" id="longitude" placeholder="Longitude" type="text" name="longitude"><br>
-            </div>
-
-            <div class="col-md-6">
-                <input class="form-control" placeholder="Location" type="text" name="location"><br>
+            <div   class="col-md-6">
+                <input class="form-control" id="longitude" placeholder="Longitude" type="text" name="longitude" readonly ><br>
             </div>
 
             <div class="col-md-6">
-                <input class="form-control" placeholder="District" type="text" name="district">
+                <input class="form-control" placeholder="Location" type="text" name="location" required><br>
+            </div>
+
+            <div class="col-md-6">
+                <input class="form-control" placeholder="District" type="text" name="district" required>
             </div>
         </div>
 
         <div>
             <div class="col-12">
-                <label for="room_image">Hostel Image:</label><br>
-                <input class="form-control" type="file" id="primaryImg" name="primaryImg" onchange="preview2()"><br><br>
+                <label style="color:black;" for="room_image">Hostel Image:</label><br>
+                <input class="form-control" type="file" id="primaryImg" name="primaryImg" onchange="preview2()" required><br><br>
             </div>
 
             <div class="col-12">
-                <label for="room_image">Additional images:</label><br>
+                <label style="color:black;" for="room_image">Additional images:</label><br>
                 <input class="form-control" type="file" id="roomImg" name="roomImg[]" multiple onchange="preview()"><br><br>
             </div>
-
             {{--            <div id="images2"></div>--}}
-            <div id="images"></div>
+{{--            <div id="images"></div>--}}
             <input class="btn btn-primary"  type="submit" value="Submit">
         </div>
     </form>
+
     <div class="admin-map">
+
         <script src="{{ asset('js/script.js') }}"></script>
 
         <div id="map"></div>
@@ -136,5 +125,25 @@
             height: 100%;
             border-radius: 10px;
         }
+
+        #requestHostel label{
+            color: red;
+        }
     </style>
+
+<script>
+
+    $(document).ready(function() {
+        $("#requestHostel").validate({
+            rules: {
+                latitude: "required",
+                longitude: "required",
+            },
+            messages: {
+                latitude: "Select value from the map",
+                longitude: "Select value from the map",
+            }
+        });
+    });
+</script>
 @endsection

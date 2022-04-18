@@ -25,7 +25,11 @@ class AppointmentController extends Controller
     public function index($id)
     {
         //
-        return view('user.appointment',compact('id'));
+        if (auth()->user()->userType == 'user') {
+
+            return view('user.appointment', compact('id'));
+        }
+        return redirect('/home');
     }
 
     /**
@@ -125,21 +129,31 @@ class AppointmentController extends Controller
 
     public function adminAppointment()
     {
-        $appointments = Appointment::all();
-        return view('admin.viewAppointments',compact('appointments'));
+        if (auth()->user()->userType == 'admin') {
+            $appointments = Appointment::all();
+            return view('admin.viewAppointments', compact('appointments'));
+        }
+        return redirect('/home');
     }
 
     public function requestAppointment()
     {
-        $appointments = Appointment::where('appointment_status','=','pending')->get();
-        return view('admin.appointmentRequests',compact('appointments'));
+        if (auth()->user()->userType == 'admin') {
+            $appointments = Appointment::where('appointment_status', '=', 'pending')->get();
+            return view('admin.appointmentRequests', compact('appointments'));
+        }
+        return redirect('/home');
     }
 
     public function activateRequestAppointment($id)
     {
-        $appointment = Appointment::find($id);
-        $appointment->appointment_status="approved";
-        $appointment->save();
-        return redirect()->back();
+        if (auth()->user()->userType == 'admin') {
+
+            $appointment = Appointment::find($id);
+            $appointment->appointment_status = "approved";
+            $appointment->save();
+            return redirect()->back();
+        }
+        return redirect('/home');
     }
 }

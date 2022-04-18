@@ -19,12 +19,15 @@ class BookingsController extends Controller
      */
     public function index()
     {
+        if (auth()->user()->userType == 'admin') {
 
-        $id = Auth::id();
-        $hostel = Hostels::where('userId','=',$id)->first();
-        $hostelId= $hostel->id;
-        $booking = Bookings::where('hostelId','=',$hostelId)->get();
-        return view('admin.booking',compact('booking'));
+            $id = Auth::id();
+            $hostel = Hostels::where('userId', '=', $id)->first();
+            $hostelId = $hostel->id;
+            $booking = Bookings::where('hostelId', '=', $hostelId)->get();
+            return view('admin.booking', compact('booking'));
+        }
+        return redirect('/home');
     }
 
     /**
@@ -95,11 +98,13 @@ class BookingsController extends Controller
 
     public function viewBookingDetails($id)
     {
-     $bookingDetails= Bookings::find($id);
-
-     $user = User::find($bookingDetails->userId);
-     $payment = Payment::where('bookingId','=',$id)->get()->first();
-     $room = Rooms::find($bookingDetails->userId);
-        return view('admin.viewBookingDetails', compact('bookingDetails', 'user','payment','room'));
+        if (auth()->user()->userType == 'admin') {
+            $bookingDetails = Bookings::find($id);
+            $user = User::find($bookingDetails->userId);
+            $payment = Payment::where('bookingId', '=', $id)->get()->first();
+            $room = Rooms::find($bookingDetails->userId);
+            return view('admin.viewBookingDetails', compact('bookingDetails', 'user', 'payment', 'room'));
+        }
+        return redirect('/home');
     }
 }

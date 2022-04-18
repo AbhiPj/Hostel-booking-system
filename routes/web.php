@@ -14,7 +14,7 @@ use App\Http\Controllers\RoomsController;
 */
 
 Route::get('/', function () {
-    return view('auth.login');
+    return redirect('/home');
 });
 
 Route::resource('rooms', RoomsController::class);
@@ -37,7 +37,7 @@ Route::resource('appointments', \App\Http\Controllers\AppointmentController::cla
 
 
 
-Auth::routes();
+Auth::routes(['verify' => true]);
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index']);
 Route::get('/user', [App\Http\Controllers\userRoomController::class, 'index']);
@@ -64,6 +64,7 @@ Route::POST('/user/requestHostel/submit', [App\Http\Controllers\RequestHostelCon
 Route::POST('/admin/memberPrice/delete', [App\Http\Controllers\MembershipDetailsController::class, 'memberPriceDelete']);
 Route::POST('/admin/roomType/delete', [App\Http\Controllers\RoomTypeController::class, 'roomDelete']);
 Route::get('/admin/booking/{id}', [App\Http\Controllers\BookingsController::class, 'viewBookingDetails']);
+
 Route::get('/admin/requestHostel/activate/{id}', [App\Http\Controllers\RequestHostelController::class, 'activateHostel']);
 
 Route::get('/admin/customer/view', [App\Http\Controllers\CustomerController::class, 'viewAllCustomer']);

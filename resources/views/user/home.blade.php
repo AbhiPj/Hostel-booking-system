@@ -81,8 +81,6 @@
                                 </a>
                             </div>
                         </li>
-
-
                         <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
                             @csrf
                         </form>
@@ -240,24 +238,6 @@
 </body>
 
     <script>
-        // var prevScrollTop = 0;
-        // var $scrollDiv    = $('div#hostel-container');
-        // var $currentDiv   = $('div#home-main');
-        // $scrollDiv.scroll(function(eventObj)
-        // {
-        //     var curScrollTop = $scrollDiv.scrollTop();
-        //     if (prevScrollTop < curScrollTop)
-        //     {
-        //         // Scrolling down:
-        //         $currentDiv = $currentDiv.next().scrollTo();
-        //     }
-        //     else if (prevScrollTop > curScrollTop)
-        //     {
-        //         // Scrolling up:
-        //         $currentDiv = $currentDiv.prev().scrollTo();
-        //     }
-        //     prevScrollTop = curScrollTop;
-        // });
         $('html, body').animate({
             scrollTop: $("#title-container").offset().top
         }, 1000);    </script>

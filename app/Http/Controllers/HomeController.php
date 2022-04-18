@@ -22,10 +22,10 @@ class HomeController extends Controller
      *
      * @return void
      */
-//    public function __construct()
-//    {
-//        $this->middleware('auth');
-//    }
+    public function __construct()
+    {
+        $this->middleware(['auth','verified']);
+    }
 
     /**
      * Show the application dashboard.
@@ -37,7 +37,8 @@ class HomeController extends Controller
         //Redirecting users to their respective home page after checking role
         if(Auth::User()->userType == 'user')
         {
-            return redirect("/user");
+//            return redirect("/user");
+            return view('user.home');
         }
         elseif (Auth::User()->userType == 'admin')
         {

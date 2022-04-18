@@ -29,12 +29,15 @@ class CustomerController extends Controller
      */
     public function create()
     {
-        //
-        $id = Auth::id();
-        $hostel = Hostels::where('userId','=',$id)->first();
-        $hostelId= $hostel->id;
-        $rooms= Rooms::where('hostelId','=',$hostelId)->where('roomStatus','=','available')->orwhere('roomStatus','=','booked')->get();
-        return view('admin.addCustomer',compact('rooms'));
+        if (auth()->user()->userType == 'admin') {
+
+            $id = Auth::id();
+            $hostel = Hostels::where('userId', '=', $id)->first();
+            $hostelId = $hostel->id;
+            $rooms = Rooms::where('hostelId', '=', $hostelId)->where('roomStatus', '=', 'available')->orwhere('roomStatus', '=', 'booked')->get();
+            return view('admin.addCustomer', compact('rooms'));
+        }
+        return redirect('/home');
 
     }
 
@@ -87,9 +90,10 @@ class CustomerController extends Controller
      * @param  \App\Models\Customer  $customer
      * @return \Illuminate\Http\Response
      */
-    public function edit(Customer $customer)
+    public function edit($id)
     {
-        //
+        $customer=Customer::find($id);
+        return view('admin.editCustomer',compact('customer'));
     }
 
     /**
@@ -120,28 +124,34 @@ class CustomerController extends Controller
 
     public function viewAllCustomer()
     {
-        $id = Auth::id();
-        $hostel = Hostels::where('userId','=',$id)->first();
-        $hostelId= $hostel->id;
-        $customers= Customer::where('hostelId','=',$hostelId)->get();
-        return view('admin.allCustomers',compact('customers'));
+        if (auth()->user()->userType == 'admin') {
+
+            $id = Auth::id();
+            $hostel = Hostels::where('userId', '=', $id)->first();
+            $hostelId = $hostel->id;
+            $customers = Customer::where('hostelId', '=', $hostelId)->get();
+            return view('admin.allCustomers', compact('customers'));
+        }
+        return redirect('/home');
     }
 
     public function checkoutCustomer($id)
     {
-        $customer = Customer::find($id);
-        $ldate = date('Y-m-d');
+        if (auth()->user()->userType == 'admin') {
 
-        $customer->checkout_status="true";
-        $customer->checkout_date=$ldate;
-        $customer->save();
+            $customer = Customer::find($id);
+            $ldate = date('Y-m-d');
 
-        //updating room status to unavailable after customer checks in
-        $roomId= $customer->roomId;
-        $room = Rooms::find($roomId);
-        $room->roomStatus="available";
-        $room->save();
+            $customer->checkout_status = "true";
+            $customer->checkout_date = $ldate;
+            $customer->save();
 
+            //updating room status to unavailable after customer checks in
+            $roomId = $customer->roomId;
+            $room = Rooms::find($roomId);
+            $room->roomStatus = "available";
+            $room->save();
+        }
         return redirect('/home');
 
 
@@ -149,12 +159,16 @@ class CustomerController extends Controller
 
     public function checkout()
     {
-        $id = Auth::id();
-        $hostel = Hostels::where('userId','=',$id)->first();
-        $hostelId= $hostel->id;
-        $customers= Customer::where('hostelId','=',$hostelId)->where('checkout_status','=','false')->get();
-        $rooms= Rooms::all();
+        if (auth()->user()->userType == 'admin') {
 
-        return view('admin.checkout',compact('customers','rooms'));
+            $id = Auth::id();
+            $hostel = Hostels::where('userId', '=', $id)->first();
+            $hostelId = $hostel->id;
+            $customers = Customer::where('hostelId', '=', $hostelId)->where('checkout_status', '=', 'false')->get();
+            $rooms = Rooms::all();
+
+            return view('admin.checkout', compact('customers', 'rooms'));
+        }
+        return redirect('/home');
     }
 }

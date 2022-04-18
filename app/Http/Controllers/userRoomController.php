@@ -16,10 +16,10 @@ class userRoomController extends Controller
 {
     public function index()
     {
-        //
-        $rooms = Rooms::all();
-        return(view('user.home', compact('rooms')));
-
+        if (auth()->check()) {
+            return redirect('/home');
+        }
+            return(view('user.home'));
     }
 
     public function viewHostel($id){
