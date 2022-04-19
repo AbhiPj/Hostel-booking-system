@@ -103,9 +103,13 @@ class CustomerController extends Controller
      * @param  \App\Models\Customer  $customer
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Customer $customer)
+    public function update(Request $request,$id)
     {
-        //
+        $customer =  Customer::find($id);
+        $customer->customer_name=$request->get('name');
+        $customer->phone_number=$request->get('phoneNumber');
+        $customer->save();
+        return redirect('/admin/customer/view');
     }
 
     /**

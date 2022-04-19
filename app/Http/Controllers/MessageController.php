@@ -19,8 +19,9 @@ class MessageController extends Controller
 
     public function __construct()
     {
-        $this->middleware('auth');
+        $this->middleware(['auth','verified']);
     }
+
 
     public function index()
     {
@@ -135,7 +136,9 @@ class MessageController extends Controller
             $id = Auth::id();
             $user = User::all();
             $messages= Message::where('to','=',$id)->distinct()->get('from','message');
-            return view ('user.messages',compact('messages','user'));
+//            dd($messages);
+            $hostels =Hostels::all();
+            return view ('user.messages',compact('messages','user','hostels'));
         }
         return redirect('/home');
 

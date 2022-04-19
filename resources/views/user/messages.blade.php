@@ -59,9 +59,9 @@
                         </li>
                     @endif
                 @else
-                    <li class="nav-item mx-3">
-                        <a style="color:white; font-size: 15px" class="nav-link" href="{{ route('membership.index') }}">Membership</a>
-                    </li>
+{{--                    <li class="nav-item mx-3">--}}
+{{--                        <a style="color:white; font-size: 15px" class="nav-link" href="{{ route('membership.index') }}">Membership</a>--}}
+{{--                    </li>--}}
                     <li class="nav-item mx-3">
                         <a style="color: white" class="nav-link" href="/user/requestHostel">Add your hostel</a>
                     </li>
@@ -102,25 +102,47 @@
             </div>
             <div>
 
-                @empty($messages)
+                @empty(!$messages)
                     @foreach($messages as $message)
-                        <a class="message-item" href="/user/messages/{{$message->from}}" style="text-decoration: none">
+                        <a class="message-user" href="/user/messages/{{$message->from}}" style="text-decoration: none">
                             @foreach($user as $u)
                                 @if($u->id == $message->from)
-                                    {{$u->name}}
+                                    @foreach($hostels as $hostel)
+                                        @if($hostel->userId == $u->id)
+                                            {{$hostel->hostelName}}
+                                        @endif
+                                    @endforeach
                                 @endif
                             @endforeach
                         </a>
                     @endforeach
                 @else
                     <p>No new messages</p>
-
                 @endempty
             </div>
         </div>
     </div>
 </div>
 
+<style>
+    .message-user{
+        display: flex;
+        height: 6vh;
+        width: 100%;
+        background-color: #c2e8fd;
+        /*border: 1px solid grey;*/
+        align-items: center;
+        border-radius: 4px;
+        text-decoration: none;
+        color: black;
+        margin-bottom: 3px;
+        padding: 10px;
+    }
 
+    .message-user:hover{
+        background-color: #e3e8ec;
+        color: black;
+    }
+</style>
 
 {{--@endsection--}}

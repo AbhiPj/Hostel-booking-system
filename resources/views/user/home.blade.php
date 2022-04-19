@@ -59,9 +59,9 @@
                             </li>
                         @endif
                     @else
-                        <li class="nav-item mx-3">
-                            <a style="color:white; font-size: 15px" class="nav-link" href="{{ route('membership.index') }}">Membership</a>
-                        </li>
+{{--                        <li class="nav-item mx-3">--}}
+{{--                            <a style="color:white; font-size: 15px" class="nav-link" href="{{ route('membership.index') }}">Membership</a>--}}
+{{--                        </li>--}}
                         <li class="nav-item mx-3">
                             <a style="color: white" class="nav-link" href="/user/requestHostel">Add your hostel</a>
                         </li>

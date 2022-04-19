@@ -149,3 +149,20 @@ img{
     margin-bottom: 10px;
 
 }
+.message-user{
+    width: 60%;
+    height: 40px;
+    background-color: rgba(221, 238, 245, 0.7);
+    border-radius: 0 10px 10px 15px;
+    display: flex;
+    justify-content: flex-start;
+    /*align-items: center;*/
+    padding: 10px;
+
+}
+
+.message-user p{
+    color: #010125;
+}
+
+

@@ -1,12 +1,11 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>ItsolutionStuff.com</title>
+    <title>HostelSansar.com</title>
 </head>
 <body>
-<h1>{{ $details['title'] }}</h1>
-<p>{{ $details['body'] }}</p>
-
-<p>Thank you not</p>
+    <h1>{{ $details['title'] }}</h1>
+    <p>{{ $details['body'] }}</p>
+    <p>Thank you</p>
 </body>
 </html>

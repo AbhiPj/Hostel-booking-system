@@ -56,7 +56,6 @@
             </form>
         </div>
         <div class="payment-details">
-{{--            <p>{{$rooms->roomName}}</p>--}}
             <div class="payment-details-item">
                 <h4 style="display:flex; justify-content: center">Payment overview</h4>
                 <hr>
@@ -64,7 +63,6 @@
                 <p>Room name</p>
                 <p>Room type</p>
                 <p>2000 Rs</p>
-
             </div>
             <div>
                 <button onclick="payByCash()" class="btn btn-dark" style="border-radius: 5px; width: 100%; padding:0.76rem">Pay by cash</button>
@@ -73,10 +71,8 @@
             <div id="paypal-button-container"></div>
 
         </div>
-{{--        <a href="/user/rooms/booking/{{$id}}">book</a>--}}
     </div>
     <script>
-
         function payByCash ()
         {
             if($('#firstName').val() =="" ||
@@ -119,41 +115,20 @@
                 }
             })
         }
-        function printErrorMsg (msg) {
-            $(".print-error-msg").find("ul").html('');
-            $(".print-error-msg").css('display', 'block');
-            $.each(msg, function (key, value) {
-                $(".print-error-msg").find("ul").append('<li>' + value + '</li>');
-            });
-        }
-
         paypal.Buttons({
-
             // Sets up the transaction when a payment button is clicked
             createOrder: function(data, actions) {
                 return actions.order.create({
                     purchase_units: [{
                         amount: {
-                            value: '{{$rooms->price}}' // Can reference variables or functions. Example: `value: document.getElementById('...').value`
+                            value: '{{$rooms->price}}' // Amount to be sent for payment
                         }
                     }]
                 });
             },
-
             // Finalize the transaction after payer approval
             onApprove: function(data, actions) {
                 return actions.order.capture().then(function(orderData) {
-                    // Successful capture! For dev/demo purposes:
-                    // console.log('Capture result', orderData, JSON.stringify(orderData, null, 2));
-                    // var transaction = orderData.purchase_units[0].payments.captures[0];
-                    // alert('Transaction '+ transaction.status + ': ' + transaction.id + '\n\nSee console for all available details');
-
-                    // When ready to go live, remove the alert and show a success message within this page. For example:
-                    // var element = document.getElementById('paypal-button-container');
-                    // element.innerHTML = '';
-                    // element.innerHTML = '<h3>Thank you for your payment!</h3>';
-                    // Or go to another URL:  actions.redirect('thank_you.html');
-
                     $.ajax({
                         method:"POST",
                         url:"/user/rooms/checkout",

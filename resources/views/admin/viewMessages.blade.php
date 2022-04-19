@@ -15,7 +15,6 @@
                                     <p>
                                         {{$message->message}} :
                                         {{$u->name}}
-
                                     </p>
                                 </div>
                             @endif
@@ -31,9 +30,6 @@
                                 </div>
                             @endif
                         </div>
-
-
-
                         @endif
                     @endforeach
                 <br>
@@ -60,7 +56,6 @@
             justify-content: flex-start;
             /*align-items: center;*/
             padding: 10px;
-
         }
     </style>
 @endsection

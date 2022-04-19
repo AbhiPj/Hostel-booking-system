@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Bookings;
 use App\Models\Customer;
+use App\Models\Featured;
 use App\Models\Hostels;
 use App\Models\Rooms;
 use App\Models\User;
@@ -140,7 +141,15 @@ class HomeController extends Controller
         }
         elseif(Auth::User()->userType == 'superadmin')
         {
-            return view("superadmin.dashboard");
+            $activeHostels = Hostels::where('hostelStatus','=','active')->get();
+            $hostelRequests = Hostels::where('hostelStatus','=','pending')->orderBy('id','DESC')->get();
+            $featuredHostels =Featured::all();
+
+
+            $activeHostelsCount =count($activeHostels);
+            $hostelRequestsCount =count($hostelRequests);
+            $featuredCount = count($featuredHostels);
+            return view("superadmin.dashboard", compact('activeHostelsCount','hostelRequestsCount','hostelRequests','featuredCount'));
 
         }
     }

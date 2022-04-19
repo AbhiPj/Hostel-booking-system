@@ -5,9 +5,15 @@ namespace App\Http\Controllers;
 use App\Models\Featured;
 use App\Models\Hostels;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class FeaturedController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware(['auth','verified']);
+    }
     /**
      * Display a listing of the resource.
      *
@@ -15,9 +21,14 @@ class FeaturedController extends Controller
      */
     public function index()
     {
-        $hostels =Hostels::where('hostelStatus','=','active')->get();
-        $hostelsFeatured = Featured::join('hostels','hostels.id', '=', 'featureds.hostelId')->get();
-        return view('superadmin.featuredHostel', compact('hostelsFeatured','hostels'));
+        if(Auth::User()->userType == 'superadmin') {
+
+            $hostels = Hostels::where('hostelStatus', '=', 'active')->get();
+            $featured = Featured::all();
+            $hostelsFeatured = Featured::join('hostels', 'hostels.id', '=', 'featureds.hostelId')->get();
+            return view('superadmin.featuredHostel', compact('hostelsFeatured', 'hostels', 'featured'));
+        }
+        return redirect('/home');
     }
 
     /**
@@ -41,7 +52,6 @@ class FeaturedController extends Controller
         $featured = new Featured();
         $featured->hostelId=$request->get('featured');
         $featured->save();
-
         return redirect()->route('featured.index');
 
 
@@ -87,8 +97,13 @@ class FeaturedController extends Controller
      * @param  \App\Models\Featured  $featured
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Featured $featured)
+    public function destroy($id)
     {
-        //
+        if(Auth::User()->userType == 'superadmin') {
+            $featuredHostel = Featured::Where('hostelId', '=', $id);
+            $featuredHostel->delete();
+            return redirect()->route('featured.index');
+        }
+        return redirect('/home');
     }
 }

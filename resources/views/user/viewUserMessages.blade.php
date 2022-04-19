@@ -55,9 +55,9 @@
                         </li>
                     @endif
                 @else
-                    <li class="nav-item mx-3">
-                        <a style="color:white; font-size: 15px" class="nav-link" href="{{ route('membership.index') }}">Membership</a>
-                    </li>
+{{--                    <li class="nav-item mx-3">--}}
+{{--                        <a style="color:white; font-size: 15px" class="nav-link" href="{{ route('membership.index') }}">Membership</a>--}}
+{{--                    </li>--}}
                     <li class="nav-item mx-3">
                         <a style="color: white" class="nav-link" href="/user/requestHostel">Add your hostel</a>
                     </li>
@@ -93,17 +93,50 @@
     <div class="mobile-container">
         <div style="justify-content: space-between;width: 30%" class="mobile-form-container">
             <div>
+{{--                @foreach($messages as $message)--}}
+{{--                <div class="message-item">--}}
+{{--                    @foreach($user as $u)--}}
+{{--                        @if($u->id ==  $message->from)--}}
+{{--                            {{$u->name}}:--}}
+{{--                            {{$message->message}}--}}
+{{--                        @endif--}}
+{{--                    @endforeach--}}
+{{--                    <br>--}}
+{{--                </div>--}}
+{{--                @endforeach--}}
                 @foreach($messages as $message)
-                <div class="message-item">
-                    @foreach($user as $u)
-                        @if($u->id ==  $message->from)
-                            {{$u->name}}:
-                            {{$message->message}}
-                        @endif
-                    @endforeach
-                    <br>
-                </div>
+                    <div>
+                        @foreach($user as $u)
+                            @if($u->id ==  $message->from )
+
+                                <div style="width: 100%; display: flex; justify-content: flex-end">
+                                    @if($message->to == $id)
+                                        <div class="message-user" style="justify-content: flex-end">
+                                            <p>
+                                                {{$message->message}} :
+                                                {{$u->name}}
+
+                                            </p>
+                                        </div>
+                                    @endif
+                                </div>
+
+                                <div style="width: 100%">
+                                    @if($message->to != $id)
+                                        <div class="message-user" >
+                                            <p>
+                                                {{$u->name}} :
+                                                {{$message->message}}
+                                            </p>
+                                        </div>
+                                    @endif
+                                </div>
+                            @endif
+                        @endforeach
+                        <br>
+                    </div>
                 @endforeach
+
             </div>
 
             <form id="messages" action="/user/messages/{{$id}}" method="POST" enctype="multipart/form-data">

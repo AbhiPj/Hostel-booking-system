@@ -3,10 +3,16 @@
 namespace App\Http\Controllers;
 
 use App\Models\Hostels;
+use http\Client\Curl\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class HostelsController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware(['auth','verified']);
+    }
     /**
      * Display a listing of the resource.
      *
@@ -15,8 +21,11 @@ class HostelsController extends Controller
     public function index()
     {
         //
-        $hostels = Hostels::all();
-        return view('superadmin.viewHostel', compact('hostels'));
+        if(Auth::User()->userType == 'superadmin') {
+            $hostels = Hostels::all();
+            return view('superadmin.viewHostel', compact('hostels'));
+        }
+        return redirect('/home');
 
     }
 
@@ -28,8 +37,12 @@ class HostelsController extends Controller
     public function create()
     {
         //
-        $data= Hostels::all();
-        return(view('superadmin.addHostels', ['hostels' => $data]));
+        if(Auth::User()->userType == 'superadmin') {
+            $data = Hostels::all();
+            $user = \App\Models\User::all();
+            return (view('superadmin.addHostels', ['hostels' => $data]));
+        }
+        return redirect('/home');
     }
 
     /**
@@ -100,8 +113,11 @@ class HostelsController extends Controller
      */
     public function edit($id)
     {
-        $hostels=Hostels::find($id);
-        return view('superadmin.editHostel',compact('hostels'));
+        if(Auth::User()->userType == 'superadmin') {
+            $hostels = Hostels::find($id);
+            return view('superadmin.editHostel', compact('hostels'));
+        }
+        return redirect('/home');
     }
 
     /**
@@ -153,8 +169,12 @@ class HostelsController extends Controller
     public function destroy($id)
     {
         //
-        $room = Hostels::find($id);
-        $room->delete();
-        return redirect()->route('hostels.index');
+        if(Auth::User()->userType == 'superadmin') {
+
+            $room = Hostels::find($id);
+            $room->delete();
+            return redirect()->route('hostels.index');
+        }
+        return redirect('/home');
     }
 }

@@ -9,13 +9,14 @@ use Illuminate\Support\Facades\Auth;
 use function PHPUnit\Framework\isNull;
 use RealRashid\SweetAlert\Facades\Alert;
 
+
 class AppointmentController extends Controller
 {
-
     public function __construct()
     {
-        $this->middleware('auth');
+        $this->middleware(['auth','verified']);
     }
+
     /**
      * Display a listing of the resource.
      *

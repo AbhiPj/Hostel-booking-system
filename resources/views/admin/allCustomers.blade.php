@@ -16,7 +16,7 @@
                     <td>{{$customer['customer_name']}}</td>
                     <td>
                         <div style="display: flex">
-                            <a class="button" href="{{route("roomType.edit", $customer->id)}}"
+                            <a class="button" href="{{route("customers.edit", $customer->id)}}"
                             >Edit</a>
                             {{--                        <button onclick="deleteAlert({{$customer['id']}}, 'roomType')" class="button">Delete</button>--}}
                             <form action="{{route('customers.destroy', $customer->id)}}" method="POST">

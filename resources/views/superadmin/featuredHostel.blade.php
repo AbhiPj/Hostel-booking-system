@@ -1,7 +1,7 @@
 @extends('layouts.superadmin.superadmin')
 
 @section('content')
-    <link rel="stylesheet" href="{{asset('css/app.css')}}">
+{{--    <link rel="stylesheet" href="{{asset('css/app.css')}}">--}}
     <div class="admin-container" style="min-height: 10vh; height:auto; margin-bottom: 20px">
         <form class="row-g-3" action="{{ route('featured.store') }}" method="POST" enctype="multipart/form-data">
             @csrf
@@ -9,10 +9,10 @@
             <select name="featured" class="form-select">
                 <option selected>Choose...</option>
                 @foreach($hostels as $hostel)
-                    <option value="{{$hostel->id}}">{{$hostel->hostelName}}</option>
+                        <option value="{{$hostel->id}}">{{$hostel->hostelName}}</option>
                 @endforeach
             </select>
-            <input class="btn btn-primary" type="submit" value="Submit">
+            <input class="btn btn-primary mt-4" type="submit" value="Submit">
         </form>
     </div>
 
@@ -47,7 +47,7 @@
                     <td>
                         <div style="display: flex">
                             <a href="{{route('hostels.edit', $hostelsF->id)}}" class="button">Edit</a>
-                            <form action="{{route('hostels.destroy', $hostelsF->id)}}" method="POST">
+                            <form action="{{route('featured.destroy', $hostelsF->id)}}" method="POST">
                                 @csrf
                                 @method('delete')
                                 <button type="submit" class="button">Delete</button>

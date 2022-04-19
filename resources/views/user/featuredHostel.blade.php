@@ -30,13 +30,13 @@
     {{--    </form>--}}
 
     <div class="hostel-container">
-        @if(!is_bool($hostels))
+        @empty($hostels)
             @foreach($hostels as $hostel)
                 <div class="hostel-item">
                     <div class="hostel-img">
                         <img style="width: 100%;height: 100%; border-radius: 10px" src="{{asset('images/'.$hostel->primaryImg)}}">
-
                     </div>
+
                     <div class="hostel-details">
                         <h2>{{$hostel->hostelName}}</h2>
                         <p style="font-size: 10px; margin-left: 3px">{{$hostel->location}}</p>
@@ -53,10 +53,13 @@
                     </div>
                 </div>
             @endforeach()
-        @endif
 
-        @if(is_bool($hostels))
-            <p>ver nice</p>
+        @else()
+            <div class="hostel-item">
+                <div style="margin: auto">
+                    <h2 style="color: grey">No Features</h2>
+                </div>
+            </div>
 
         @endif
     </div>
