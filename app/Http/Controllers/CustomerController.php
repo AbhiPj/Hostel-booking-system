@@ -60,6 +60,12 @@ class CustomerController extends Controller
         $customer->customer_name=$request->get('customerName');
         $customer->phone_number=$request->get('phoneNumber');
         $customer->roomId=$roomId;
+        $customer->city=$request->get('city');
+        $customer->street=$request->get('street');
+        $customer->address=$request->get('address');
+
+
+
         $customer->hostelId= $hostelId;
         $customer->checkout_status="false";
         $customer->save();
@@ -139,6 +145,7 @@ class CustomerController extends Controller
         return redirect('/home');
     }
 
+    //Checkout customers
     public function checkoutCustomer($id)
     {
         if (auth()->user()->userType == 'admin') {
@@ -161,6 +168,7 @@ class CustomerController extends Controller
 
     }
 
+    //View customers that have not checked out
     public function checkout()
     {
         if (auth()->user()->userType == 'admin') {

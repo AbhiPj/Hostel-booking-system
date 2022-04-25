@@ -11,7 +11,7 @@
             <th>User</th>
 
 
-            <th>Action</th>
+{{--            <th>Action</th>--}}
             </thead>
             <tbody>
             @foreach($appointments as $a)
@@ -20,16 +20,20 @@
                     <td>{{$a['appointment_date']}}</td>
                     <td>{{$a['appointment_message']}}</td>
                     <td>{{$a['appointment_status']}}</td>
-                    <td>{{$a['userId']}}</td>
+                    @foreach($user as $u)
+                        @if($u->id == $a->userId)
+                            <td>{{$u->name}}</td>
+                        @endif
+                    @endforeach
 
 
-                    <td>
-                        <div style="display:flex;">
-                            <a class="button" href="/admin/booking/{{$a->id}}"
-                            >Details</a>
-                        </div>
+{{--                    <td>--}}
+{{--                        <div style="display:flex;">--}}
+{{--                            <a class="button" href="/admin/booking/{{$a->id}}"--}}
+{{--                            >Details</a>--}}
+{{--                        </div>--}}
 
-                    </td>
+{{--                    </td>--}}
                 </tr>
             @endforeach
             </tbody>

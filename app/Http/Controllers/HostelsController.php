@@ -61,8 +61,6 @@ class HostelsController extends Controller
 
         // $primaryImageName = time().'.'.$request->bookPrimaryImg->extension();
         $primaryImageName = $request->file('primaryImg')->getClientOriginalName();
-        $primaryImagePath = $request->file('primaryImg')->store('public/images');
-
         $request->primaryImg->move(public_path('images'), $primaryImageName);
         $secondaryImgs = [];
         if($request->hasfile('roomImg'))
@@ -170,9 +168,12 @@ class HostelsController extends Controller
     {
         //
         if(Auth::User()->userType == 'superadmin') {
-
-            $room = Hostels::find($id);
-            $room->delete();
+            $hostelDel = Hostels::find($id);
+            $userId = $hostelDel->userId;
+            $user = \App\Models\User::find($userId);
+            $user->userType="user";
+            $user->save();
+            $hostelDel->delete();
             return redirect()->route('hostels.index');
         }
         return redirect('/home');

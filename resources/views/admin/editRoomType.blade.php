@@ -1,7 +1,7 @@
 @extends('layouts.admin.admin')
 
 @section('content')
-    <link rel="stylesheet" href="{{asset('css/app.css')}}">
+{{--    <link rel="stylesheet" href="{{asset('css/app.css')}}">--}}
     <div class="admin-container" style="display: flex;flex-direction: column; justify-content: center">
         <form action="{{ route('roomType.update',$room->id) }}" method="POST" enctype="multipart/form-data">
             @csrf

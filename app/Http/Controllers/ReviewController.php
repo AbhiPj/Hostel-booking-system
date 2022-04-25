@@ -38,17 +38,14 @@ class ReviewController extends Controller
     {
         //
         if(Auth::check()){
-
-            $str = $request->get('rating');
+            $rating = $request->get('rating');
             $review = new review();
             $userId = Auth::id();
-
             $review->review = $request->get('reviewMessage');
             $review->userId = $userId;
             $review->hostelId = $hostelId;
             $review->stars = $request->get('rating');
             $review->save();
-
 
             return redirect()->back();
         }
@@ -57,10 +54,6 @@ class ReviewController extends Controller
         }
     }
 
-    public function addReview(Request $request, $hostelId)
-    {
-
-    }
 
     /**
      * Display the specified resource.

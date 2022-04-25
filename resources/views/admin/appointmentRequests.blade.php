@@ -14,10 +14,14 @@
                 <tr>
                     <td>{{$requests['id']}}</td>
                     <td>{{$requests['appointment_date']}}</td>
-                    <td>{{$requests['userId']}}</td>
+                    @foreach($user as $u)
+                        @if($u->id == $requests->userId)
+                    <td>{{$u->name}}</td>
+                        @endif
+                    @endforeach
                     <td>
                         <div style="display: flex">
-                            <a href="/admin/requestAppointment/activate/{{$requests->id}}" class="button">Activate</a>
+                            <a href="/admin/requestAppointment/activate/{{$requests->id}}" class="button">Accept</a>
                             <form action="{{route('appointments.destroy', $requests->id)}}" method="POST">
                                 @csrf
                                 @method('delete')

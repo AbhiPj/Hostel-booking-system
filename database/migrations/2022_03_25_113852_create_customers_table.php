@@ -18,6 +18,9 @@ class CreateCustomersTable extends Migration
             $table->timestamps();
             $table->string('customer_name');
             $table->string('phone_number');
+            $table->string('address');
+            $table->string('street');
+            $table->string('city');
             $table->string('checkout_status')->nullable();
             $table->date('checkout_date')->nullable();
             $table->foreignId('roomId')->constrained('rooms');

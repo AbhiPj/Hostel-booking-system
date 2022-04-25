@@ -30,7 +30,7 @@
     {{--    </form>--}}
 
     <div class="hostel-container">
-        @empty($hostels)
+        @empty(!$hostels)
             @foreach($hostels as $hostel)
                 <div class="hostel-item">
                     <div class="hostel-img">
@@ -53,7 +53,6 @@
                     </div>
                 </div>
             @endforeach()
-
         @else()
             <div class="hostel-item">
                 <div style="margin: auto">

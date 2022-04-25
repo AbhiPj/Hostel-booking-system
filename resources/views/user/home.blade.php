@@ -206,7 +206,7 @@
                         What we don't have is you on our doorstep. Hurry on over! You don't wanna miss out on this opportunity.
 
                         </p>
-                        <a class="read_more" href="/user/features/hostel">Read More</a>
+                        <a class="read_more" href="/user/features/hostel">See More</a>
                     </div>
                 </div>
             </div>

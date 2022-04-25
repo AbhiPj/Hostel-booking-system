@@ -1,7 +1,7 @@
 @extends('layouts.admin.admin')
 
 @section('content')
-    <link rel="stylesheet" href="{{asset('css/app.css')}}">
+{{--    <link rel="stylesheet" href="{{asset('css/app.css')}}">--}}
     <div class="admin-container" style="display: flex;flex-direction: column; justify-content: center">
 
     <form action="{{ route('rooms.update',$room->id) }}" method="POST" enctype="multipart/form-data">
@@ -14,9 +14,11 @@
             </div>
 
             <div class="col-md-6">
-                <label class="form-label" for="roomType">Room Type:</label><br>
-                <input class="form-control" value="{{$room->roomType}}" type="text" name="roomType"><br><br>
+{{--                <label class="form-label" for="roomType">Room Type:</label><br>--}}
+                <input class="form-control" value="{{$room->roomType}}" type="text" name="roomType" hidden><br><br>
             </div>
+
+
 
             <div class="col-12">
                 <label class="form-label" for="name">About:</label><br>

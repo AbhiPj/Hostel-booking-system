@@ -254,7 +254,7 @@
 
                                 @endif
                             @endforeach
-                            <p style="font-size: 10px;color: grey">2022/03/19</p>
+                            <p style="font-size: 10px;color: grey">{{$review->created_at}}</p>
                             <hr>
                         </div>
                     @endforeach

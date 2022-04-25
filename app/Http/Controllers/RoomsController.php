@@ -53,10 +53,10 @@ class RoomsController extends Controller
     public function store(Request $request)
     {
         //
-        $validatedData = $request->validate([
-            'primaryImg' => 'required|image|mimes:jpg,png,jpeg,gif,svg|max:2048',
-            'roomImg.*' => 'image|mimes:jpg,png,jpeg,gif,svg|max:2048',
-        ]);
+//        $validatedData = $request->validate([
+//            'primaryImg' => 'required|image|mimes:jpg,png,jpeg,gif,svg|max:2048',
+//            'roomImg.*' => 'image|mimes:jpg,png,jpeg,gif,svg|max:2048',
+//        ]);
 
         // $primaryImageName = time().'.'.$request->bookPrimaryImg->extension();
         $primaryImageName = $request->file('primaryImg')->getClientOriginalName();
@@ -83,6 +83,7 @@ class RoomsController extends Controller
         $rooms->roomName = $request->get('name');
         $rooms->roomType = $request->get('roomType');
         $rooms->about=$request->get('about');
+        $rooms->roomStatus="available";
         $rooms->price=$request->get('price');
         $rooms->primaryImg = $primaryImageName;
         $secondaryImgNames = implode(",",$secondaryImgs);
@@ -118,7 +119,8 @@ class RoomsController extends Controller
         //
 
         $room=Rooms::find($id);
-        return view('admin.editRoom',compact('room'));
+        $roomType = RoomType::all();
+        return view('admin.editRoom',compact('room','roomType'));
     }
 
     /**
@@ -158,7 +160,6 @@ class RoomsController extends Controller
             }
         }
         $rooms->save();
-
         return redirect()->route('rooms.create');
     }
 
@@ -171,11 +172,9 @@ class RoomsController extends Controller
     public function destroy( $id)
     {
         //
-
         $room = Rooms::find($id);
         $room->delete();
         return redirect()->route('rooms.create');
-
     }
 
 

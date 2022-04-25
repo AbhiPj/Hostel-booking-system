@@ -93,9 +93,12 @@ class BookingsController extends Controller
      * @param  \App\Models\Bookings  $bookings
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Bookings $bookings)
+    public function destroy(Bookings $bookings,$id)
     {
         //
+        $bookings= Bookings::find($id);
+        $bookings->delete();
+        return redirect()->back();
     }
 
     public function viewBookingDetails($id)

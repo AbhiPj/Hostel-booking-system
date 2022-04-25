@@ -39,22 +39,23 @@
 {{--        <input class="submit-button" style="height: 30px; padding:0" type="submit" value="Submit">--}}
 {{--    </form>--}}
 
-        <form class="row g-3">
+        <form class="row g-3" action="{{ route('rooms.store') }}" method="POST" enctype="multipart/form-data">
+            @csrf
             <div class="col-md-6">
                 <label for="inputName" class="form-label">Name</label>
-                <input name="name" type="text" class="form-control" id="inputName">
+                <input name="name" type="text" class="form-control" id="inputName" required>
             </div>
             <div class="col-12">
-                <label for="inputAbout" class="form-label">about</label>
-                <textarea name="address" type="text" class="form-control" id="inputAbout"></textarea>
+                <label for="inputAbout" class="form-label">About</label>
+                <textarea name="about" type="text" class="form-control" id="inputAbout" required></textarea>
             </div>
             <div class="col-md-6">
                 <label for="inputPrice" class="form-label">Price</label>
-                <input name="price" type="text" class="form-control" id="inputPrice">
+                <input name="price" type="text" class="form-control" id="inputPrice" required>
             </div>
             <div class="col-md-6">
-                <label for="inputState" class="form-label">State</label>
-                            <select class="form-select" name="roomType" id="">
+                <label for="inputState" class="form-label">Room type</label>
+                            <select class="form-select" name="roomType" id="roomType" >
                                 <option selected>Choose...</option>
                             @foreach($roomType as $roomType1)
                                     <option value="{{$roomType1->id}}">{{$roomType1->roomType}}</option>
@@ -63,11 +64,11 @@
             </div>
             <div class="col-md-6">
                 <label class="form-label" for="room_image">Room Image:</label><br>
-                <input class="form-control" type="file" id="primaryImg" name="primaryImg" onchange="preview2()"><br><br>
+                <input class="form-control" type="file" id="primaryImg" name="primaryImg" onchange="preview2()" required><br><br>
             </div>
             <div class="col-md-6">
-                <label class="form-label" for="room_image">Additional Images:</label><br>
-                <input class="form-control" type="file" id="roomImg" name="roomImg[]" multiple onchange="preview()"><br><br>
+{{--                <label class="form-label" for="room_image">Additional Images:</label><br>--}}
+                <input class="form-control" type="file" id="roomImg" name="roomImg[]" multiple onchange="preview()" hidden><br><br>
             </div>
             <div class="col-12">
                 <button type="submit" class="btn btn-primary">Add room</button>

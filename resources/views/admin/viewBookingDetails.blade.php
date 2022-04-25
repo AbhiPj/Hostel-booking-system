@@ -49,7 +49,7 @@
             border-radius: 12px;
             box-shadow: 0 5px 10px rgb(0 0 0 / 10%);
         }
-        li{
+        .booking-details-container li{
             display: flex;
             align-items: center;
             justify-content: space-between;

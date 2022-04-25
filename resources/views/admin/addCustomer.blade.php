@@ -34,11 +34,11 @@
 
             <div class="col-md-6">
                 <label for="inputCity" class="form-label">Street</label>
-                <input type="text" class="form-control" id="inputCity">
+                <input type="text" class="form-control" id="inputCity" name="street">
             </div>
             <div class="col-md-4">
                 <label for="inputCity" class="form-label">City</label>
-                <input type="text" class="form-control" id="inputCity">
+                <input type="text" class="form-control" id="inputCity" name="city">
             </div>
 {{--            <div class="col-md-2">--}}
 {{--                <label for="inputZip" class="form-label">Zip</label>--}}

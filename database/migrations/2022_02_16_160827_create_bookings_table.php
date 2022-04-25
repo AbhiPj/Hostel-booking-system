@@ -17,7 +17,7 @@ class CreateBookingsTable extends Migration
             $table->id();
             $table->timestamps();
             $table->foreignId('userId')->constrained('users');
-            $table->foreignId('roomId')->constrained('rooms');
+            $table->foreignId('roomId')->constrained('rooms')->onDelete('cascade');
             $table->foreignId('hostelId')->constrained('hostels');
 
             $table->integer('price');

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Appointment;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Auth;
@@ -132,7 +133,9 @@ class AppointmentController extends Controller
     {
         if (auth()->user()->userType == 'admin') {
             $appointments = Appointment::all();
-            return view('admin.viewAppointments', compact('appointments'));
+            $user = User::all();
+
+            return view('admin.viewAppointments', compact('appointments','user'));
         }
         return redirect('/home');
     }
@@ -140,8 +143,9 @@ class AppointmentController extends Controller
     public function requestAppointment()
     {
         if (auth()->user()->userType == 'admin') {
+            $user = User::all();
             $appointments = Appointment::where('appointment_status', '=', 'pending')->get();
-            return view('admin.appointmentRequests', compact('appointments'));
+            return view('admin.appointmentRequests', compact('appointments','user'));
         }
         return redirect('/home');
     }

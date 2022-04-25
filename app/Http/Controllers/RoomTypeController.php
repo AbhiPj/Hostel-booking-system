@@ -50,8 +50,12 @@ class RoomTypeController extends Controller
     public function store(Request $request)
     {
         //
+        $id = Auth::id();
+        $hostel = Hostels::where('userId','=',$id)->first();
+        $hostelId= $hostel->id;
         $roomType = new RoomType();
         $roomType->roomType = $request->get('roomType');
+        $roomType->hostelId= $hostelId;
         $roomType->save();
         return redirect()->route('roomType.create')->with('success','Added successfully');
 
@@ -93,8 +97,12 @@ class RoomTypeController extends Controller
     public function update(Request $request, $id)
     {
         //
+        $userId = Auth::id();
+        $hostel = Hostels::where('userId','=',$userId)->first();
+        $hostelId= $hostel->id;
         $roomType=RoomType::find($id);
         $roomType->roomType = $request->get('editRoomType');
+        $roomType->hostelId =$hostelId;
         $roomType->save();
         return redirect()->route('roomType.create');
     }

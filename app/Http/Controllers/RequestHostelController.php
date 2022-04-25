@@ -69,7 +69,6 @@ class RequestHostelController extends Controller
             }
         }
 
-
         $hostels = new Hostels();
         $hostels->hostelName = $request->get('hostelName');
         $hostels->userId = $userId;
@@ -79,13 +78,10 @@ class RequestHostelController extends Controller
         $hostels->features=$request->get('features');
         $hostels->latitude=$request->get('latitude');
         $hostels->longitude=$request->get('longitude');
-
-
         $hostels->district=$request->get('district');
         $hostels->primaryImg = $primaryImageName;
         $secondaryImgNames = implode(",",$secondaryImgs);
         $hostels->additionalImages = $secondaryImgNames;
-
         $hostels->save();
 
         return redirect('/user');
@@ -110,11 +106,9 @@ class RequestHostelController extends Controller
      */
     public function edit(Hostels $hostels, $id)
     {
-        //
-        $hostels=Hostels::find($id);
+        $hostels = Hostels::find($id);
         dd($hostels);
         return view('superadmin.editHostel',compact('hostels'));
-
     }
 
     /**
@@ -142,18 +136,13 @@ class RequestHostelController extends Controller
 
     public function activateHostel($id)
     {
-
         $activateHostel = Hostels::find($id);
         $activateHostel->hostelStatus="active";
         $activateHostel->save();
-
         $userId= $activateHostel->userId;
         $user = User::find($userId);
         $user->userType="admin";
         $user->save();
-
         return redirect()->route('hostels.index');
-
-
     }
 }
